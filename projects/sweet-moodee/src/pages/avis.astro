@@ -1,0 +1,222 @@
+---
+// « Elle me va ? » — the page a friend opens from WhatsApp. Everything it shows comes from
+// the link (/avis?p=id1,id2&de=Aya): pieces are looked up in the inlined light catalogue and
+// every text is set with textContent, so a crafted link can never inject markup.
+import Base from "../layouts/Base.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import { getLive } from "../lib/catalog";
+import { getPieces, inlineJson } from "../lib/pieces";
+import { SHOP } from "../config";
+
+const pieces = await getPieces();
+const fresh = (await getLive()).filter((p) => p.data.isNew).slice(0, 4);
+---
+<Base title="Elle me va ?" description="Ta copine hésite pour samedi. Donne-lui ton avis en un geste, sur WhatsApp." image="/og-avis.jpg" noindex night>
+  <section class="av" data-avis>
+    <div class="wrap av-in">
+      <p class="av-chap">{SHOP.name} · {SHOP.city}</p>
+      <div class="av-chat">
+        <p class="av-typing" data-typing aria-hidden="true"><i></i><i></i><i></i></p>
+        <h1 class="av-bub" data-ask><span data-ask-1>Ta copine hésite pour samedi 👀</span> <span data-ask-2>Laquelle tu lui conseilles ?</span></h1>
+      </div>
+      <p class="av-help" data-help>Touche ta préférée, puis envoie ton choix sur WhatsApp.</p>
+      <ul class="av-list" data-list></ul>
+      <div class="av-yn" data-yn hidden>
+        <button type="button" class="btn btn-main" data-yes aria-pressed="false">Oui, fonce 😍</button>
+        <button type="button" class="btn btn-line" data-no aria-pressed="false">Bof 🤔</button>
+      </div>
+      <div class="av-empty" data-empty hidden>
+        <p>Ce lien ne montre plus de pièces. Elles ont peut-être déjà trouvé preneuse 😕</p>
+        <a class="btn btn-main" href="/boutique">Voir la boutique</a>
+      </div>
+      <noscript><p class="av-help">Active JavaScript pour voir les pièces, ou ouvre <a href="/boutique">la boutique</a>.</p></noscript>
+    </div>
+    <div class="av-bar" data-bar>
+      <a class="btn btn-wa" data-send target="_blank" rel="noopener">Envoyer mon choix sur WhatsApp</a>
+    </div>
+  </section>
+
+  <section class="you" aria-labelledby="you-title">
+    <div class="wrap you-in">
+      <p class="eyebrow">Et toi ?</p>
+      <h2 id="you-title">Ta tenue pour samedi</h2>
+      <p class="muted">Robes, combinaisons et ensembles à {SHOP.city}. Commande en un message WhatsApp, paiement à la livraison.</p>
+      <ProductGrid products={fresh} filters={false} eagerCount={0} />
+      <a class="btn btn-dark you-all" href="/boutique">Voir toute la boutique</a>
+    </div>
+  </section>
+
+  <template data-card>
+    <li class="av-card">
+      <a class="av-ph" data-link>
+        <img data-img alt="" width="476" height="634" sizes="(min-width: 700px) 300px, 46vw" decoding="async" />
+        <span class="av-tag" data-tag hidden></span>
+        <span class="av-mark" aria-hidden="true">Ton choix</span>
+      </a>
+      <p class="av-name" data-name></p>
+      <p class="av-price" data-price></p>
+      <button type="button" class="btn av-vote" data-vote aria-pressed="false">Celle-là 😍</button>
+    </li>
+  </template>
+  <script type="application/json" data-pieces set:html={inlineJson(pieces)} />
+</Base>
+
+<script>
+  import { parseAvis, voteMessage } from "../lib/avis";
+  import { dayLabel, hourLabel } from "../lib/drop";
+  import { fcfa, waShare } from "../lib/shop";
+  import type { Piece } from "../lib/pieces";
+
+  const root = document.querySelector<HTMLElement>("[data-avis]")!;
+  const $ = <T extends Element = HTMLElement>(s: string, el: ParentNode = root) => el.querySelector<T>(s)!;
+  const pieces: Piece[] = JSON.parse(document.querySelector("[data-pieces]")!.textContent!);
+  const byId = new Map(pieces.map((p) => [p.id, p]));
+  const { ids, name } = parseAvis(location.search, (id) => byId.has(id));
+  const chosen = ids.map((id) => byId.get(id)!);
+  const n = chosen.length;
+  const single = n === 1;
+  const now = new Date();
+  const productUrl = (p: Piece) => new URL(`/produit/${p.id}`, location.origin).href;
+
+  let choice: string | null = null; // a piece id, or "non" for "Bof" on a single piece
+
+  $("[data-ask-1]").textContent = `${name || "Ta copine"} hésite pour samedi 👀`;
+  $("[data-ask-2]").textContent = single ? "Elle lui va, celle-là ?" : "Laquelle tu lui conseilles ?";
+  $("[data-help]").textContent = single ? "Dis-lui franchement, puis envoie ta réponse sur WhatsApp." : "Touche ta préférée, puis envoie ton choix sur WhatsApp.";
+  $("[data-send]").textContent = name ? `Envoyer ma réponse à ${name}` : "Envoyer ma réponse sur WhatsApp";
+
+  const list = $("[data-list]");
+  list.dataset.n = String(n);
+  const tpl = document.querySelector<HTMLTemplateElement>("[data-card]")!;
+  chosen.forEach((p, i) => {
+    const li = (tpl.content.cloneNode(true) as DocumentFragment).firstElementChild as HTMLElement;
+    li.dataset.id = p.id;
+    li.style.setProperty("--i", String(i));
+    $<HTMLAnchorElement>("[data-link]", li).href = `/produit/${p.id}`;
+    const img = $<HTMLImageElement>("[data-img]", li);
+    img.src = p.src;
+    img.srcset = p.srcset;
+    img.alt = p.name;
+    $("[data-name]", li).textContent = p.name;
+    $("[data-price]", li).textContent = fcfa(p.price);
+    const tag = $("[data-tag]", li);
+    const vote = $<HTMLButtonElement>("[data-vote]", li);
+    if (p.drop && p.drop > now.getTime()) {
+      const d = new Date(p.drop);
+      tag.textContent = `${dayLabel(d, now)} · ${hourLabel(d)}`;
+      tag.hidden = false;
+    }
+    if (p.soldOut) {
+      tag.textContent = "Épuisée";
+      tag.hidden = false;
+      vote.textContent = "Épuisée";
+      vote.setAttribute("aria-disabled", "true");
+    }
+    vote.setAttribute("aria-label", `Choisir ${p.name}`);
+    if (single) vote.hidden = true;
+    else vote.addEventListener("click", () => { if (!p.soldOut) pick(choice === p.id ? null : p.id); });
+    list.append(li);
+  });
+
+  if (!n) {
+    $("[data-empty]").hidden = false;
+    $("[data-help]").hidden = true;
+    $("[data-ask-1]").textContent = "Oups 👀";
+    $("[data-ask-2]").textContent = "Ce lien est vide.";
+  }
+  if (single) {
+    $("[data-yn]").hidden = false;
+    $("[data-yes]").addEventListener("click", () => pick(choice === ids[0] ? null : ids[0]));
+    $("[data-no]").addEventListener("click", () => pick(choice === "non" ? null : "non"));
+  }
+
+  function pick(next: string | null) {
+    choice = next;
+    root.classList.toggle("has-choice", choice !== null);
+    list.querySelectorAll<HTMLElement>(".av-card").forEach((li) => {
+      const me = li.dataset.id === choice;
+      li.classList.toggle("is-chosen", me);
+      li.classList.toggle("is-dim", choice !== null && !me);
+      $("[data-vote]", li).setAttribute("aria-pressed", String(me));
+    });
+    if (single) {
+      $("[data-yes]").setAttribute("aria-pressed", String(choice === ids[0]));
+      $("[data-no]").setAttribute("aria-pressed", String(choice === "non"));
+    }
+    const voted = choice && choice !== "non" ? byId.get(choice)! : null;
+    const send = $<HTMLAnchorElement>("[data-send]");
+    if (choice) send.href = waShare(voteMessage(voted && { name: voted.name, url: productUrl(voted) }, n, new URL("/boutique", location.origin).href));
+    else send.removeAttribute("href");
+  }
+
+  // Intro: the question arrives like a chat message (skipped with reduced motion).
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (calm || !n) root.classList.add("in");
+  else {
+    root.classList.add("typing");
+    setTimeout(() => root.classList.replace("typing", "in"), 650);
+  }
+</script>
+
+<style>
+  .av { background: var(--nuit); color: var(--ivoire); padding-top: 28px; }
+  .av-in { max-width: 760px; display: flex; flex-direction: column; gap: 14px; padding-bottom: 28px; }
+  .av-chap { align-self: center; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); font-weight: 600; }
+  .av-chat { display: grid; min-height: 84px; align-items: start; }
+  .av-chat > * { grid-area: 1 / 1; }
+
+  /* The question arrives like a message: typing dots, then the bubble */
+  .av-typing { width: fit-content; display: flex; gap: 4px; padding: 14px 16px; border-radius: 18px; border-top-left-radius: 4px; background: var(--velours); opacity: 0; transition: opacity 150ms ease; }
+  .av-typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--sourdine); animation: dot 1s ease-in-out infinite; }
+  .av-typing i:nth-child(2) { animation-delay: 150ms; }
+  .av-typing i:nth-child(3) { animation-delay: 300ms; }
+  @keyframes dot { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+  .av.typing .av-typing { opacity: 1; }
+
+  .av-bub { width: fit-content; max-width: 92%; padding: 12px 16px 14px; border-radius: 18px; border-top-left-radius: 4px; background: var(--velours); font-size: clamp(26px, 7vw, 38px); line-height: 1.08; display: grid; gap: 6px; transform-origin: top left; opacity: 0; transform: translateY(6px) scale(0.97); transition: opacity 250ms var(--ease-out), transform 300ms var(--ease-out); }
+  .av-bub span:last-child { font-family: var(--text); font-size: 16px; line-height: 1.4; color: var(--sourdine); }
+  .av.in .av-bub { opacity: 1; transform: none; }
+  .av-help { font-size: 14px; color: var(--sourdine); }
+
+  .av-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+  .av-list[data-n="1"] { grid-template-columns: minmax(0, 340px); justify-content: center; }
+  .av-list[data-n="3"] { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scrollbar-width: none; }
+  @media (min-width: 700px) { .av-list[data-n="3"] { grid-auto-columns: minmax(0, 1fr); overflow: visible; } }
+
+  /* Cards follow the bubble in, 60 ms apart */
+  .av-list :global(.av-card) { display: flex; flex-direction: column; gap: 4px; min-width: 0; scroll-snap-align: start; opacity: 0; transform: translateY(8px); transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out); transition-delay: calc(200ms + var(--i) * 60ms); }
+  .av.in .av-list :global(.av-card) { opacity: 1; transform: none; }
+  .av.has-choice .av-list :global(.av-card) { transition-delay: 0ms; }
+  .av-list :global(.av-card.is-dim) { opacity: 0.45; }
+  .av-list :global(.av-ph) { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 12px; background: var(--velours); outline: 2px solid transparent; outline-offset: 3px; transition: outline-color 200ms ease; }
+  .av-list :global(.av-card.is-chosen .av-ph) { outline-color: var(--fuchsia-nuit); }
+  .av-list :global(.av-ph img) { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .av-list :global(.av-tag) { position: absolute; left: 8px; top: 8px; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 999px; background: var(--ivoire); color: var(--cacao); }
+  .av-list :global(.av-mark) { position: absolute; left: 8px; bottom: 8px; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: var(--fuchsia); color: var(--ivoire); opacity: 0; transform: translateY(4px); transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+  .av-list :global(.av-card.is-chosen .av-mark) { opacity: 1; transform: none; }
+  .av-list :global(.av-name) { font-weight: 500; font-size: 15px; line-height: 1.35; margin-top: 6px; }
+  .av-list :global(.av-price) { font-size: 14px; color: var(--sourdine); font-variant-numeric: tabular-nums; margin-bottom: 8px; }
+  .av-list :global(.av-vote) { margin-top: auto; min-height: 46px; border: 1px solid rgba(247, 238, 231, 0.3); font-size: 15px; }
+  .av-list :global(.av-vote[aria-pressed="true"]) { background: var(--fuchsia); border-color: var(--fuchsia); }
+  .av-list :global(.av-vote[aria-disabled="true"]) { opacity: 0.45; cursor: not-allowed; }
+
+  .av-yn { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 340px; width: 100%; align-self: center; }
+  .av-yn .btn-line { color: var(--ivoire); }
+  .av-yn [aria-pressed="true"].btn-line { background: var(--ivoire); color: var(--cacao); }
+  .av.has-choice .av-yn [aria-pressed="false"] { opacity: 0.45; }
+  .av-empty { display: grid; gap: 14px; justify-items: start; color: var(--sourdine); }
+
+  /* Send bar: slides up once there is a choice, sits at the thumb */
+  .av-bar { position: sticky; bottom: 0; z-index: 5; padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px)); background: linear-gradient(to top, var(--nuit) 70%, transparent); display: grid; justify-content: center; transform: translateY(100%); opacity: 0; visibility: hidden; transition: transform 300ms var(--ease-out), opacity 200ms ease, visibility 0s 300ms; }
+  .av-bar .btn { width: min(420px, calc(100vw - 32px)); }
+  .av.has-choice .av-bar { transform: none; opacity: 1; visibility: visible; transition: transform 300ms var(--ease-out), opacity 200ms ease; }
+
+  .you { padding-block: 56px 72px; background: var(--ivoire); color: var(--cacao); }
+  .you-in { display: flex; flex-direction: column; gap: 14px; }
+  .you h2 { font-size: clamp(34px, 8vw, 52px); }
+  .you-all { align-self: flex-start; margin-top: 8px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .av-bub, .av-list :global(.av-card), .av-bar, .av-list :global(.av-mark) { transform: none !important; }
+  }
+</style>

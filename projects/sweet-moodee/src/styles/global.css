@@ -60,3 +60,13 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }
+
+/* Before / after a drop: both states share one grid cell, so nothing jumps at the reveal. */
+.swap { display: grid; }
+.swap > * { grid-area: 1 / 1; transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out), visibility 0s; }
+[data-drop]:not(.is-live) .swap > [data-after],
+[data-drop].is-live .swap > [data-before] { opacity: 0; visibility: hidden; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), visibility 0s 200ms; }
+[data-drop]:not(.is-live) .swap > [data-after] { transform: translateY(8px); }
+[data-drop].is-live .swap > [data-before] { transform: translateY(-8px); }
+.is-instant, .is-instant * { transition: none !important; }
+@media (prefers-reduced-motion: reduce) { .swap > * { transform: none !important; } }

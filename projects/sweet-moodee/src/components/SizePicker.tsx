@@ -1,9 +1,46 @@
-import { useState } from "preact/hooks";
-import { SIZES, fcfa, waLink, waShare, type Size, type Stock } from "../lib/shop";
+import { useEffect, useState } from "preact/hooks";
+import { SHOP } from "../config";
+import { formatCountdown } from "../lib/drop";
+import { SIZES, addToCart, fcfa, waLink, type Size, type Stock } from "../lib/shop";
 
-type Props = { id: string; name: string; price: number; stock: Stock; url: string };
+type Props = {
+  id: string; name: string; price: number; stock: Stock; url: string;
+  /** Pieces waiting for the Friday drop: locked until this time (ms), with a reminder link. */
+  drop?: { at: number; label: string; notify: string };
+};
 
-export default function SizePicker({ id, name, price, stock, url }: Props) {
+/** The mockup's "?demo-drop" rehearsal unlocks drop pieces for the rest of the visit. */
+const demoUnlocked = () => { try { return SHOP.isMockup && sessionStorage.getItem("sm-demo-drop") === "1"; } catch { return false; } };
+
+export default function SizePicker({ id, name, price, stock, url, drop }: Props) {
+  // Server render = locked (built before the drop); the browser decides with its own clock.
+  const [left, setLeft] = useState<number | null>(drop ? null : 0);
+  useEffect(() => {
+    if (!drop) return;
+    let t = 0;
+    const tick = () => {
+      const ms = demoUnlocked() ? 0 : drop.at - Date.now();
+      setLeft(Math.max(0, ms));
+      if (ms > 0) t = window.setTimeout(tick, 1000 - (Date.now() % 1000) + 10);
+    };
+    tick();
+    return () => clearTimeout(t);
+  }, []);
+  const locked = left === null || left > 0;
+  if (drop && locked) {
+    return (
+      <div class="sp sp-lock">
+        <p class="sp-label">Le drop du vendredi</p>
+        <p class="sp-lock-t">Disponible {drop.label}.</p>
+        <p class="sp-lock-c" role="timer">{left === null ? "\u00a0" : `Encore ${formatCountdown(left)}`}</p>
+        <a class="btn btn-wa sp-full" href={drop.notify} target="_blank" rel="noopener">Préviens-moi à l'ouverture</a>
+      </div>
+    );
+  }
+  return <Picker id={id} name={name} price={price} stock={stock} url={url} />;
+}
+
+function Picker({ id, name, price, stock, url }: Omit<Props, "drop">) {
   const avail = SIZES.filter((s) => (stock[s] ?? 0) > 0);
   const [size, setSize] = useState<Size | null>(avail.length === 1 ? avail[0] : null);
   const [hint, setHint] = useState("");
@@ -21,7 +58,7 @@ export default function SizePicker({ id, name, price, stock, url }: Props) {
 
   const add = () => {
     if (added || requireSize()) return;
-    dispatchEvent(new CustomEvent("sm:add", { detail: { id, name, price, size, qty: 1 } }));
+    addToCart({ id, name, price, size: size!, qty: 1 });
     try { navigator.vibrate?.(12); } catch { /* not supported */ }
     setAdded(true);
     setTimeout(() => setAdded(false), 1600);
@@ -70,9 +107,6 @@ export default function SizePicker({ id, name, price, stock, url }: Props) {
           </a>
         </div>
       )}
-      <a class="sp-share" href={waShare(`Regarde cette pièce chez Sweet Moodee : ${name} — ${fcfa(price)}\n${url}`)} target="_blank" rel="noopener">
-        Envoyer à une amie
-      </a>
     </div>
   );
 }

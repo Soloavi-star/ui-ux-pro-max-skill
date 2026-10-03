@@ -15,10 +15,11 @@ interface Props {
   description: string;
   image?: string; // absolute or site-relative URL of the share image
   jsonLd?: Record<string, unknown>;
-  dark?: boolean; // page opens on the night palette (home)
+  dark?: boolean; // page opens on the night palette with the story header (home)
+  night?: boolean; // night palette, regular header
   noindex?: boolean;
 }
-const { title, description, image = "/og.jpg", jsonLd, dark = false, noindex = false } = Astro.props;
+const { title, description, image = "/og.jpg", jsonLd, dark = false, night = false, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 const fullTitle = title === SHOP.name ? `${SHOP.name} · Mode femme à Abidjan` : `${title} · ${SHOP.name}`;
@@ -32,7 +33,7 @@ const fullTitle = title === SHOP.name ? `${SHOP.name} · Mode femme à Abidjan` 
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
-    <meta name="theme-color" content={dark ? "#120b10" : "#f7eee7"} />
+    <meta name="theme-color" content={dark || night ? "#120b10" : "#f7eee7"} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
@@ -45,7 +46,7 @@ const fullTitle = title === SHOP.name ? `${SHOP.name} · Mode femme à Abidjan` 
     <meta name="twitter:card" content="summary_large_image" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
-  <body class:list={{ dark }}>
+  <body class:list={{ dark: dark || night }}>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
     <Header dark={dark} />
     <main id="contenu">
@@ -53,6 +54,16 @@ const fullTitle = title === SHOP.name ? `${SHOP.name} · Mode femme à Abidjan` 
     </main>
     <Footer />
     <Cart client:idle />
+    <script is:inline>
+      // Islands load after the page. A tap on the cart or « Elle me va ? » made before its island
+      // is listening is remembered here and replayed by the island when it starts.
+      addEventListener("click", function (e) {
+        var t = e.target.closest && e.target.closest("[data-open-cart],[data-open-avis]");
+        if (!t) return;
+        if (t.hasAttribute("data-open-cart") && !window.smCartReady) window.smEarlyCart = t;
+        if (t.hasAttribute("data-open-avis") && !window.smAvisReady) window.smEarlyAvis = t;
+      }, true);
+    </script>
   </body>
 </html>
 

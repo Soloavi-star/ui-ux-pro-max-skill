@@ -2,11 +2,13 @@
 import Base from "../layouts/Base.astro";
 import Story from "../components/Story.astro";
 import ProductGrid from "../components/ProductGrid.astro";
-import { getProducts } from "../lib/catalog";
+import DropSection from "../components/DropSection.astro";
+import { getLive } from "../lib/catalog";
+import { AVIS_SOURCE } from "../lib/avis";
 import { SHOP } from "../config";
 import { waShare } from "../lib/shop";
 
-const all = await getProducts();
+const all = await getLive();
 const fresh = all.filter((p) => p.data.isNew);
 const site = Astro.site!;
 const jsonLd = {
@@ -23,6 +25,7 @@ const jsonLd = {
 ---
 <Base title={SHOP.name} description="Robes, combinaisons et ensembles de marque à Abidjan. Commande en un message WhatsApp, paiement à la livraison." jsonLd={jsonLd} dark>
   <Story />
+  <DropSection />
 
   <section class="home-new" id="nouveautes">
     <div class="wrap stack">
@@ -49,7 +52,7 @@ const jsonLd = {
       <p class="bub in">Tu vas tuer samedi 🔥🔥</p>
       <div class="share">
         <p><b>Une amie aussi n'a « rien à se mettre » ?</b><br /><span>Envoie-lui Sweet Moodee sur WhatsApp.</span></p>
-        <a class="btn btn-main" target="_blank" rel="noopener" href={waShare(`J'ai trouvé ma tenue pour samedi chez Sweet Moodee 😍 ${site.href}`)}>Envoyer à une amie</a>
+        <a class="btn btn-main" target="_blank" rel="noopener" href={waShare(`J'ai trouvé ma tenue pour samedi chez Sweet Moodee 😍 ${site.href}?utm_source=${AVIS_SOURCE}`)}>Envoyer à une amie</a>
       </div>
     </div>
   </section>

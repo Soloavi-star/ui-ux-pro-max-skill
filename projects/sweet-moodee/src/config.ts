@@ -30,3 +30,11 @@ export const ZONES: readonly { name: string; fee: number }[] = [
   { name: "Anyama", fee: 3000 },
   { name: "Songon", fee: 3000 },
 ];
+
+// Le drop du vendredi — À CONFIRMER : à n'activer que si la boutique reçoit du nouveau stock chaque semaine.
+export const DROP = {
+  enabled: true,
+  weekday: 5, // vendredi (0 = dimanche)
+  hour: 18, // heure d'Abidjan (GMT toute l'année, pas d'heure d'été)
+  channel: "", // À CONFIRMER : lien de la chaîne WhatsApp ; vide = message direct à la boutique
+} as const;

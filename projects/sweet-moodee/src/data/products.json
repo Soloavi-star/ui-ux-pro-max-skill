@@ -1,24 +1,406 @@
 [
-  { "id": "ensemble-fleuri-rouge", "name": "Ensemble fleuri rouge", "category": "Ensembles", "price": 36000, "image": "../assets/products/b22.jpg", "stock": { "S": 2, "M": 1, "L": 1, "XL": 0 }, "isNew": true, "occasion": ["Soirée", "Anniversaire"], "description": "Haut dos nu noué et pantalon fluide assortis, imprimé floral rouge. Se porte en ensemble ou en pièces séparées." },
-  { "id": "robe-bustier-corset", "name": "Robe bustier corset", "category": "Robes", "price": 28000, "image": "../assets/products/a12.jpg", "stock": { "S": 2, "M": 1, "L": 0, "XL": 0 }, "isNew": true, "occasion": ["Soirée", "Anniversaire"], "description": "Bustier lacé façon corset et jupe midi ajustée. La silhouette sablier, sans effort." },
-  { "id": "combinaison-bordeaux-ceinturee", "name": "Combinaison bordeaux ceinturée", "category": "Combinaisons", "price": 38000, "image": "../assets/products/a21.jpg", "stock": { "S": 1, "M": 2, "L": 2, "XL": 0 }, "isNew": true, "occasion": ["Soirée", "Mariage"], "description": "Décolleté plongeant, ceinture à boucle dorée et jambe évasée. Effet jambes interminables." },
-  { "id": "combinaison-officier-noire", "name": "Combinaison officier noire", "category": "Combinaisons", "price": 32000, "image": "../assets/products/a10.jpg", "stock": { "S": 2, "M": 2, "L": 1, "XL": 0 }, "isNew": true, "occasion": ["Soirée", "Journée"], "description": "Col montant et double rangée de boutons dorés. Chic et structurée, de jour comme de nuit." },
-  { "id": "combinaison-chocolat-epaules-denudees", "name": "Combinaison chocolat épaules dénudées", "category": "Combinaisons", "price": 30000, "image": "../assets/products/a11.jpg", "stock": { "S": 1, "M": 2, "L": 2, "XL": 1 }, "isNew": true, "occasion": ["Brunch", "Anniversaire"], "description": "Maille côtelée chocolat, épaules dénudées soulignées d'un bandeau contrasté." },
-  { "id": "combinaison-dentelle-creme", "name": "Combinaison dentelle crème", "category": "Combinaisons", "price": 36000, "image": "../assets/products/b02.jpg", "stock": { "S": 1, "M": 2, "L": 0, "XL": 0 }, "isNew": true, "occasion": ["Mariage", "Soirée"], "description": "Buste en dentelle transparente et pantalon flare crème. Pour les cérémonies où l'on veut être remarquée." },
-  { "id": "ensemble-cuir-short-veste", "name": "Ensemble cuir short et veste", "category": "Ensembles", "price": 42000, "image": "../assets/products/a02.jpg", "stock": { "S": 1, "M": 1, "L": 1, "XL": 0 }, "isNew": true, "occasion": ["Soirée"], "description": "Veste oversize, brassière et short taille haute en simili cuir noir." },
-  { "id": "robe-bustier-plumes", "name": "Robe bustier plumes", "category": "Robes", "price": 35000, "image": "../assets/products/a20.jpg", "stock": { "S": 0, "M": 2, "L": 1, "XL": 0 }, "occasion": ["Soirée", "Mariage"], "description": "Robe fourreau noire, bustier bordé de plumes ivoire." },
-  { "id": "ensemble-saharienne-chocolat", "name": "Ensemble saharienne chocolat", "category": "Ensembles", "price": 40000, "image": "../assets/products/a22.jpg", "stock": { "S": 0, "M": 2, "L": 1, "XL": 1 }, "occasion": ["Journée", "Brunch"], "description": "Veste saharienne ceinturée et pantacourt assorti, couleur chocolat." },
-  { "id": "robe-cape-blanche", "name": "Robe cape blanche", "category": "Robes", "price": 30000, "image": "../assets/products/a30.jpg", "stock": { "S": 2, "M": 2, "L": 1, "XL": 0 }, "occasion": ["Brunch", "Mariage"], "description": "Robe courte asymétrique à effet cape, blanc pur." },
-  { "id": "combinaison-decoupe-col-montant", "name": "Combinaison découpe col montant", "category": "Combinaisons", "price": 27000, "image": "../assets/products/a31.jpg", "stock": { "S": 2, "M": 2, "L": 2, "XL": 0 }, "occasion": ["Soirée", "Journée"], "description": "Col montant zippé et découpe goutte au décolleté, maille chocolat." },
-  { "id": "combinaison-camel-boutonnee", "name": "Combinaison camel boutonnée", "category": "Combinaisons", "price": 33000, "image": "../assets/products/a32.jpg", "stock": { "S": 0, "M": 1, "L": 0, "XL": 0 }, "occasion": ["Journée", "Brunch"], "description": "Combinaison sans manches boutonnée, poches plaquées, toile camel." },
-  { "id": "combinaison-cargo-camel", "name": "Combinaison cargo camel", "category": "Combinaisons", "price": 35000, "image": "../assets/products/b00.jpg", "stock": { "S": 0, "M": 2, "L": 2, "XL": 1 }, "occasion": ["Journée"], "description": "Combinaison cargo à poches, chevilles resserrées, daim camel." },
-  { "id": "combinaison-noire-decollete-v", "name": "Combinaison noire décolleté V", "category": "Combinaisons", "price": 26000, "image": "../assets/products/b01.jpg", "stock": { "S": 2, "M": 3, "L": 2, "XL": 1 }, "occasion": ["Soirée", "Anniversaire"], "description": "Décolleté V profond, manches longues, maille noire qui galbe." },
-  { "id": "combinaison-noire-manches-resille", "name": "Combinaison noire manches résille", "category": "Combinaisons", "price": 28000, "image": "../assets/products/b10.jpg", "stock": { "S": 2, "M": 2, "L": 1, "XL": 0 }, "occasion": ["Soirée"], "description": "Manches en résille transparente, fermeture zippée devant." },
-  { "id": "chemise-imprimee-jean", "name": "Chemise imprimée et jean destroy", "category": "Ensembles", "price": 34000, "image": "../assets/products/b11.jpg", "stock": { "S": 0, "M": 1, "L": 2, "XL": 0 }, "occasion": ["Journée", "Brunch"], "description": "Chemise imprimée graphique et jean large déchiré, ceinture corset." },
-  { "id": "ensemble-denim-dentelle", "name": "Ensemble denim et dentelle", "category": "Ensembles", "price": 39000, "image": "../assets/products/b12.jpg", "stock": { "S": 1, "M": 2, "L": 1, "XL": 0 }, "occasion": ["Brunch", "Anniversaire"], "description": "Veste et jean clair, empiècements de dentelle." },
-  { "id": "ensemble-satin-bordeaux", "name": "Ensemble satin bordeaux", "category": "Ensembles", "price": 37000, "image": "../assets/products/b20.jpg", "stock": { "S": 0, "M": 2, "L": 2, "XL": 1 }, "occasion": ["Soirée", "Mariage"], "description": "Haut drapé et pantalon large en satin bordeaux." },
-  { "id": "robe-bustier-fleur", "name": "Robe bustier fleur", "category": "Robes", "price": 29000, "image": "../assets/products/b21.jpg", "stock": { "S": 2, "M": 1, "L": 0, "XL": 0 }, "occasion": ["Brunch", "Anniversaire"], "description": "Robe bustier courte, grande fleur imprimée ton miel." },
-  { "id": "robe-longue-dos-nu-corail", "name": "Robe longue dos nu corail", "category": "Robes", "price": 30000, "image": "../assets/products/b30.jpg", "stock": { "S": 1, "M": 2, "L": 2, "XL": 0 }, "occasion": ["Soirée", "Mariage"], "description": "Robe longue dos nu, col halter, couleur corail vif." },
-  { "id": "ensemble-drape-blanc", "name": "Ensemble drapé blanc", "category": "Ensembles", "price": 33000, "image": "../assets/products/b31.jpg", "stock": { "S": 2, "M": 1, "L": 0, "XL": 0 }, "occasion": ["Brunch", "Journée"], "description": "Top col bénitier drapé et pantalon large, blanc." },
-  { "id": "robe-sirene-anthracite", "name": "Robe sirène anthracite", "category": "Robes", "price": 34000, "image": "../assets/products/b32.jpg", "stock": { "S": 0, "M": 2, "L": 2, "XL": 1 }, "occasion": ["Soirée", "Mariage"], "description": "Robe longue sirène à épaule asymétrique, jersey anthracite." }
+  {
+    "id": "ensemble-fleuri-rouge",
+    "name": "Ensemble fleuri rouge",
+    "category": "Ensembles",
+    "price": 36000,
+    "image": "../assets/products/b22.jpg",
+    "stock": {
+      "S": 2,
+      "M": 1,
+      "L": 1,
+      "XL": 0
+    },
+    "isNew": true,
+    "occasion": [
+      "Soirée",
+      "Anniversaire"
+    ],
+    "description": "Haut dos nu noué et pantalon fluide assortis, imprimé floral rouge. Se porte en ensemble ou en pièces séparées."
+  },
+  {
+    "id": "robe-bustier-corset",
+    "name": "Robe bustier corset",
+    "category": "Robes",
+    "price": 28000,
+    "image": "../assets/products/a12.jpg",
+    "stock": {
+      "S": 2,
+      "M": 1,
+      "L": 0,
+      "XL": 0
+    },
+    "isNew": true,
+    "occasion": [
+      "Soirée",
+      "Anniversaire"
+    ],
+    "description": "Bustier lacé façon corset et jupe midi ajustée. La silhouette sablier, sans effort."
+  },
+  {
+    "id": "combinaison-bordeaux-ceinturee",
+    "name": "Combinaison bordeaux ceinturée",
+    "category": "Combinaisons",
+    "price": 38000,
+    "image": "../assets/products/a21.jpg",
+    "stock": {
+      "S": 1,
+      "M": 2,
+      "L": 2,
+      "XL": 0
+    },
+    "isNew": true,
+    "occasion": [
+      "Soirée",
+      "Mariage"
+    ],
+    "description": "Décolleté plongeant, ceinture à boucle dorée et jambe évasée. Effet jambes interminables."
+  },
+  {
+    "id": "combinaison-officier-noire",
+    "name": "Combinaison officier noire",
+    "category": "Combinaisons",
+    "price": 32000,
+    "image": "../assets/products/a10.jpg",
+    "stock": {
+      "S": 2,
+      "M": 2,
+      "L": 1,
+      "XL": 0
+    },
+    "isNew": true,
+    "occasion": [
+      "Soirée",
+      "Journée"
+    ],
+    "description": "Col montant et double rangée de boutons dorés. Chic et structurée, de jour comme de nuit."
+  },
+  {
+    "id": "combinaison-chocolat-epaules-denudees",
+    "name": "Combinaison chocolat épaules dénudées",
+    "category": "Combinaisons",
+    "price": 30000,
+    "image": "../assets/products/a11.jpg",
+    "stock": {
+      "S": 1,
+      "M": 2,
+      "L": 2,
+      "XL": 1
+    },
+    "isNew": true,
+    "occasion": [
+      "Brunch",
+      "Anniversaire"
+    ],
+    "description": "Maille côtelée chocolat, épaules dénudées soulignées d'un bandeau contrasté."
+  },
+  {
+    "id": "combinaison-dentelle-creme",
+    "name": "Combinaison dentelle crème",
+    "category": "Combinaisons",
+    "price": 36000,
+    "image": "../assets/products/b02.jpg",
+    "stock": {
+      "S": 1,
+      "M": 2,
+      "L": 0,
+      "XL": 0
+    },
+    "isNew": true,
+    "occasion": [
+      "Mariage",
+      "Soirée"
+    ],
+    "description": "Buste en dentelle transparente et pantalon flare crème. Pour les cérémonies où l'on veut être remarquée."
+  },
+  {
+    "id": "ensemble-cuir-short-veste",
+    "name": "Ensemble cuir short et veste",
+    "category": "Ensembles",
+    "price": 42000,
+    "image": "../assets/products/a02.jpg",
+    "stock": {
+      "S": 1,
+      "M": 1,
+      "L": 1,
+      "XL": 0
+    },
+    "isNew": true,
+    "occasion": [
+      "Soirée"
+    ],
+    "description": "Veste oversize, brassière et short taille haute en simili cuir noir."
+  },
+  {
+    "id": "robe-bustier-plumes",
+    "name": "Robe bustier plumes",
+    "category": "Robes",
+    "price": 35000,
+    "image": "../assets/products/a20.jpg",
+    "stock": {
+      "S": 0,
+      "M": 2,
+      "L": 1,
+      "XL": 0
+    },
+    "occasion": [
+      "Soirée",
+      "Mariage"
+    ],
+    "description": "Robe fourreau noire, bustier bordé de plumes ivoire.",
+    "drop": "prochain"
+  },
+  {
+    "id": "ensemble-saharienne-chocolat",
+    "name": "Ensemble saharienne chocolat",
+    "category": "Ensembles",
+    "price": 40000,
+    "image": "../assets/products/a22.jpg",
+    "stock": {
+      "S": 0,
+      "M": 2,
+      "L": 1,
+      "XL": 1
+    },
+    "occasion": [
+      "Journée",
+      "Brunch"
+    ],
+    "description": "Veste saharienne ceinturée et pantacourt assorti, couleur chocolat."
+  },
+  {
+    "id": "robe-cape-blanche",
+    "name": "Robe cape blanche",
+    "category": "Robes",
+    "price": 30000,
+    "image": "../assets/products/a30.jpg",
+    "stock": {
+      "S": 2,
+      "M": 2,
+      "L": 1,
+      "XL": 0
+    },
+    "occasion": [
+      "Brunch",
+      "Mariage"
+    ],
+    "description": "Robe courte asymétrique à effet cape, blanc pur."
+  },
+  {
+    "id": "combinaison-decoupe-col-montant",
+    "name": "Combinaison découpe col montant",
+    "category": "Combinaisons",
+    "price": 27000,
+    "image": "../assets/products/a31.jpg",
+    "stock": {
+      "S": 2,
+      "M": 2,
+      "L": 2,
+      "XL": 0
+    },
+    "occasion": [
+      "Soirée",
+      "Journée"
+    ],
+    "description": "Col montant zippé et découpe goutte au décolleté, maille chocolat."
+  },
+  {
+    "id": "combinaison-camel-boutonnee",
+    "name": "Combinaison camel boutonnée",
+    "category": "Combinaisons",
+    "price": 33000,
+    "image": "../assets/products/a32.jpg",
+    "stock": {
+      "S": 0,
+      "M": 1,
+      "L": 0,
+      "XL": 0
+    },
+    "occasion": [
+      "Journée",
+      "Brunch"
+    ],
+    "description": "Combinaison sans manches boutonnée, poches plaquées, toile camel."
+  },
+  {
+    "id": "combinaison-cargo-camel",
+    "name": "Combinaison cargo camel",
+    "category": "Combinaisons",
+    "price": 35000,
+    "image": "../assets/products/b00.jpg",
+    "stock": {
+      "S": 0,
+      "M": 2,
+      "L": 2,
+      "XL": 1
+    },
+    "occasion": [
+      "Journée"
+    ],
+    "description": "Combinaison cargo à poches, chevilles resserrées, daim camel."
+  },
+  {
+    "id": "combinaison-noire-decollete-v",
+    "name": "Combinaison noire décolleté V",
+    "category": "Combinaisons",
+    "price": 26000,
+    "image": "../assets/products/b01.jpg",
+    "stock": {
+      "S": 2,
+      "M": 3,
+      "L": 2,
+      "XL": 1
+    },
+    "occasion": [
+      "Soirée",
+      "Anniversaire"
+    ],
+    "description": "Décolleté V profond, manches longues, maille noire qui galbe."
+  },
+  {
+    "id": "combinaison-noire-manches-resille",
+    "name": "Combinaison noire manches résille",
+    "category": "Combinaisons",
+    "price": 28000,
+    "image": "../assets/products/b10.jpg",
+    "stock": {
+      "S": 2,
+      "M": 2,
+      "L": 1,
+      "XL": 0
+    },
+    "occasion": [
+      "Soirée"
+    ],
+    "description": "Manches en résille transparente, fermeture zippée devant."
+  },
+  {
+    "id": "chemise-imprimee-jean",
+    "name": "Chemise imprimée et jean destroy",
+    "category": "Ensembles",
+    "price": 34000,
+    "image": "../assets/products/b11.jpg",
+    "stock": {
+      "S": 0,
+      "M": 1,
+      "L": 2,
+      "XL": 0
+    },
+    "occasion": [
+      "Journée",
+      "Brunch"
+    ],
+    "description": "Chemise imprimée graphique et jean large déchiré, ceinture corset."
+  },
+  {
+    "id": "ensemble-denim-dentelle",
+    "name": "Ensemble denim et dentelle",
+    "category": "Ensembles",
+    "price": 39000,
+    "image": "../assets/products/b12.jpg",
+    "stock": {
+      "S": 1,
+      "M": 2,
+      "L": 1,
+      "XL": 0
+    },
+    "occasion": [
+      "Brunch",
+      "Anniversaire"
+    ],
+    "description": "Veste et jean clair, empiècements de dentelle."
+  },
+  {
+    "id": "ensemble-satin-bordeaux",
+    "name": "Ensemble satin bordeaux",
+    "category": "Ensembles",
+    "price": 37000,
+    "image": "../assets/products/b20.jpg",
+    "stock": {
+      "S": 0,
+      "M": 2,
+      "L": 2,
+      "XL": 1
+    },
+    "occasion": [
+      "Soirée",
+      "Mariage"
+    ],
+    "description": "Haut drapé et pantalon large en satin bordeaux.",
+    "drop": "prochain"
+  },
+  {
+    "id": "robe-bustier-fleur",
+    "name": "Robe bustier fleur",
+    "category": "Robes",
+    "price": 29000,
+    "image": "../assets/products/b21.jpg",
+    "stock": {
+      "S": 2,
+      "M": 1,
+      "L": 0,
+      "XL": 0
+    },
+    "occasion": [
+      "Brunch",
+      "Anniversaire"
+    ],
+    "description": "Robe bustier courte, grande fleur imprimée ton miel."
+  },
+  {
+    "id": "robe-longue-dos-nu-corail",
+    "name": "Robe longue dos nu corail",
+    "category": "Robes",
+    "price": 30000,
+    "image": "../assets/products/b30.jpg",
+    "stock": {
+      "S": 1,
+      "M": 2,
+      "L": 2,
+      "XL": 0
+    },
+    "occasion": [
+      "Soirée",
+      "Mariage"
+    ],
+    "description": "Robe longue dos nu, col halter, couleur corail vif.",
+    "drop": "prochain"
+  },
+  {
+    "id": "ensemble-drape-blanc",
+    "name": "Ensemble drapé blanc",
+    "category": "Ensembles",
+    "price": 33000,
+    "image": "../assets/products/b31.jpg",
+    "stock": {
+      "S": 2,
+      "M": 1,
+      "L": 0,
+      "XL": 0
+    },
+    "occasion": [
+      "Brunch",
+      "Journée"
+    ],
+    "description": "Top col bénitier drapé et pantalon large, blanc."
+  },
+  {
+    "id": "robe-sirene-anthracite",
+    "name": "Robe sirène anthracite",
+    "category": "Robes",
+    "price": 34000,
+    "image": "../assets/products/b32.jpg",
+    "stock": {
+      "S": 0,
+      "M": 2,
+      "L": 2,
+      "XL": 1
+    },
+    "occasion": [
+      "Soirée",
+      "Mariage"
+    ],
+    "description": "Robe longue sirène à épaule asymétrique, jersey anthracite.",
+    "drop": "prochain"
+  }
 ]

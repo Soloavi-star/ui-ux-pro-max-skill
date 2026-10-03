@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { SHOP, ZONES } from "../config";
-import { deliveryFee, fcfa, orderMessage, waLink, type Line } from "../lib/shop";
+import { deliveryFee, fcfa, orderMessage, takePending, waLink, type Line } from "../lib/shop";
 
 const KEY = "sm-cart", INFO = "sm-info", SRC = "sm-source";
 type Info = { name: string; zone: string; place: string };
@@ -36,8 +36,7 @@ export default function Cart() {
     setInfo(read<Info>(INFO, { name: "", zone: "", place: "" }));
     ready.current = true;
     captureSource();
-    const onAdd = (e: Event) => {
-      const l = (e as CustomEvent<Line>).detail;
+    const add = (l: Line) => {
       setLines((cur) => {
         const i = cur.findIndex((x) => x.id === l.id && x.size === l.size);
         return i >= 0 ? cur.map((x, j) => (j === i ? { ...x, qty: Math.min(9, x.qty + 1) } : x)) : [...cur, l];
@@ -48,7 +47,11 @@ export default function Cart() {
       const t = (e.target as Element).closest?.("[data-open-cart]");
       if (t) { opener.current = t as HTMLElement; setStep("cart"); setTried(false); setOpen(true); }
     };
+    const onAdd = (e: Event) => add((e as CustomEvent<Line>).detail);
     addEventListener("sm:add", onAdd);
+    takePending().forEach(add); // taps that happened before this island hydrated
+    const w = window as Window & { smEarlyCart?: HTMLElement };
+    if (w.smEarlyCart) { opener.current = w.smEarlyCart; w.smEarlyCart = undefined; setOpen(true); }
     document.addEventListener("click", onClick);
     return () => { removeEventListener("sm:add", onAdd); document.removeEventListener("click", onClick); };
   }, []);

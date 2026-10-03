@@ -1,11 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
 import ProductGrid from "../components/ProductGrid.astro";
-import { getProducts } from "../lib/catalog";
+import DropBand from "../components/DropBand.astro";
+import { getLive } from "../lib/catalog";
 import { fcfa } from "../lib/shop";
 import { SHOP } from "../config";
 
-const all = (await getProducts()).sort((a, b) => Number(b.data.isNew) - Number(a.data.isNew));
+const all = (await getLive()).sort((a, b) => Number(b.data.isNew) - Number(a.data.isNew));
 const site = Astro.site!;
 const jsonLd = {
   "@context": "https://schema.org",
@@ -20,6 +21,7 @@ const min = Math.min(...all.map((p) => p.data.price)), max = Math.max(...all.map
       <p class="eyebrow">La boutique · {SHOP.city}</p>
       <h1>Toutes les pièces</h1>
       <p class="muted lead">Filtre par type de pièce ou par occasion. Livraison {SHOP.deliveryDelay}, paiement à la livraison.</p>
+      <DropBand />
       <ProductGrid products={all} />
     </div>
   </section>

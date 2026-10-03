@@ -20,6 +20,25 @@ export const waShare = (text: string) => `https://wa.me/?text=${encodeURICompone
 
 export type Line = { id: string; name: string; size: Size; qty: number; price: number };
 
+type CartWindow = Window & { smCartReady?: boolean; smPending?: Line[] };
+/**
+ * Add a line to the cart island. Islands hydrate in any order (the cart waits for idle time),
+ * so a tap that lands before the cart is listening is queued, never lost.
+ */
+export function addToCart(line: Line) {
+  const w = window as CartWindow;
+  if (w.smCartReady) dispatchEvent(new CustomEvent("sm:add", { detail: line }));
+  else (w.smPending ??= []).push(line);
+}
+/** Called once by the cart when it is listening: returns and clears the queued lines. */
+export function takePending(): Line[] {
+  const w = window as CartWindow;
+  w.smCartReady = true;
+  const lines = w.smPending ?? [];
+  w.smPending = [];
+  return lines;
+}
+
 export function deliveryFee(zone: string | undefined, subtotal: number): number | null {
   const z = ZONES.find((x) => x.name === zone);
   if (!z) return null;

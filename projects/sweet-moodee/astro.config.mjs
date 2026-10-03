@@ -9,6 +9,18 @@ export default defineConfig({
   output: "static",
   trailingSlash: "never",
   build: { format: "file" },
-  integrations: [preact(), sitemap()],
+  integrations: [
+    preact(),
+    sitemap({
+      // Friend pages are personal, and pieces waiting for their drop stay unlisted until the
+      // rebuild that follows it (the set is filled by src/lib/catalog.ts during this same build).
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        if (path === "/avis") return false;
+        const id = path.match(/^\/produit\/(.+)$/)?.[1];
+        return !(id && /** @type {any} */ (globalThis).__smUnlisted?.has(id));
+      },
+    }),
+  ],
   image: { responsiveStyles: true },
 });

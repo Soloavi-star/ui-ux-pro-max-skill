@@ -19,6 +19,8 @@ const products = defineCollection({
       isNew: z.boolean().default(false),
       occasion: z.array(z.enum(["Soirée", "Anniversaire", "Mariage", "Brunch", "Journée"])).default([]),
       description: z.string().min(10),
+      // Scheduled release (Abidjan time = UTC). "prochain" = next weekly drop, mockup only.
+      drop: z.union([z.literal("prochain"), z.coerce.date()]).optional(),
     }),
 });
 

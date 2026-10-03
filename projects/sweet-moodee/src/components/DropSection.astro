@@ -1,0 +1,124 @@
+---
+// Le drop du vendredi on the home page. With scheduled pieces: a countdown, blurred teasers,
+// and at the drop time the real cards (built into <template>s, photos not downloaded before)
+// come into focus. Without: a weekly reminder. See src/scripts/drop.ts for the timing.
+import { getImage } from "astro:assets";
+import ProductCard from "./ProductCard.astro";
+import { BUILD_NOW, getNextDrop } from "../lib/catalog";
+import { dateLabel, dayLabel, hourLabel } from "../lib/drop";
+import { waLink } from "../lib/shop";
+import { DROP, SHOP } from "../config";
+
+const drop = await getNextDrop();
+const pieces = drop?.pieces ?? [];
+// 24 px wide: enough for colour and silhouette once blurred, nothing more leaks before the drop.
+const blurs = await Promise.all(pieces.map((p) => getImage({ src: p.data.image, width: 24, format: "webp", quality: 40 })));
+const ONE = { Robes: "Une robe", Combinaisons: "Une combinaison", Ensembles: "Un ensemble" } as const;
+const day = drop ? dayLabel(drop.at, BUILD_NOW) : "";
+const hour = drop ? hourLabel(drop.at) : "";
+const notify = DROP.channel || waLink(`Bonjour ${SHOP.name} ! Préviens-moi pour le prochain drop du vendredi 🙏`);
+---
+{drop && (
+  <section class="drop" id="drop" data-drop data-drop-at={drop.at.toISOString()} data-pieces={pieces.length} aria-labelledby="drop-title">
+    <div class="wrap drop-in">
+      {pieces.length > 0 ? (
+        <>
+          <p class="eyebrow swap"><span data-before>Le drop du vendredi</span><span data-after>C'est l'heure</span></p>
+          <h2 id="drop-title" class="swap"><span data-before>{day}, {hour}.</span><span data-after>Les pièces sont en ligne.</span></h2>
+          <p class="drop-lead">{pieces.length} nouvelles pièces pour samedi soir, en ligne à la même seconde pour tout le monde. Premières arrivées, premières servies.</p>
+        </>
+      ) : (
+        <>
+          <p class="eyebrow">Le drop du vendredi</p>
+          <h2 id="drop-title">Nouvelles pièces chaque {day.toLowerCase()}, {hour}.</h2>
+          <p class="drop-lead">Les nouveautés de la semaine arrivent sur le site à la même seconde pour tout le monde. Premières arrivées, premières servies.</p>
+        </>
+      )}
+
+      <div class="swap drop-time">
+        <div data-before class="cd" role="timer" aria-label={pieces.length ? `Ouverture ${dateLabel(drop.at)}` : `Prochain drop ${day.toLowerCase()} à ${hour}`}>
+          <span><b data-cd="d">–</b><small data-cd-unit="d">jours</small></span>
+          <span><b data-cd="h">–</b><small>h</small></span>
+          <span><b data-cd="m">–</b><small>min</small></span>
+          <span><b data-cd="s">–</b><small>s</small></span>
+        </div>
+        {pieces.length > 0 && <p data-after class="drop-live">En ligne depuis {hour}.</p>}
+      </div>
+
+      {pieces.length > 0 && (
+        <ul class="tiles" aria-label={`${pieces.length} pièces à venir`}>
+          {pieces.map((p, i) => (
+            <li class="tile" data-tile style={`--i:${i}`}>
+              <div class="tile-teaser" data-teaser>
+                <div class="tile-ph">
+                  <img src={blurs[i].src} alt="" width="24" height="32" decoding="async" />
+                  <span class="tile-at">{hour}</span>
+                </div>
+                <span class="tile-name">{ONE[p.data.category]}</span>
+                <span class="tile-when">Photo et prix à {hour}</span>
+              </div>
+              <div class="tile-real" data-real inert></div>
+              <template><ProductCard product={p} /></template>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div class="swap drop-cta">
+        <div data-before class="drop-cta-in">
+          <a class="btn btn-wa" href={notify} target="_blank" rel="noopener">{DROP.channel ? "Rejoindre la chaîne WhatsApp" : `Préviens-moi à ${hour}`}</a>
+          <p class="drop-note">{DROP.channel ? `Les photos y arrivent à ${hour} pile.` : "Un message WhatsApp, et la boutique te prévient à l'ouverture."}</p>
+        </div>
+        {pieces.length > 0 && <div data-after class="drop-cta-in"><a class="btn btn-main" href="/boutique">Voir toute la boutique</a></div>}
+      </div>
+      <p class="sr-only" aria-live="polite" data-drop-status></p>
+    </div>
+  </section>
+)}
+
+<script>
+  import "../scripts/drop";
+</script>
+
+<style>
+  .drop { background: var(--nuit); color: var(--ivoire); padding-block: 64px; border-top: 1px solid rgba(247, 238, 231, 0.08); }
+  .drop-in { display: flex; flex-direction: column; gap: 16px; }
+  .drop .eyebrow { color: var(--champagne); }
+  .drop h2 { font-size: clamp(40px, 10vw, 72px); }
+  .drop-lead { color: var(--sourdine); max-width: 46ch; }
+
+  /* Countdown: fixed-width blocks, so changing digits never shift the layout */
+  .cd { display: flex; gap: 8px; }
+  .cd span { min-width: 68px; padding: 10px 8px 8px; border-radius: 12px; background: var(--velours); display: grid; justify-items: center; gap: 4px; }
+  .cd b { font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .cd small { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sourdine); }
+  .drop-live { align-self: center; color: var(--champagne); font-weight: 600; font-size: 18px; }
+
+  .tiles { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  @media (min-width: 900px) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 20px; } }
+  /* Teaser and real card share one grid cell with the same geometry: the reveal never moves anything */
+  .tile { display: grid; min-width: 0; }
+  .tile > [data-teaser], .tile > [data-real] { grid-area: 1 / 1; min-width: 0; }
+  /* The teaser reserves a second name line at its foot, so a real card whose name wraps fits the same cell */
+  .tile-teaser { display: flex; flex-direction: column; gap: 4px; padding-bottom: calc(15px * 1.35); }
+  .tile-ph { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--radius); background: var(--velours); margin-bottom: 6px; }
+  .tile-ph img { width: 100%; height: 100%; object-fit: cover; filter: blur(14px) saturate(1.15); transform: scale(1.25); }
+  .tile-at { position: absolute; left: 8px; top: 8px; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 999px; background: var(--champagne); color: var(--nuit); }
+  .tile-name { font-weight: 500; font-size: 15px; line-height: 1.35; }
+  .tile-when { font-size: 14px; color: var(--sourdine); }
+  .tile-real :global(.pc-name) { color: var(--ivoire); }
+  .tile-real :global(.pc-price) { color: var(--sourdine); }
+
+  /* The reveal: each card comes into focus over its blurred teaser, 80 ms apart */
+  .tile-real { opacity: 0; transform: scale(1.03); transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out); transition-delay: calc(var(--i) * 80ms); }
+  .tile-teaser { transition: opacity 300ms var(--ease-out); transition-delay: calc(var(--i) * 80ms + 450ms); }
+  .drop.is-live .tile-real { opacity: 1; transform: none; }
+  .drop.is-live .tile-teaser { opacity: 0; }
+
+  .drop-cta-in { display: grid; gap: 8px; justify-items: start; }
+  .drop-note { font-size: 13px; color: var(--sourdine); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile-real { transform: none; }
+  }
+</style>
