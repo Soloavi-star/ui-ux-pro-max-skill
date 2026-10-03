@@ -1,0 +1,37 @@
+---
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
+const path = Astro.url.pathname;
+---
+<header class:list={["hd", { "hd-home": dark }]} data-header>
+  <div class="wrap hd-in">
+    <a href="/" class="logo" aria-label="Sweet Moodee, accueil">Sweet <em>Moodee</em></a>
+    <nav aria-label="Principale" class="nav">
+      <a href="/boutique" aria-current={path.startsWith("/boutique") ? "page" : undefined}>Boutique</a>
+      <a href="/livraison-retours" aria-current={path.startsWith("/livraison") ? "page" : undefined}>Livraison</a>
+    </nav>
+    <button type="button" class="cart-btn" data-open-cart aria-label="Ouvrir le panier">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="badge" data-cart-count hidden>0</span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .hd { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--ivoire) 90%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--ligne-jour); padding-top: env(safe-area-inset-top, 0px); }
+  .hd-in { height: 60px; display: flex; align-items: center; gap: 16px; }
+  .logo { font-family: var(--display); font-size: 24px; text-decoration: none; margin-right: auto; }
+  .logo em { font-style: normal; color: var(--fuchsia); }
+  .nav { display: flex; gap: 18px; font-size: 14px; font-weight: 500; }
+  .nav a { text-decoration: none; padding: 10px 0; }
+  .nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; text-decoration-color: var(--fuchsia); }
+  .cart-btn { position: relative; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; transition: transform 160ms var(--ease-out); }
+  .cart-btn:active { transform: scale(0.94); }
+  .badge { position: absolute; top: 2px; right: 0; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--fuchsia); color: var(--ivoire); font-size: 11px; font-weight: 600; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+  @media (max-width: 420px) { .nav a:last-child { display: none; } }
+
+  /* Home: the header stays out of the way while the chat story is on screen */
+  .hd-home { position: fixed; left: 0; right: 0; transform: translateY(-110%); transition: transform 300ms var(--ease-out); }
+  :global(body.story-done) .hd-home { transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .hd-home { transition: none; } }
+</style>

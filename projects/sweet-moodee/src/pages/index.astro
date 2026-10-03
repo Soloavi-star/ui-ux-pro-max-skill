@@ -1,0 +1,78 @@
+---
+import Base from "../layouts/Base.astro";
+import Story from "../components/Story.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import { getProducts } from "../lib/catalog";
+import { SHOP } from "../config";
+import { waShare } from "../lib/shop";
+
+const all = await getProducts();
+const fresh = all.filter((p) => p.data.isNew);
+const site = Astro.site!;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  name: SHOP.name,
+  url: site.href,
+  image: new URL("/og.jpg", site).href,
+  address: { "@type": "PostalAddress", addressLocality: SHOP.city, addressCountry: "CI" },
+  paymentAccepted: "Espèces, Mobile Money",
+  currenciesAccepted: "XOF",
+  sameAs: [SHOP.instagram, SHOP.snapchat],
+};
+---
+<Base title={SHOP.name} description="Robes, combinaisons et ensembles de marque à Abidjan. Commande en un message WhatsApp, paiement à la livraison." jsonLd={jsonLd} dark>
+  <Story />
+
+  <section class="home-new" id="nouveautes">
+    <div class="wrap stack">
+      <p class="eyebrow">Fraîchement arrivées</p>
+      <h2>Ta tenue pour samedi</h2>
+      <p class="muted lead">Choisis ta pièce et ta taille, puis commande en un message WhatsApp. Tu paies à la livraison.</p>
+      <ProductGrid products={fresh} filters={false} eagerCount={0} />
+      <a class="btn btn-dark all" href="/boutique">Voir toute la boutique · {all.length} pièces</a>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Comment ça marche">
+    <div class="wrap trust-in">
+      <div><b>Paiement à la livraison</b><span>Tu paies à la réception, en espèces ou mobile money.</span></div>
+      <div><b>Livraison {SHOP.deliveryDelay}</b><span>Partout à Abidjan, de Cocody à Yopougon.</span></div>
+      <div><b>Conseil taille</b><span>On t'aide à choisir avant l'envoi, sur WhatsApp.</span></div>
+    </div>
+  </section>
+
+  <section class="epi" aria-label="Après la commande">
+    <div class="wrap epi-in">
+      <p class="epi-chap">Samedi, 0 h 12</p>
+      <p class="bub out">Commandée ✅ livrée demain, je paie à la livraison !</p>
+      <p class="bub in">Tu vas tuer samedi 🔥🔥</p>
+      <div class="share">
+        <p><b>Une amie aussi n'a « rien à se mettre » ?</b><br /><span>Envoie-lui Sweet Moodee sur WhatsApp.</span></p>
+        <a class="btn btn-main" target="_blank" rel="noopener" href={waShare(`J'ai trouvé ma tenue pour samedi chez Sweet Moodee 😍 ${site.href}`)}>Envoyer à une amie</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .home-new { padding-block: 72px; background: var(--ivoire); }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  h2 { font-size: clamp(36px, 8vw, 60px); }
+  .lead { max-width: 52ch; }
+  .all { align-self: flex-start; margin-top: 12px; }
+  .trust { background: var(--ivoire); border-block: 1px solid var(--ligne-jour); padding-block: 22px; }
+  .trust-in { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .trust-in div { display: flex; flex-direction: column; gap: 2px; font-size: 14px; color: var(--sourdine-jour); min-width: 0; }
+  .trust-in b { color: var(--cacao); font-weight: 600; }
+  @media (max-width: 640px) { .trust-in { grid-template-columns: 1fr; } }
+  .epi { background: var(--nuit); color: var(--ivoire); padding-block: 72px; }
+  .epi-in { max-width: 520px; display: flex; flex-direction: column; gap: 10px; }
+  .epi-chap { align-self: center; font-family: var(--display); font-size: 26px; color: var(--champagne); }
+  .bub { max-width: 80%; padding: 8px 12px; border-radius: 14px; font-size: 16px; }
+  .bub.out { align-self: flex-end; background: var(--message); border-top-right-radius: 4px; }
+  .bub.in { align-self: flex-start; background: var(--velours); border-top-left-radius: 4px; font-weight: 600; }
+  .share { margin-top: 18px; padding: 16px; border-radius: 16px; background: var(--velours); display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .share p { flex: 1; min-width: 200px; }
+  .share span { color: var(--sourdine); font-size: 14px; }
+</style>

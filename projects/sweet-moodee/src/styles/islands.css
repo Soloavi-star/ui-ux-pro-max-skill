@@ -1,0 +1,71 @@
+/* Styles for the Preact islands (cart drawer, size picker). */
+
+/* ---------- Size picker ---------- */
+.sp { display: flex; flex-direction: column; gap: 12px; }
+.sp-head { display: flex; justify-content: space-between; align-items: center; }
+.sp-label { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--sourdine-jour); }
+.sp-guide { font-size: 13px; font-weight: 600; text-underline-offset: 3px; padding: 8px 0; }
+.sp-sizes { display: flex; gap: 8px; flex-wrap: wrap; }
+.sz { position: relative; width: 56px; height: 48px; border-radius: 10px; border: 1px solid var(--ligne-jour); display: inline-grid; place-items: center; font-weight: 600; text-decoration: none; transition: background-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out); }
+.sz:active { transform: scale(0.95); }
+.sz[aria-checked="true"] { background: var(--cacao); color: var(--ivoire); border-color: var(--cacao); }
+.sz.off { color: var(--sourdine-jour); text-decoration: line-through; border-style: dashed; }
+.sz-last { position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--fuchsia); }
+.sp-hint { min-height: 1.4em; font-size: 13px; color: var(--fuchsia); }
+.sp-actions { display: grid; gap: 10px; }
+.sp-full { width: 100%; }
+.sp-share { align-self: flex-start; font-size: 14px; font-weight: 600; text-underline-offset: 3px; padding: 8px 0; }
+
+/* Add-to-cart label morphs through a light blur */
+.morph { position: relative; overflow: hidden; }
+.morph .m-a, .morph .m-b { transition: opacity 200ms ease, filter 200ms ease, transform 250ms var(--ease-out); }
+.morph .m-b { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; filter: blur(4px); transform: translateY(40%); }
+.morph.done { background: var(--message); }
+.morph.done .m-a { opacity: 0; filter: blur(4px); transform: translateY(-40%); }
+.morph.done .m-b { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+/* ---------- Cart drawer ---------- */
+.cart-scrim { position: fixed; inset: 0; z-index: 60; background: rgba(18, 11, 16, 0.5); opacity: 0; pointer-events: none; transition: opacity 250ms ease; }
+.cart-scrim.on { opacity: 1; pointer-events: auto; }
+.cart { position: fixed; z-index: 70; top: 0; right: 0; bottom: 0; width: min(440px, 100vw); background: var(--ivoire); color: var(--cacao); display: flex; flex-direction: column; transform: translateX(100%); visibility: hidden; transition: transform 420ms var(--ease-drawer), visibility 0s 420ms; padding-top: env(safe-area-inset-top, 0px); }
+.cart.on { transform: translateX(0); visibility: visible; transition: transform 420ms var(--ease-drawer); }
+.cart-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px var(--gutter); border-bottom: 1px solid var(--ligne-jour); min-height: 64px; }
+.cart-h h2 { font-size: 28px; }
+.cart .x { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; }
+.cart .link { font-weight: 600; font-size: 14px; padding: 10px 0; text-decoration: underline; text-underline-offset: 3px; }
+.ship { padding: 12px var(--gutter); background: var(--ivoire-2); font-size: 14px; display: grid; gap: 8px; }
+.ship .bar { height: 4px; border-radius: 2px; background: rgba(59, 38, 32, 0.12); overflow: hidden; }
+.ship .bar i { display: block; height: 100%; background: var(--fuchsia); transform-origin: left; transition: transform 500ms var(--ease-out); }
+.cart-body { flex: 1; overflow: auto; padding: 8px var(--gutter); overscroll-behavior: contain; }
+.details { display: contents; }
+.line { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--ligne-jour); }
+.l-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
+.l-info a { text-decoration: none; }
+.l-info b { font-weight: 600; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--ligne-jour); border-radius: 999px; }
+.qty button { width: 44px; height: 44px; font-size: 18px; }
+.qty output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.empty { display: grid; justify-items: center; gap: 16px; padding: 48px 0; text-align: center; }
+.cart-f { padding: 14px var(--gutter) calc(14px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--ligne-jour); display: grid; gap: 10px; }
+.sum { display: flex; justify-content: space-between; font-weight: 600; font-variant-numeric: tabular-nums; }
+.small { font-size: 13px; }
+.field { display: grid; gap: 6px; margin: 14px 0; font-size: 14px; font-weight: 500; }
+.field small { color: var(--sourdine-jour); font-weight: 400; }
+.field input, .field select { min-height: 50px; border-radius: 10px; border: 1px solid var(--ligne-jour); background: #fff; padding: 0 14px; font: inherit; font-size: 16px; color: var(--cacao); }
+.field [aria-invalid="true"] { border-color: var(--fuchsia); }
+.field em { font-style: normal; font-size: 13px; color: var(--fuchsia); }
+.recap { display: grid; gap: 8px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--ligne-jour); font-size: 15px; font-variant-numeric: tabular-nums; }
+.recap div { display: flex; justify-content: space-between; gap: 12px; }
+.recap .grand { font-weight: 600; font-size: 17px; }
+
+/* ---------- Toast (Sonner-like: enters from below, leaves the same way) ---------- */
+.toast { position: fixed; left: 0; right: 0; margin-inline: auto; width: max-content; max-width: calc(100vw - 32px); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 90; display: flex; align-items: center; gap: 12px; background: var(--nuit); color: var(--ivoire); padding: 12px 16px; border-radius: 14px; font-size: 14px; transform: translateY(140%); opacity: 0; pointer-events: none; transition: transform 320ms var(--ease-out), opacity 200ms ease; }
+.toast.on { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.toast button { color: var(--champagne); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; min-height: 36px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cart, .cart.on { transition: opacity 150ms ease, visibility 0s; transform: none; }
+  .cart:not(.on) { opacity: 0; }
+  .toast { transform: none; }
+  .morph .m-a, .morph .m-b { transform: none !important; filter: none !important; }
+}

@@ -1,0 +1,43 @@
+---
+import Base from "../layouts/Base.astro";
+import { SHOP, ZONES } from "../config";
+import { fcfa } from "../lib/shop";
+---
+<Base title="Livraison et retours" description={`Livraison en ${SHOP.deliveryDelay} partout à Abidjan, paiement à la livraison. Tarifs par commune et conditions d'échange.`}>
+  <article class="wrap doc">
+    <p class="eyebrow">Avant de commander</p>
+    <h1>Livraison et retours</h1>
+
+    <h2>Comment commander</h2>
+    <p>Ajoute tes pièces au panier, indique ta commune, puis envoie la commande sur WhatsApp. La boutique te confirme la disponibilité et l'heure de livraison.</p>
+
+    <h2>Paiement</h2>
+    <p>À la livraison, en espèces ou par mobile money, une fois l'article entre tes mains.</p>
+
+    <h2>Délais et tarifs</h2>
+    <p>Livraison en {SHOP.deliveryDelay}. Offerte dès {fcfa(SHOP.freeDeliveryFrom)} d'achat.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th scope="col">Commune</th><th scope="col">Frais</th></tr></thead>
+        <tbody>{ZONES.map((z) => <tr><th scope="row">{z.name}</th><td>{fcfa(z.fee)}</td></tr>)}</tbody>
+      </table>
+    </div>
+
+    <h2>Taille et échange</h2>
+    <p>Un doute sur la taille ? Écris-nous avant la commande, on te conseille selon tes mesures. Si une pièce ne convient pas, contacte la boutique sur WhatsApp ({SHOP.whatsappDisplay}) : on cherche une solution ensemble. [Conditions d'échange précises à confirmer par la boutique.]</p>
+
+    <h2>Essayer en boutique</h2>
+    <p>La boutique t'accueille à {SHOP.address} pour essayer les pièces avant achat. [Horaires à compléter.]</p>
+  </article>
+</Base>
+
+<style>
+  .doc { max-width: 720px; padding-block: 40px 72px; display: flex; flex-direction: column; gap: 12px; }
+  h1 { font-size: clamp(36px, 8vw, 56px); margin-bottom: 8px; }
+  h2 { font-size: 26px; margin-top: 18px; }
+  p { color: var(--sourdine-jour); }
+  .tw { overflow-x: auto; }
+  table { width: 100%; max-width: 420px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--ligne-jour); font-weight: 400; }
+  thead th { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--sourdine-jour); }
+</style>

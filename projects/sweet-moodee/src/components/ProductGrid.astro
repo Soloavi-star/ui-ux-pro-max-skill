@@ -1,0 +1,62 @@
+---
+// Product grid with category / occasion chips. Filtering is a few lines of
+// inline JS on top of server-rendered cards: every product is in the HTML (SEO, no-JS).
+import ProductCard from "./ProductCard.astro";
+import type { Product } from "../lib/catalog";
+
+interface Props { products: Product[]; filters?: boolean; eagerCount?: number }
+const { products, filters = true, eagerCount = 2 } = Astro.props;
+const cats = ["Robes", "Combinaisons", "Ensembles"].filter((c) => products.some((p) => p.data.category === c));
+const occs = ["Soirée", "Anniversaire", "Mariage", "Brunch", "Journée"].filter((o) => products.some((p) => p.data.occasion.includes(o as never)));
+---
+<div class="pg" data-grid>
+  {filters && (
+    <div class="chips" role="group" aria-label="Filtrer les pièces">
+      <button type="button" class="chip" aria-pressed="true" data-f="all">Tout</button>
+      {cats.map((c) => <button type="button" class="chip" aria-pressed="false" data-f={`cat:${c}`}>{c}</button>)}
+      {occs.map((o) => <button type="button" class="chip occ" aria-pressed="false" data-f={`occ:${o}`}>{o}</button>)}
+    </div>
+  )}
+  <p class="count muted" aria-live="polite" data-count>{products.length} pièces</p>
+  <div class="grid">
+    {products.map((p, i) => <ProductCard product={p} eager={i < eagerCount} />)}
+  </div>
+  <p class="empty muted" data-empty hidden>Aucune pièce pour ce filtre pour l'instant. Écris-nous sur WhatsApp, on te trouve ta tenue.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-grid]").forEach((grid) => {
+    const chips = Array.from(grid.querySelectorAll<HTMLButtonElement>(".chip"));
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>(".pc"));
+    const count = grid.querySelector<HTMLElement>("[data-count]")!;
+    const empty = grid.querySelector<HTMLElement>("[data-empty]")!;
+    chips.forEach((chip) =>
+      chip.addEventListener("click", () => {
+        chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+        const [kind, value] = (chip.dataset.f ?? "all").split(":");
+        let n = 0;
+        for (const card of cards) {
+          const ok = kind === "all" || (kind === "cat" && card.dataset.cat === value) || (kind === "occ" && (card.dataset.occ ?? "").split(",").includes(value));
+          card.hidden = !ok;
+          if (ok) n++;
+        }
+        count.textContent = `${n} pièce${n > 1 ? "s" : ""}`;
+        empty.hidden = n > 0;
+      }),
+    );
+  });
+</script>
+
+<style>
+  .pg { display: flex; flex-direction: column; gap: 14px; }
+  .chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { min-height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid var(--ligne-jour); font-size: 14px; white-space: nowrap; transition: background-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out); }
+  .chip.occ { border-style: dashed; }
+  .chip:active { transform: scale(0.97); }
+  .chip[aria-pressed="true"] { background: var(--cacao); color: var(--ivoire); border-color: var(--cacao); border-style: solid; }
+  .count { font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  @media (min-width: 700px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px 20px; } }
+</style>

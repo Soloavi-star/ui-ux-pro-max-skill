@@ -1,0 +1,63 @@
+---
+import "@fontsource/gloock/latin-400.css";
+import "@fontsource/familjen-grotesk/latin-400.css";
+import "@fontsource/familjen-grotesk/latin-500.css";
+import "@fontsource/familjen-grotesk/latin-600.css";
+import "../styles/global.css";
+import "../styles/islands.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Cart from "../components/Cart.tsx";
+import { SHOP } from "../config";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string; // absolute or site-relative URL of the share image
+  jsonLd?: Record<string, unknown>;
+  dark?: boolean; // page opens on the night palette (home)
+  noindex?: boolean;
+}
+const { title, description, image = "/og.jpg", jsonLd, dark = false, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const fullTitle = title === SHOP.name ? `${SHOP.name} · Mode femme à Abidjan` : `${title} · ${SHOP.name}`;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content={dark ? "#120b10" : "#f7eee7"} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_CI" />
+    <meta property="og:site_name" content={SHOP.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body class:list={{ dark }}>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <Header dark={dark} />
+    <main id="contenu">
+      <slot />
+    </main>
+    <Footer />
+    <Cart client:idle />
+  </body>
+</html>
+
+<style is:global>
+  .skip-link { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--cacao); color: var(--ivoire); padding: 10px 14px; border-radius: 8px; text-decoration: none; }
+  .skip-link:focus { top: 12px; }
+  body.dark { background: var(--nuit); }
+</style>

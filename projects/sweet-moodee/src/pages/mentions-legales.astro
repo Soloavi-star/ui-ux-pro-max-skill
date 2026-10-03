@@ -1,0 +1,25 @@
+---
+import Base from "../layouts/Base.astro";
+import { SHOP } from "../config";
+---
+<Base title="Mentions légales" description="Mentions légales et politique de confidentialité du site Sweet Moodee.">
+  <article class="wrap doc">
+    <h1>Mentions légales</h1>
+    <h2>Éditeur</h2>
+    <p>{SHOP.name} — [raison sociale et forme juridique à compléter], [numéro RCCM à compléter], {SHOP.address}. Contact : WhatsApp {SHOP.whatsappDisplay}.</p>
+    <h2>Hébergement</h2>
+    <p>[Nom et adresse de l'hébergeur à compléter à la mise en ligne.]</p>
+    <h2>Données personnelles</h2>
+    <p>Le site ne crée pas de compte et n'enregistre aucune donnée sur un serveur. Ton panier, tes favoris et tes coordonnées de livraison restent uniquement dans ton navigateur, pour te faire gagner du temps à la prochaine commande. Ils ne sont transmis à la boutique que lorsque tu envoies toi-même ta commande sur WhatsApp.</p>
+    <p>Tu peux les effacer à tout moment en vidant les données du site dans ton navigateur.</p>
+    <h2>Mesure d'audience</h2>
+    <p>[À compléter si un outil de mesure d'audience est activé.]</p>
+  </article>
+</Base>
+
+<style>
+  .doc { max-width: 720px; padding-block: 40px 72px; display: flex; flex-direction: column; gap: 12px; }
+  h1 { font-size: clamp(36px, 8vw, 56px); margin-bottom: 8px; }
+  h2 { font-size: 24px; margin-top: 16px; }
+  p { color: var(--sourdine-jour); }
+</style>

@@ -1,0 +1,32 @@
+---
+import { SHOP } from "../config";
+---
+<footer class="ft">
+  <div class="wrap ft-in">
+    <div class="ft-brand">
+      <span class="logo">Sweet <em>Moodee</em></span>
+      <p>Vêtements de marque et accessoires · {SHOP.address}</p>
+      <p>WhatsApp : <span class="sel">{SHOP.whatsappDisplay}</span></p>
+    </div>
+    <nav aria-label="Pied de page" class="ft-nav">
+      <a href="/boutique">Boutique</a>
+      <a href="/livraison-retours">Livraison et retours</a>
+      <a href="/mentions-legales">Mentions légales</a>
+      <a href={SHOP.instagram} target="_blank" rel="noopener">Instagram</a>
+      <a href={SHOP.snapchat} target="_blank" rel="noopener">Snapchat</a>
+    </nav>
+  </div>
+  {SHOP.isMockup && <p class="wrap mock">Maquette · proposition de design. Prix, stock et numéro WhatsApp d'exemple ; photos à remplacer par les originaux.</p>}
+</footer>
+
+<style>
+  .ft { background: var(--nuit); color: var(--sourdine); padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); font-size: 14px; }
+  .ft-in { display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; }
+  .ft-brand { display: flex; flex-direction: column; gap: 6px; }
+  .logo { font-family: var(--display); font-size: 28px; color: var(--ivoire); }
+  .logo em { font-style: normal; color: var(--fuchsia-nuit); }
+  .ft-nav { display: flex; flex-direction: column; gap: 4px; }
+  .ft-nav a { color: var(--ivoire); text-decoration: none; padding: 6px 0; }
+  .sel { user-select: all; color: var(--ivoire); font-variant-numeric: tabular-nums; }
+  .mock { margin-top: 28px; font-size: 12px; }
+</style>

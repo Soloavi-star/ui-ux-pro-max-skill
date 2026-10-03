@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="Page introuvable" description="Cette page n'existe pas ou plus." noindex>
+  <section class="wrap nf">
+    <p class="eyebrow">Erreur 404</p>
+    <h1>Cette pièce n'est plus là.</h1>
+    <p class="muted">Elle a peut-être été vendue, ou le lien est incomplet.</p>
+    <a class="btn btn-dark" href="/boutique">Voir la boutique</a>
+  </section>
+</Base>
+
+<style>
+  .nf { min-height: 60vh; padding-block: 64px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; justify-content: center; }
+  h1 { font-size: clamp(36px, 8vw, 60px); }
+</style>

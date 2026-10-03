@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import { getProducts } from "../lib/catalog";
+import { fcfa } from "../lib/shop";
+import { SHOP } from "../config";
+
+const all = (await getProducts()).sort((a, b) => Number(b.data.isNew) - Number(a.data.isNew));
+const site = Astro.site!;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: all.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: new URL(`/produit/${p.id}`, site).href, name: p.data.name })),
+};
+const min = Math.min(...all.map((p) => p.data.price)), max = Math.max(...all.map((p) => p.data.price));
+---
+<Base title="La boutique" description={`${all.length} robes, combinaisons et ensembles à Abidjan, de ${fcfa(min)} à ${fcfa(max)}. Commande WhatsApp, paiement à la livraison.`} jsonLd={jsonLd}>
+  <section class="shop">
+    <div class="wrap stack">
+      <p class="eyebrow">La boutique · {SHOP.city}</p>
+      <h1>Toutes les pièces</h1>
+      <p class="muted lead">Filtre par type de pièce ou par occasion. Livraison {SHOP.deliveryDelay}, paiement à la livraison.</p>
+      <ProductGrid products={all} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .shop { padding-block: 40px 72px; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  h1 { font-size: clamp(40px, 9vw, 68px); }
+  .lead { max-width: 52ch; }
+</style>

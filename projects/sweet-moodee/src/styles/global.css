@@ -1,0 +1,62 @@
+/* Direction artistique « Samedi soir » — two worlds:
+   the night (story, chat, hero) and the daylight shop (ivory). One deliberate look, no theme switch. */
+:root {
+  --nuit: #120b10;
+  --velours: #24141d;
+  --velours-2: #1a0f16;
+  --message: #1e5e4a;
+  --fuchsia: #c2185f;
+  --fuchsia-nuit: #e8508f;
+  --champagne: #e2b970;
+  --ivoire: #f7eee7;
+  --ivoire-2: #efe3da;
+  --cacao: #3b2620;
+  --sourdine: #a8949c;
+  --sourdine-jour: #7a6259;
+  --ligne-jour: rgba(59, 38, 32, 0.16);
+
+  --display: "Gloock", "Didot", Georgia, serif;
+  --text: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --gutter: 16px;
+  --radius: 10px;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--ivoire); color: var(--cacao); font-family: var(--text); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--fuchsia); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.02; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--gutter); }
+.eyebrow { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--fuchsia); }
+.muted { color: var(--sourdine-jour); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Buttons: instant press feedback, hover only on real pointers */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: 26px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease; }
+.btn:active { transform: scale(0.97); }
+.btn-main { background: var(--fuchsia); color: var(--ivoire); }
+.btn-wa { background: var(--message); color: var(--ivoire); }
+.btn-dark { background: var(--cacao); color: var(--ivoire); }
+.btn-line { border: 1px solid currentColor; }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+@media (hover: hover) and (pointer: fine) {
+  .btn-main:hover { background: #a5144f; }
+  .btn-wa:hover { background: #17493a; }
+  .btn-dark:hover { background: #2a1b17; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
