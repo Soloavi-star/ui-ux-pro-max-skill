@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Marrouche — Restaurant libanais à Zone 4, Marcory (Abidjan)</title>
+  <meta name="description" content="Marrouche, l'authentique cuisine libanaise à Zone 4, Marcory. Menu en FCFA, réservation de table, commande et livraison par WhatsApp, itinéraire.">
+  <meta name="theme-color" content="#7A1A1F">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="https://marroucheabidjan.com/">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Marrouche — Cuisine libanaise à Zone 4, Marcory">
+  <meta property="og:description" content="Sur place, à emporter ou livré : menu, réservation et commande WhatsApp en quelques secondes.">
+  <meta property="og:locale" content="fr_CI">
+  <meta property="og:url" content="https://marroucheabidjan.com/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+
+  <!-- Données structurées : à aligner avec Google Business Profile une fois les infos validées -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Marrouche",
+    "servesCuisine": ["Libanaise", "Méditerranéenne"],
+    "priceRange": "3 000 – 12 000 FCFA",
+    "currenciesAccepted": "XOF",
+    "url": "https://marroucheabidjan.com/",
+    "telephone": "+225 27 21 25 52 14",
+    "acceptsReservations": true,
+    "hasMenu": "https://marroucheabidjan.com/#menu",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue Pierre et Marie Curie, angle rue Mercedes, Zone 4 C, à côté de SOCIDA",
+      "addressLocality": "Marcory, Abidjan",
+      "addressCountry": "CI"
+    },
+    "sameAs": [
+      "https://www.facebook.com/MarroucheAbidjan/",
+      "https://www.instagram.com/marroucheabidjan/"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      /* Palette : grenade, cèdre, sumac sur crème — dérivée du design system ui-ux-pro-max (restaurant) */
+      --cream: #FBF6EE;
+      --cream-2: #F3EADB;
+      --paper: #FFFDF9;
+      --ink: #2A1A14;
+      --ink-soft: #5E4B40;
+      --line: #E6D9C6;
+      --pomegranate: #9E1B22;      /* 7.6:1 sur blanc */
+      --pomegranate-deep: #7A1A1F;
+      --cedar: #1F4D36;            /* 9.6:1 sur crème */
+      --sumac: #A8741A;            /* décoratif / grands textes uniquement */
+      --whatsapp: #128C4A;
+
+      --font-display: "Playfair Display", Georgia, serif;
+      --font-body: "Karla", system-ui, -apple-system, sans-serif;
+
+      /* Courbes (Emil Kowalski) : les easings natifs manquent de punch */
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+      --radius: 14px;
+      --radius-lg: 22px;
+      --shadow: 0 1px 2px rgb(42 26 20 / .06), 0 8px 24px -12px rgb(42 26 20 / .18);
+      --gutter: 16px;
+      --bar-h: 64px;
+    }
+    @media (min-width: 768px) { :root { --gutter: 32px; } }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font: 400 16px/1.55 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom));
+    }
+    @media (min-width: 900px) { body { padding-bottom: 0; } }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
+    p { margin: 0; }
+    .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 var(--gutter); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    :focus-visible { outline: 3px solid var(--sumac); outline-offset: 2px; border-radius: 6px; }
+
+    /* ---------- Bandeau maquette ---------- */
+    .proto {
+      background: var(--ink); color: #F6EBDD; font-size: 13px; text-align: center;
+      padding: 8px var(--gutter);
+    }
+    .proto strong { color: #F2C66D; }
+
+    /* ---------- Boutons : retour tactile immédiat ---------- */
+    .btn {
+      white-space: nowrap;
+      --bg: var(--pomegranate); --fg: #fff;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0;
+      background: var(--bg); color: var(--fg);
+      font: 700 15px/1 var(--font-body); text-decoration: none; cursor: pointer;
+      transition: transform 160ms var(--ease-out), background-color 200ms ease, box-shadow 200ms ease;
+      user-select: none; -webkit-user-select: none;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn--wa { --bg: var(--whatsapp); }
+    .btn--ghost { --bg: transparent; --fg: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+    .btn--light { --bg: var(--paper); --fg: var(--ink); }
+    .btn--block { width: 100%; }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover { box-shadow: 0 6px 18px -8px rgb(122 26 31 / .55); }
+      .btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink-soft); }
+      .btn--wa:hover { box-shadow: 0 6px 18px -8px rgb(18 140 74 / .55); }
+    }
+
+    /* ---------- En-tête ---------- */
+    .header {
+      position: sticky; top: 0; z-index: 30;
+      background: rgb(251 246 238 / .9);
+      backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+    .logo { display: flex; align-items: baseline; gap: 8px; text-decoration: none; }
+    .logo b { font: 700 24px/1 var(--font-display); color: var(--pomegranate-deep); letter-spacing: .02em; }
+    .logo span { font-size: 12px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; }
+    .nav { display: none; gap: 24px; font-weight: 600; font-size: 15px; }
+    .nav a { text-decoration: none; color: var(--ink-soft); transition: color 150ms ease; }
+    @media (hover: hover) and (pointer: fine) { .nav a:hover { color: var(--ink); } }
+    .header .btn { min-height: 40px; padding: 0 16px; font-size: 14px; }
+    @media (min-width: 900px) { .nav { display: flex; } }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; overflow: hidden; padding: 40px 0 48px; }
+    .hero::before {
+      /* motif géométrique levantin, très discret */
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 4l7 17 17 7-17 7-7 17-7-17-17-7 17-7z' fill='none' stroke='%23E6D9C6' stroke-width='1'/%3E%3C/svg%3E");
+      mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+    }
+    .hero .wrap { position: relative; display: grid; gap: 32px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--cedar);
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: currentColor; }
+    .hero h1 { font-size: clamp(38px, 9vw, 68px); margin: 14px 0 16px; }
+    .hero h1 em { font-style: italic; font-weight: 500; color: var(--pomegranate); }
+    .hero .lead { font-size: 18px; color: var(--ink-soft); max-width: 34ch; }
+    .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; max-width: 460px; }
+    .hero-ctas .btn:first-child { grid-column: 1 / -1; }
+    .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 999px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+    }
+    .chip svg { width: 16px; height: 16px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sumac); }
+    .dot.open { background: var(--whatsapp); }
+    .dot.closed { background: var(--pomegranate); }
+    .stars { color: var(--sumac); letter-spacing: 1px; }
+
+    .hero-visual {
+      position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); overflow: hidden;
+      background:
+        radial-gradient(120% 80% at 80% 10%, #B53A2F 0%, transparent 60%),
+        radial-gradient(100% 70% at 10% 100%, #1F4D36 0%, transparent 65%),
+        #6B1A1E;
+      box-shadow: var(--shadow); display: none;
+    }
+    .hero-visual::after {
+      content: ""; position: absolute; inset: 0; opacity: .18;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cpath d='M36 6l9 21 21 9-21 9-9 21-9-21-21-9 21-9z' fill='none' stroke='%23F6EBDD' stroke-width='1.2'/%3E%3C/svg%3E");
+    }
+    .hero-visual figcaption {
+      position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 1;
+      color: #F6EBDD; font-size: 13px; line-height: 1.4;
+    }
+    .hero-visual figcaption b { display: block; font: 500 italic 28px/1.15 var(--font-display); margin-bottom: 8px; color: #fff; }
+    @media (min-width: 900px) {
+      .hero { padding: 72px 0 88px; }
+      .hero .wrap { grid-template-columns: 1.15fr .85fr; align-items: center; gap: 56px; }
+      .hero-visual { display: block; }
+    }
+
+    /* Entrée du hero : une seule fois au chargement, stagger court */
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+    .stagger > * { animation: rise 560ms var(--ease-out) both; }
+    .stagger > *:nth-child(2) { animation-delay: 60ms; }
+    .stagger > *:nth-child(3) { animation-delay: 120ms; }
+    .stagger > *:nth-child(4) { animation-delay: 180ms; }
+    .stagger > *:nth-child(5) { animation-delay: 240ms; }
+    @keyframes settle { from { opacity: 0; transform: scale(0.97); filter: blur(6px); } }
+    .hero-visual { animation: settle 800ms var(--ease-out) 120ms both; }
+
+    /* ---------- Sections ---------- */
+    section { scroll-margin-top: 72px; }
+    .section { padding: 56px 0; }
+    .section--alt { background: var(--paper); border-block: 1px solid var(--line); }
+    .section-head { display: grid; gap: 10px; margin-bottom: 28px; max-width: 640px; }
+    .section-head h2 { font-size: clamp(30px, 6vw, 44px); }
+    .section-head p { color: var(--ink-soft); }
+    @media (min-width: 900px) { .section { padding: 88px 0; } }
+
+    /* Révélation au scroll : une fois, discrète */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
+    .reveal.in { opacity: 1; transform: none; }
+    .no-js .reveal { opacity: 1; transform: none; }
+
+    /* ---------- Signatures ---------- */
+    .signatures { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .sig {
+      position: relative; display: grid; grid-template-rows: auto 1fr; overflow: hidden;
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      transition: transform 250ms var(--ease-out), box-shadow 250ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .sig:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    }
+    .sig-photo {
+      aspect-ratio: 4 / 3; display: grid; place-items: center; text-align: center;
+      color: rgb(255 255 255 / .85); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+      background: var(--tone, #7A1A1F);
+      background-image: linear-gradient(160deg, rgb(255 255 255 / .12), transparent 55%);
+    }
+    .sig-photo span { padding: 6px 10px; border: 1px dashed rgb(255 255 255 / .5); border-radius: 999px; }
+    .sig-body { display: grid; gap: 8px; padding: 18px; align-content: start; }
+    .sig-body h3 { font-size: 22px; }
+    .sig-body p { color: var(--ink-soft); font-size: 15px; }
+    .sig-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+    .price { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    /* ---------- Menu ---------- */
+    .menu-tools { position: sticky; top: 60px; z-index: 10; background: var(--paper); padding: 12px 0; margin: 0 calc(var(--gutter) * -1); padding-inline: var(--gutter); border-bottom: 1px solid var(--line); }
+    .search {
+      display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 16px;
+      background: var(--cream); border: 1.5px solid var(--line); border-radius: 999px;
+      transition: border-color 150ms ease;
+    }
+    .search:focus-within { border-color: var(--ink-soft); }
+    .search svg { width: 18px; height: 18px; color: var(--ink-soft); flex: none; }
+    .search input { flex: 1; min-width: 0; border: 0; background: none; font: 500 16px var(--font-body); color: var(--ink); outline: none; }
+    .cats {
+      display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; scrollbar-width: none;
+      overscroll-behavior-x: contain; scroll-snap-type: x proximity;
+    }
+    .cats::-webkit-scrollbar { display: none; }
+    .cat {
+      flex: none; scroll-snap-align: start; min-height: 40px; padding: 0 16px; border-radius: 999px; cursor: pointer;
+      border: 1.5px solid var(--line); background: var(--paper); color: var(--ink-soft);
+      font: 700 14px var(--font-body);
+      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+    }
+    .cat:active { transform: scale(0.97); }
+    .cat[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+
+    .menu-list { display: grid; gap: 0; margin-top: 8px; }
+    @media (min-width: 900px) { .menu-list { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
+    .menu-group { display: contents; }
+    .menu-group h3 {
+      grid-column: 1 / -1; font-size: 24px; padding: 28px 0 8px; color: var(--pomegranate-deep);
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    }
+    .menu-group h3 small { font: 500 13px var(--font-body); color: var(--ink-soft); }
+    .dish {
+      display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center;
+      padding: 14px 0; border-bottom: 1px dashed var(--line);
+    }
+    .dish-name { font-weight: 700; font-size: 16px; }
+    .dish-name .tag { margin-left: 6px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--cedar); }
+    .dish-desc { grid-column: 1; font-size: 14px; color: var(--ink-soft); }
+    .dish-side { grid-row: 1 / span 2; grid-column: 2; display: flex; align-items: center; gap: 12px; }
+    .add {
+      position: relative; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line);
+      background: var(--paper); color: var(--ink); cursor: pointer; display: grid; place-items: center;
+      transition: transform 160ms var(--ease-out), background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+    }
+    .add:active { transform: scale(0.94); }
+    .add svg { width: 18px; height: 18px; }
+    .add[data-qty]:not([data-qty="0"]) { background: var(--pomegranate); border-color: var(--pomegranate); color: #fff; }
+    .add[data-qty]:not([data-qty="0"])::after {
+      content: attr(data-qty); position: absolute; top: -6px; right: -6px; min-width: 20px; height: 20px; padding: 0 5px;
+      border-radius: 999px; background: var(--ink); color: #fff; font: 700 11px/20px var(--font-body); text-align: center;
+    }
+    @media (hover: hover) and (pointer: fine) { .add:hover { border-color: var(--ink-soft); } }
+    .menu-empty { padding: 32px 0; color: var(--ink-soft); text-align: center; display: none; }
+    .menu-note { margin-top: 20px; font-size: 13px; color: var(--ink-soft); }
+
+    /* ---------- Formulaires ---------- */
+    .split { display: grid; gap: 32px; }
+    .split > *, .row2 > * { min-width: 0; }
+    @media (min-width: 900px) { .split { grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; } }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow); }
+    @media (min-width: 768px) { .card { padding: 28px; } }
+    .form { display: grid; gap: 14px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { display: grid; gap: 6px; }
+    .field label { font-weight: 700; font-size: 14px; }
+    .field input, .field select, .field textarea {
+      width: 100%; min-height: 48px; padding: 12px 14px; border-radius: var(--radius);
+      border: 1.5px solid var(--line); background: var(--cream); color: var(--ink);
+      font: 500 16px var(--font-body); /* 16px : évite le zoom iOS */
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ink-soft); background: #fff; }
+    .field input:user-invalid, .field select:user-invalid { border-color: var(--pomegranate); }
+    .hint { font-size: 13px; color: var(--ink-soft); }
+    .bullets { display: grid; gap: 14px; margin: 24px 0 0; padding: 0; list-style: none; }
+    .bullets li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+    .bullets svg { width: 22px; height: 22px; color: var(--cedar); margin-top: 2px; }
+    .tbc { display: inline-block; padding: 1px 8px; border-radius: 6px; background: #FBEBC8; color: #6B4A0E; font-size: 12px; font-weight: 700; }
+
+    /* ---------- Livraison ---------- */
+    .tiles { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .tile { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: grid; gap: 6px; }
+    .tile b { font: 700 20px var(--font-display); }
+    .tile p { color: var(--ink-soft); font-size: 15px; }
+
+    /* ---------- Avis ---------- */
+    .proof { display: grid; gap: 24px; align-items: center; background: var(--cedar); color: #EEF3EC; border-radius: var(--radius-lg); padding: 28px 20px; }
+    .proof .score { font: 700 72px/1 var(--font-display); color: #fff; }
+    .proof .score small { font-size: 28px; opacity: .7; }
+    .proof .stars { font-size: 20px; color: #F2C66D; }
+    .proof p { color: #D5E2D8; }
+    .proof .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+    @media (min-width: 768px) { .proof { grid-template-columns: auto 1fr auto; padding: 36px 40px; gap: 40px; } }
+
+    /* ---------- Accès ---------- */
+    .map {
+      position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--cream-2); border: 1px solid var(--line);
+    }
+    .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .map-load { position: absolute; inset: 0; display: grid; place-content: center; gap: 12px; text-align: center; padding: 16px; color: var(--ink-soft); }
+    .info { display: grid; gap: 18px; }
+    .info dt { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--cedar); }
+    .info dd { margin: 4px 0 0; font-size: 17px; }
+    .hours { width: 100%; border-collapse: collapse; font-size: 15px; }
+    .hours td { padding: 6px 0; border-bottom: 1px dashed var(--line); }
+    .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .hours tr.today td { font-weight: 700; color: var(--ink); }
+
+    /* ---------- FAQ ---------- */
+    .faq { display: grid; gap: 10px; max-width: 760px; }
+    .faq details { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+    .faq summary {
+      list-style: none; cursor: pointer; padding: 16px 18px; font-weight: 700;
+      display: flex; justify-content: space-between; gap: 16px; align-items: center;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: ""; width: 10px; height: 10px; flex: none; margin-top: -4px;
+      border-right: 2px solid var(--ink-soft); border-bottom: 2px solid var(--ink-soft);
+      transform: rotate(45deg); transition: transform 200ms var(--ease-out);
+    }
+    .faq details[open] summary::after { transform: rotate(225deg); margin-top: 4px; }
+    .faq details p { padding: 0 18px 16px; color: var(--ink-soft); }
+
+    /* ---------- Pied de page ---------- */
+    .footer { background: var(--ink); color: #D9C9B6; padding: 48px 0 32px; font-size: 15px; }
+    .footer .wrap { display: grid; gap: 28px; }
+    .footer a { color: #F6EBDD; }
+    .footer .logo b { color: #F6EBDD; }
+    .footer small { color: #A9937F; }
+    @media (min-width: 768px) { .footer .wrap { grid-template-columns: 1.4fr 1fr 1fr; } }
+
+    /* ---------- Barre d'actions mobile ---------- */
+    .actionbar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      height: calc(var(--bar-h) + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom);
+      background: var(--paper); border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px -16px rgb(42 26 20 / .25);
+    }
+    .actionbar a, .actionbar button {
+      display: grid; place-items: center; align-content: center; gap: 3px;
+      border: 0; background: none; color: var(--ink); text-decoration: none; cursor: pointer;
+      font: 700 12px var(--font-body);
+      transition: transform 160ms var(--ease-out);
+    }
+    .actionbar a:active, .actionbar button:active { transform: scale(0.94); }
+    .actionbar svg { width: 22px; height: 22px; }
+    .actionbar .wa { color: var(--whatsapp); }
+    .actionbar .primary { color: var(--pomegranate); }
+    @media (min-width: 900px) { .actionbar { display: none; } }
+
+    /* ---------- Panier (bottom sheet) ---------- */
+    .cart-pill {
+      position: fixed; left: 50%; z-index: 45;
+      bottom: calc(var(--bar-h) + env(safe-area-inset-bottom) + 12px);
+      display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 8px 0 18px; white-space: nowrap;
+      border: 0; border-radius: 999px; cursor: pointer;
+      background: var(--ink); color: #fff; font: 700 15px var(--font-body);
+      box-shadow: 0 12px 32px -12px rgb(42 26 20 / .6);
+      transform: translate(-50%, calc(100% + 120px)); opacity: 0;
+      transition: transform 400ms var(--ease-drawer), opacity 200ms ease;
+    }
+    .cart-pill.show { transform: translate(-50%, 0); opacity: 1; }
+    .cart-pill.show:active { transform: translate(-50%, 0) scale(0.97); transition-duration: 160ms; }
+    .cart-pill .count { min-width: 36px; height: 36px; padding: 0 10px; border-radius: 999px; background: var(--pomegranate); display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+    @media (min-width: 900px) { .cart-pill { bottom: 24px; } }
+
+    .scrim {
+      position: fixed; inset: 0; z-index: 60; background: rgb(30 18 14 / .45);
+      opacity: 0; pointer-events: none; transition: opacity 300ms ease;
+    }
+    .sheet {
+      position: fixed; z-index: 61; left: 0; right: 0; bottom: 0; max-height: 88dvh;
+      display: flex; flex-direction: column;
+      background: var(--paper); border-radius: 24px 24px 0 0;
+      padding-bottom: env(safe-area-inset-bottom);
+      transform: translateY(100%);
+      /* sortie plus rapide que l'entrée */
+      transition: transform 260ms var(--ease-out), visibility 0s linear 260ms;
+      visibility: hidden;
+    }
+    .sheet-open .scrim { opacity: 1; pointer-events: auto; }
+    .sheet-open .sheet { transform: translateY(0); visibility: visible; transition: transform 460ms var(--ease-drawer), visibility 0s; }
+    @media (min-width: 640px) { .sheet { left: 50%; right: auto; width: 520px; margin-left: -260px; } }
+    .sheet-grip { width: 40px; height: 5px; border-radius: 99px; background: var(--line); margin: 10px auto 4px; }
+    .sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 8px 20px 12px; }
+    .sheet-head h2 { font-size: 26px; }
+    .icon-btn { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--cream); cursor: pointer; display: grid; place-items: center; transition: transform 160ms var(--ease-out); }
+    .icon-btn:active { transform: scale(0.94); }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .sheet-body { overflow-y: auto; overscroll-behavior: contain; padding: 0 20px; }
+    .line { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+    .line .price { grid-column: 1; font-weight: 500; color: var(--ink-soft); font-size: 14px; }
+    .qty { grid-row: 1 / span 2; grid-column: 2; display: flex; align-items: center; gap: 4px; background: var(--cream); border-radius: 999px; padding: 4px; }
+    .qty button { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--paper); cursor: pointer; font: 700 18px var(--font-body); color: var(--ink); transition: transform 160ms var(--ease-out); }
+    .qty button:active { transform: scale(0.92); }
+    .qty output { min-width: 24px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 999px; background: var(--cream); margin: 16px 0 12px; }
+    .seg label { position: relative; }
+    .seg input { position: absolute; opacity: 0; inset: 0; }
+    .seg span { display: grid; place-items: center; min-height: 40px; border-radius: 999px; font-weight: 700; font-size: 14px; color: var(--ink-soft); cursor: pointer; transition: background-color 200ms ease, color 200ms ease; }
+    .seg input:checked + span { background: var(--paper); color: var(--ink); box-shadow: 0 1px 3px rgb(42 26 20 / .12); }
+    .seg input:focus-visible + span { outline: 3px solid var(--sumac); }
+    .sheet-foot { padding: 16px 20px 20px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+    .total { display: flex; justify-content: space-between; font-weight: 700; font-size: 18px; }
+
+    /* Réduction du mouvement : on garde les fondus, on retire les déplacements */
+    @media (prefers-reduced-motion: reduce) {
+      .stagger > *, .hero-visual { animation-name: fadeOnly; }
+      @keyframes fadeOnly { from { opacity: 0; } }
+      .reveal { transform: none; }
+      .sheet, .sheet-open .sheet { transition: opacity 200ms ease, visibility 0s linear 200ms; transform: none; opacity: 0; }
+      .sheet-open .sheet { opacity: 1; transition: opacity 200ms ease, visibility 0s; }
+      .cart-pill { transform: translate(-50%, 0); transition: opacity 200ms ease; visibility: hidden; }
+      .cart-pill.show { visibility: visible; }
+      .sig, .btn, .add, .cat { transition-property: background-color, color, border-color, box-shadow; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <div class="proto" role="note">
+    <strong>Maquette de proposition</strong> — horaires, numéros, zones de livraison et prix sont à valider avec la direction de Marrouche avant mise en ligne.
+  </div>
+
+  <header class="header">
+    <div class="wrap">
+      <a href="#top" class="logo" aria-label="Marrouche, accueil"><b>Marrouche</b><span>Zone 4</span></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#menu">Menu</a>
+        <a href="#livraison">Livraison</a>
+        <a href="#reserver">Réserver</a>
+        <a href="#groupes">Groupes</a>
+        <a href="#acces">Accès</a>
+      </nav>
+      <a href="#reserver" class="btn" data-track="cta_reserver_header">Réserver</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="stagger">
+          <span class="eyebrow">Cuisine libanaise · Marcory</span>
+          <h1>L'authentique cuisine libanaise à <em>Zone 4</em>.</h1>
+          <p class="lead">Sur place, à emporter ou livré. Consultez le menu, réservez votre table ou commandez en quelques secondes.</p>
+          <div class="hero-ctas">
+            <a href="#menu" class="btn" data-track="cta_menu_hero">Voir le menu &amp; commander</a>
+            <a href="#reserver" class="btn btn--ghost" data-track="cta_reserver_hero">Réserver</a>
+            <a class="btn btn--ghost js-directions" href="#" data-track="click_itineraire" data-src="hero">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Itinéraire
+            </a>
+          </div>
+          <div class="facts">
+            <span class="chip" id="status-chip"><span class="dot" id="status-dot"></span><span id="status-text">Horaires en cours de vérification</span></span>
+            <a class="chip js-reviews" href="#avis" data-track="click_avis_chip">
+              <span class="stars" aria-hidden="true">★★★★☆</span> 4,1 · 3 256 avis Google
+            </a>
+          </div>
+        </div>
+        <figure class="hero-visual" aria-hidden="true">
+          <figcaption><b>Mezzés, grillades au charbon &amp; chawarma.</b>Emplacement réservé à la photo signature (shooting plats prévu en phase 2).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= SIGNATURES ================= -->
+    <section class="section section--alt" aria-labelledby="sig-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Nos signatures</span>
+          <h2 id="sig-title">Ce que l'on vient chercher chez Marrouche</h2>
+        </div>
+        <div class="signatures reveal" id="signatures"></div>
+      </div>
+    </section>
+
+    <!-- ================= MENU ================= -->
+    <section class="section" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">La carte</span>
+          <h2 id="menu-title">Menu &amp; prix en FCFA</h2>
+          <p>Ajoutez vos plats avec <b>+</b> puis envoyez la commande sur WhatsApp. Aucun compte, aucun paiement en ligne.</p>
+        </div>
+        <div class="menu-tools">
+          <label class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span class="sr-only">Rechercher un plat</span>
+            <input id="search" type="search" placeholder="Chawarma, houmous, crêpe…" autocomplete="off" enterkeyhint="search">
+          </label>
+          <div class="cats" id="cats" role="group" aria-label="Catégories du menu"></div>
+        </div>
+        <div class="menu-list" id="menu-list" aria-live="polite"></div>
+        <p class="menu-empty" id="menu-empty">Aucun plat ne correspond. Essayez un autre mot, ou <a href="#" class="js-wa" data-msg="Bonjour Marrouche, je cherche un plat qui n'est pas sur le menu en ligne :">demandez-nous sur WhatsApp</a>.</p>
+        <p class="menu-note">Extrait de la carte publique (Instalacarte), relevé le 4 octobre 2026. Prix et disponibilités à confirmer par le restaurant ; carte complète : petits déjeuners, steaks, poissons, pâtes, pizzas, boissons.</p>
+      </div>
+    </section>
+
+    <!-- ================= LIVRAISON ================= -->
+    <section class="section section--alt" id="livraison" aria-labelledby="liv-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Livraison &amp; à emporter</span>
+          <h2 id="liv-title">Livré chez vous, à Marcory et alentours</h2>
+          <p>Commandez depuis le menu ou écrivez-nous directement. Nous confirmons le délai et les frais avant de lancer la préparation.</p>
+        </div>
+        <div class="tiles reveal">
+          <div class="tile"><b>Zones desservies</b><p>Zone 4, Marcory, Biétry, Koumassi… <span class="tbc">à confirmer</span></p></div>
+          <div class="tile"><b>Délai moyen</b><p>Annoncé à la confirmation <span class="tbc">à confirmer</span></p></div>
+          <div class="tile"><b>Frais &amp; minimum</b><p>Selon le quartier <span class="tbc">à confirmer</span></p></div>
+          <div class="tile"><b>À emporter</b><p>Commandez, puis récupérez au comptoir, rue Pierre et Marie Curie.</p></div>
+        </div>
+        <div class="hero-ctas" style="margin-top:24px">
+          <a href="#" class="btn btn--wa js-wa" data-track="click_whatsapp" data-src="livraison" data-msg="Bonjour Marrouche, je souhaite passer une commande en livraison.">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+            Commander sur WhatsApp
+          </a>
+          <a href="#" class="btn btn--ghost js-call" data-track="click_appel" data-src="livraison">Appeler</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RÉSERVATION ================= -->
+    <section class="section" id="reserver" aria-labelledby="res-title">
+      <div class="wrap split">
+        <div class="reveal">
+          <div class="section-head" style="margin-bottom:0">
+            <span class="eyebrow">Réservation</span>
+            <h2 id="res-title">Réservez votre table en 30 secondes</h2>
+            <p>Déjeuner d'affaires, dîner en famille ou anniversaire : envoyez votre demande, nous vous confirmons par WhatsApp ou par téléphone.</p>
+          </div>
+          <ul class="bullets">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Confirmation sous <span class="tbc">délai à définir</span> pendant les heures d'ouverture.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Au-delà de 10 personnes, passez par la <a href="#groupes">demande de groupe</a>.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Une question ? <a href="#" class="js-call" data-track="click_appel" data-src="reservation">Appelez-nous</a>.</span></li>
+          </ul>
+        </div>
+        <form class="card form reveal" id="resa-form" novalidate>
+          <div class="row2">
+            <div class="field"><label for="r-date">Date</label><input id="r-date" name="date" type="date" required></div>
+            <div class="field"><label for="r-time">Heure</label><input id="r-time" name="time" type="time" step="900" required></div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="r-pax">Personnes</label>
+              <select id="r-pax" name="pax" required>
+                <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+                <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="r-occ">Occasion</label>
+              <select id="r-occ" name="occasion">
+                <option value="">Aucune</option><option>Anniversaire</option><option>Repas d'affaires</option><option>En famille</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="r-name">Nom</label><input id="r-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="r-tel">Téléphone</label><input id="r-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="07 00 00 00 00" required></div>
+          <button class="btn btn--wa btn--block" type="submit">Envoyer sur WhatsApp</button>
+          <p class="hint">Votre demande s'ouvre dans WhatsApp, prête à envoyer. La réservation n'est confirmée qu'après notre réponse.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= AVIS ================= -->
+    <section class="section section--alt" id="avis" aria-labelledby="avis-title">
+      <div class="wrap">
+        <div class="proof reveal">
+          <div>
+            <div class="score">4,1<small>/5</small></div>
+            <div class="stars" aria-label="4,1 étoiles sur 5">★★★★☆</div>
+          </div>
+          <div>
+            <h2 id="avis-title" style="font-size:28px;color:#fff;margin-bottom:8px">3 256 avis sur Google</h2>
+            <p>Note relevée le 4 octobre 2026. Les témoignages clients seront affichés ici avec l'accord de leurs auteurs.</p>
+          </div>
+          <div class="btns">
+            <a class="btn btn--light js-reviews" href="#" data-track="click_avis_lire">Lire les avis</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GROUPES ================= -->
+    <section class="section" id="groupes" aria-labelledby="grp-title">
+      <div class="wrap split">
+        <div class="section-head reveal" style="margin-bottom:0">
+          <span class="eyebrow">Groupes &amp; événements</span>
+          <h2 id="grp-title">Anniversaires, repas d'entreprise, grandes tablées</h2>
+          <p>Parlez-nous de votre événement : nous revenons vers vous avec une proposition de menu et un devis.</p>
+        </div>
+        <form class="card form reveal" id="group-form" novalidate>
+          <div class="row2">
+            <div class="field"><label for="g-date">Date souhaitée</label><input id="g-date" name="date" type="date" required></div>
+            <div class="field"><label for="g-pax">Invités (env.)</label><input id="g-pax" name="pax" type="number" inputmode="numeric" min="10" placeholder="25" required></div>
+          </div>
+          <div class="field">
+            <label for="g-type">Type d'événement</label>
+            <select id="g-type" name="type"><option>Anniversaire</option><option>Repas d'entreprise</option><option>Famille / cérémonie</option><option>Autre</option></select>
+          </div>
+          <div class="field"><label for="g-name">Nom / société</label><input id="g-name" name="name" autocomplete="organization" required></div>
+          <div class="field"><label for="g-notes">Précisions <span class="hint">(facultatif)</span></label><textarea id="g-notes" name="notes" placeholder="Budget, sur place ou traiteur, préférences…"></textarea></div>
+          <button class="btn btn--block" type="submit">Demander un devis</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= ACCÈS ================= -->
+    <section class="section section--alt" id="acces" aria-labelledby="acces-title">
+      <div class="wrap split">
+        <div class="reveal">
+          <div class="section-head">
+            <span class="eyebrow">Contact &amp; accès</span>
+            <h2 id="acces-title">Nous trouver à Zone 4</h2>
+          </div>
+          <dl class="info">
+            <div><dt>Adresse</dt><dd>Rue Pierre et Marie Curie, angle rue Mercedes<br>Zone 4 C, Marcory — Abidjan<br><span class="hint">Repère : à côté de SOCIDA</span></dd></div>
+            <div><dt>Téléphone</dt><dd><a href="#" class="js-call" data-track="click_appel" data-src="acces" id="phone-text"></a> <span class="tbc">numéro unique à valider</span></dd></div>
+            <div>
+              <dt>Horaires</dt>
+              <dd>
+                <table class="hours" id="hours"><tbody></tbody></table>
+                <p class="hint" id="hours-note" style="margin-top:8px"></p>
+              </dd>
+            </div>
+          </dl>
+          <div class="hero-ctas">
+            <a class="btn js-directions" href="#" data-track="click_itineraire" data-src="acces">Itinéraire Google Maps</a>
+            <a class="btn btn--wa js-wa" href="#" data-track="click_whatsapp" data-src="acces" data-msg="Bonjour Marrouche,">WhatsApp</a>
+          </div>
+        </div>
+        <div class="map reveal" id="map">
+          <div class="map-load">
+            <p>Carte Google Maps</p>
+            <button class="btn btn--ghost" type="button" id="map-btn">Afficher la carte</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Questions fréquentes</span>
+          <h2 id="faq-title">Bon à savoir</h2>
+        </div>
+        <div class="faq reveal">
+          <details><summary>Comment commander en livraison ?</summary><p>Ajoutez vos plats depuis le menu puis envoyez la commande sur WhatsApp, ou appelez-nous. Nous confirmons le délai et les frais selon votre quartier.</p></details>
+          <details><summary>Faut-il réserver ?</summary><p>C'est conseillé pour les groupes et les soirées de week-end. Envoyez une demande depuis le formulaire : la table est confirmée après notre réponse.</p></details>
+          <details><summary>Quels moyens de paiement acceptez-vous ?</summary><p>Liste à confirmer par le restaurant (espèces, Mobile Money, carte…).</p></details>
+          <details><summary>Organisez-vous des anniversaires et repas d'entreprise ?</summary><p>Oui, utilisez la demande de devis groupe : nous revenons vers vous avec une proposition.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>
+        <a href="#top" class="logo"><b>Marrouche</b></a>
+        <p style="margin-top:12px">Cuisine libanaise à Zone 4, Marcory — Abidjan.<br>Sur place, à emporter et en livraison.</p>
+        <p style="margin-top:16px"><small>Menu et horaires mis à jour le <span id="updated"></span>.</small></p>
+      </div>
+      <div>
+        <p><b style="color:#F6EBDD">Suivez-nous</b></p>
+        <p style="margin-top:8px"><a href="https://www.instagram.com/marroucheabidjan/" rel="noopener" target="_blank" data-track="click_instagram">Instagram</a><br>
+        <a href="https://www.facebook.com/MarroucheAbidjan/" rel="noopener" target="_blank" data-track="click_facebook">Facebook</a></p>
+      </div>
+      <div>
+        <p><b style="color:#F6EBDD">Liens rapides</b></p>
+        <p style="margin-top:8px"><a href="#menu">Menu</a><br><a href="#reserver">Réserver</a><br><a href="#groupes">Groupes</a><br><a href="#acces">Accès</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barre d'actions mobile : les 4 actions à forte valeur, toujours à un pouce -->
+  <nav class="actionbar" aria-label="Actions rapides">
+    <a href="#" class="js-call" data-track="click_appel" data-src="actionbar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      Appeler
+    </a>
+    <a href="#" class="js-wa wa" data-track="click_whatsapp" data-src="actionbar" data-msg="Bonjour Marrouche,">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+      WhatsApp
+    </a>
+    <a href="#reserver" class="primary" data-track="cta_reserver_actionbar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Réserver
+    </a>
+    <a href="#" class="js-directions" data-track="click_itineraire" data-src="actionbar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Itinéraire
+    </a>
+  </nav>
+
+  <!-- Panier -->
+  <button class="cart-pill" id="cart-pill" type="button" aria-haspopup="dialog" aria-controls="sheet" tabindex="-1">
+    Ma commande <span id="cart-total-pill"></span><span class="count" id="cart-count">0</span>
+  </button>
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheet-title">Ma commande</h2>
+      <button class="icon-btn" type="button" id="sheet-close" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body">
+      <div id="cart-lines"></div>
+      <div class="seg" role="radiogroup" aria-label="Mode de retrait">
+        <label><input type="radio" name="mode" value="Livraison" checked><span>Livraison</span></label>
+        <label><input type="radio" name="mode" value="À emporter"><span>À emporter</span></label>
+      </div>
+      <div class="form" style="padding-bottom:16px">
+        <div class="field" id="addr-field"><label for="c-addr">Adresse / repère</label><input id="c-addr" autocomplete="street-address" placeholder="Quartier, rue, repère"></div>
+        <div class="field"><label for="c-name">Nom</label><input id="c-name" autocomplete="name"></div>
+      </div>
+    </div>
+    <div class="sheet-foot">
+      <div class="total"><span>Total plats</span><span id="cart-total"></span></div>
+      <p class="hint">Hors frais de livraison, confirmés sur WhatsApp.</p>
+      <button class="btn btn--wa btn--block" type="button" id="cart-send">Envoyer sur WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+  /* =====================================================================
+     CONFIG — seule zone à modifier pour mettre à jour le site (pré-CMS).
+     ===================================================================== */
+  const CONFIG = {
+    updated: "2026-10-04",
+    phoneDisplay: "+225 27 21 25 52 14",   // à valider : numéro unique d'appel
+    phoneTel: "+2252721255214",
+    whatsapp: "2250707039997",             // à valider : numéro WhatsApp Business
+    mapsQuery: "Marrouche, Rue Pierre et Marie Curie, Zone 4, Marcory, Abidjan",
+    reviewsUrl: "https://www.google.com/maps/place/Marrouche/",
+    // Horaires : null tant qu'ils ne sont pas validés (Google affiche « 24 h/24 », un annuaire affiche autre chose).
+    // Format une fois validé : { 1: ["08:00","23:30"], ... } avec 0 = dimanche ; null = fermé.
+    hours: null
+  };
+
+  const MENU = [
+    { id: "entrees", label: "Entrées & mezzés", items: [
+      ["Homos", 5000, "Purée de pois chiches maison", "végé"],
+      ["Homos Beirouti", 5000, "La version beyrouthine", "végé"],
+      ["Homos chawarma poulet", 7000, "Houmous surmonté de lamelles de poulet"],
+      ["Homos viande", 7000, "Houmous et viande sautée"],
+      ["Homos sujuk", 7000, "Houmous et saucisse épicée sujuk"],
+      ["Taboulé", 5000, "Persil, menthe, tomate, citron", "végé"],
+      ["Fattouche", 5000, "Salade croquante au pain grillé et sumac", "végé"],
+      ["Baba ghannouj", 5000, "Caviar d'aubergines grillées", "végé"],
+      ["Moutabbal aubergine", 5000, "Aubergine fumée à la crème de sésame", "végé"],
+      ["Batata harra", 4000, "Pommes de terre épicées", "épicé"],
+      ["Feuilles de vigne à l'huile d'olive", 5000, "", "végé"],
+      ["Kammounet banadoura", 4000, "", "végé"],
+      ["Hendbeh (épinards)", 4000, "Épinards sautés", "végé"],
+      ["Rouleaux fromage", 5000, ""],
+      ["Sfiha (4 pcs)", 3000, "Petits pains à la viande épicée"],
+      ["Fatayer légumes (4 pcs)", 3000, "Chaussons aux légumes", "végé"],
+      ["Fatayer viande", 3000, ""],
+      ["Kebbé grillé (6 pcs)", 3000, ""],
+      ["Basterma", 8000, "Bœuf séché artisanal"],
+      ["Buffalo salade", 8000, ""],
+      ["Frites", 3000, "", "végé"]
+    ]},
+    { id: "grillades", label: "Brochettes & grillades", items: [
+      ["Brochette mix extra", 12000, "Assortiment de brochettes grillées"],
+      ["Brochettes mix", 10000, ""],
+      ["Brochettes taouk", 10000, "Poulet mariné"],
+      ["Brochettes kafta", 10000, "Viande hachée aux herbes"],
+      ["Brochettes filet de bœuf", 10000, ""],
+      ["Brochette filet de mérou", 10000, "Poisson"],
+      ["Poulet au charbon", 10000, "Mariné et braisé au charbon"],
+      ["Ailes de poulet", 10000, ""],
+      ["Ailes de poulet provençal", 10000, ""],
+      ["Arayes viande", 6000, "Pain farci à la viande, grillé"]
+    ]},
+    { id: "plats", label: "Plats", items: [
+      ["Ouzi poulet", 7000, "Riz épicé et poulet"],
+      ["Ouzi viande", 7000, "Riz épicé et viande"],
+      ["Chawarma viande (assiette)", 10000, ""],
+      ["Chawarma poulet/viande (assiette)", 10000, ""],
+      ["Poulet rôti, frites", 10000, ""],
+      ["Poulet braisé, frites", 10000, ""],
+      ["Cailles braisées", 10000, ""],
+      ["Steak Marrouche", 10000, ""],
+      ["Côtelettes de mouton", 10000, ""],
+      ["Viande à la grenadine", 8000, ""],
+      ["Markouk viande", 10000, ""],
+      ["Foie de poulet", 8000, ""],
+      ["Sujuk", 8000, "Saucisse libanaise épicée", "épicé"],
+      ["Merguez", 8000, ""]
+    ]},
+    { id: "sandwichs", label: "Sandwichs & burgers", items: [
+      ["Chawarma viande", 3000, ""],
+      ["Chawarma poulet", 3000, ""],
+      ["Taouk poulet", 3000, ""],
+      ["Falafel", 3000, "", "végé"],
+      ["Sandwich Marrouche", 3000, ""],
+      ["Poulet au charbon", 3000, ""],
+      ["Kafta", 3000, ""],
+      ["Sandwich sujuk", 3000, ""],
+      ["Poisson", 4000, ""],
+      ["Tacos viande/poulet", 4000, ""],
+      ["Club sandwich", 4000, ""],
+      ["Zinger burger", 5000, ""],
+      ["Hamburger viande, frites", 5000, ""],
+      ["Chicken burger, frites", 5000, ""],
+      ["Double burger merguez", 7000, ""],
+      ["Quesadilla viande/poulet", 8000, ""]
+    ]},
+    { id: "desserts", label: "Desserts", items: [
+      ["Mehalabié", 2500, "Flan oriental à la fleur d'oranger"],
+      ["Kataïef", 500, ""],
+      ["Riz au lait", 2500, ""],
+      ["Crème caramel", 3000, ""],
+      ["Tiramisu", 3000, ""],
+      ["Crêpe Marrouche", 6000, "La crêpe de la maison"],
+      ["Crêpe Nutella", 5000, ""],
+      ["Crêpe Lotus", 5000, ""],
+      ["Crêpe Kinder", 6000, ""],
+      ["Gaufre chocolat", 5000, ""],
+      ["Gaufre fruits", 5000, ""],
+      ["Pain perdu", 8000, ""]
+    ]}
+  ];
+
+  // Sélection proposée — à faire valider (meilleures ventes réelles)
+  const SIGNATURES = [
+    { ref: "Homos chawarma poulet", tone: "#8C3B1E", desc: "Notre houmous crémeux, couronné de chawarma de poulet." },
+    { ref: "Brochette mix extra", tone: "#5A2018", desc: "Taouk, kafta et filet, grillés minute." },
+    { ref: "Poulet au charbon", tone: "#1F4D36", desc: "Mariné, braisé au charbon de bois." },
+    { ref: "Crêpe Marrouche", tone: "#6B4A16", desc: "La crêpe de la maison, pour finir en douceur." }
+  ];
+
+  /* ===================================================================== */
+  document.body.classList.remove("no-js");
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const fcfa = n => n.toLocaleString("fr-FR") + " FCFA";
+  const waUrl = msg => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(CONFIG.mapsQuery)}`;
+
+  // Mesure : chaque action à forte valeur pousse un événement (GA4 / GTM via dataLayer)
+  window.dataLayer = window.dataLayer || [];
+  function track(event, params = {}) { window.dataLayer.push({ event, ...params }); }
+  document.addEventListener("click", e => {
+    const el = e.target.closest("[data-track]");
+    if (el) track(el.dataset.track, { source: el.dataset.src || "" });
+  });
+
+  // Liens d'action
+  $$(".js-call").forEach(a => a.href = "tel:" + CONFIG.phoneTel);
+  $$(".js-wa").forEach(a => { a.href = waUrl(a.dataset.msg || "Bonjour Marrouche,"); a.target = "_blank"; a.rel = "noopener"; });
+  $$(".js-directions").forEach(a => { a.href = mapsUrl; a.target = "_blank"; a.rel = "noopener"; });
+  $$("a.js-reviews").forEach(a => { if (a.getAttribute("href") === "#") { a.href = CONFIG.reviewsUrl; a.target = "_blank"; a.rel = "noopener"; } });
+  $("#phone-text").textContent = CONFIG.phoneDisplay;
+  $("#updated").textContent = new Date(CONFIG.updated).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+
+  // Horaires
+  (function hours() {
+    const days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+    const now = new Date(), today = now.getDay();
+    const tbody = $("#hours tbody");
+    if (!CONFIG.hours) {
+      tbody.innerHTML = `<tr><td>Salle, cuisine, livraison</td><td><span class="tbc">en cours de vérification</span></td></tr>`;
+      $("#hours-note").textContent = "Google indique « ouvert 24 h/24 » ; les horaires officiels seront publiés ici et synchronisés avec Google.";
+      return;
+    }
+    const order = [1, 2, 3, 4, 5, 6, 0];
+    tbody.innerHTML = order.map(d => {
+      const h = CONFIG.hours[d];
+      return `<tr class="${d === today ? "today" : ""}"><td>${days[d]}</td><td>${h ? h.join(" – ") : "Fermé"}</td></tr>`;
+    }).join("");
+    const h = CONFIG.hours[today];
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const toM = t => { const [a, b] = t.split(":").map(Number); return a * 60 + b; };
+    const open = h && mins >= toM(h[0]) && mins < toM(h[1]);
+    $("#status-dot").className = "dot " + (open ? "open" : "closed");
+    $("#status-text").textContent = open ? `Ouvert · jusqu'à ${h[1]}` : (h ? `Fermé · ouvre à ${h[0]}` : "Fermé aujourd'hui");
+  })();
+
+  // Index plats
+  const DISHES = new Map();
+  MENU.forEach(c => c.items.forEach(([name, price, desc, tag], i) => {
+    const id = `${c.id}-${i}`;
+    DISHES.set(id, { id, name, price, desc, tag, cat: c.id });
+  }));
+  const findByName = n => [...DISHES.values()].find(d => d.name === n);
+
+  // Panier
+  const cart = new Map(); // id -> qty
+  const addBtn = (d) => `<button class="add" type="button" data-add="${d.id}" data-qty="0" aria-label="Ajouter ${d.name} à la commande"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>`;
+
+  // Signatures
+  $("#signatures").innerHTML = SIGNATURES.map(s => {
+    const d = findByName(s.ref);
+    return `<article class="sig" style="--tone:${s.tone}">
+      <div class="sig-photo"><span>Photo à venir</span></div>
+      <div class="sig-body"><h3>${d.name}</h3><p>${s.desc}</p>
+        <div class="sig-foot"><span class="price">${fcfa(d.price)}</span>${addBtn(d)}</div></div></article>`;
+  }).join("");
+
+  // Menu
+  let activeCat = "all";
+  const cats = $("#cats");
+  cats.innerHTML = [`<button class="cat" type="button" data-cat="all" aria-pressed="true">Tout</button>`]
+    .concat(MENU.map(c => `<button class="cat" type="button" data-cat="${c.id}" aria-pressed="false">${c.label}</button>`)).join("");
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+  function renderMenu() {
+    const q = norm($("#search").value.trim());
+    let count = 0;
+    $("#menu-list").innerHTML = MENU.filter(c => activeCat === "all" || c.id === activeCat).map(c => {
+      const items = [...DISHES.values()].filter(d => d.cat === c.id && (!q || norm(d.name + " " + d.desc).includes(q)));
+      count += items.length;
+      if (!items.length) return "";
+      return `<div class="menu-group"><h3>${c.label}<small>${items.length} plat${items.length > 1 ? "s" : ""}</small></h3>${items.map(d => `
+        <div class="dish">
+          <div class="dish-name">${d.name}${d.tag ? `<span class="tag">${d.tag}</span>` : ""}</div>
+          ${d.desc ? `<div class="dish-desc">${d.desc}</div>` : ""}
+          <div class="dish-side"><span class="price">${fcfa(d.price)}</span>${addBtn(d)}</div>
+        </div>`).join("")}</div>`;
+    }).join("");
+    $("#menu-empty").style.display = count ? "none" : "block";
+    syncQty();
+  }
+  // Filtrage instantané : action fréquente, aucune animation
+  cats.addEventListener("click", e => {
+    const b = e.target.closest(".cat"); if (!b) return;
+    activeCat = b.dataset.cat;
+    $$(".cat", cats).forEach(x => x.setAttribute("aria-pressed", x === b));
+    track("menu_categorie", { categorie: activeCat });
+    renderMenu();
+  });
+  let searchT;
+  $("#search").addEventListener("input", () => {
+    renderMenu();
+    clearTimeout(searchT); searchT = setTimeout(() => track("menu_recherche", { q: $("#search").value }), 800);
+  });
+
+  function syncQty() {
+    $$("[data-add]").forEach(b => b.dataset.qty = cart.get(b.dataset.add) || 0);
+    let n = 0, total = 0;
+    cart.forEach((q, id) => { n += q; total += q * DISHES.get(id).price; });
+    $("#cart-count").textContent = n;
+    $("#cart-total-pill").textContent = n ? "· " + fcfa(total) : "";
+    $("#cart-total").textContent = fcfa(total);
+    const pill = $("#cart-pill");
+    pill.classList.toggle("show", n > 0);
+    pill.tabIndex = n > 0 ? 0 : -1;
+    $("#cart-lines").innerHTML = [...cart].map(([id, q]) => {
+      const d = DISHES.get(id);
+      return `<div class="line"><b>${d.name}</b><span class="price">${fcfa(d.price * q)}</span>
+        <div class="qty"><button type="button" data-dec="${id}" aria-label="Retirer un ${d.name}">−</button><output>${q}</output><button type="button" data-inc="${id}" aria-label="Ajouter un ${d.name}">+</button></div></div>`;
+    }).join("");
+    if (!n && document.body.classList.contains("sheet-open")) closeSheet();
+  }
+  function setQty(id, q) { q > 0 ? cart.set(id, q) : cart.delete(id); syncQty(); }
+  document.addEventListener("click", e => {
+    const add = e.target.closest("[data-add]");
+    if (add) { const id = add.dataset.add; setQty(id, (cart.get(id) || 0) + 1); track("ajout_panier", { plat: DISHES.get(id).name }); return; }
+    const inc = e.target.closest("[data-inc]"); if (inc) return setQty(inc.dataset.inc, cart.get(inc.dataset.inc) + 1);
+    const dec = e.target.closest("[data-dec]"); if (dec) return setQty(dec.dataset.dec, cart.get(dec.dataset.dec) - 1);
+  });
+
+  // Bottom sheet
+  let lastFocus;
+  function openSheet() { lastFocus = document.activeElement; document.body.classList.add("sheet-open"); $("#sheet-close").focus({ preventScroll: true }); track("panier_ouvert"); }
+  function closeSheet() { document.body.classList.remove("sheet-open"); lastFocus && lastFocus.focus({ preventScroll: true }); }
+  $("#cart-pill").addEventListener("click", openSheet);
+  $("#sheet-close").addEventListener("click", closeSheet);
+  $("#scrim").addEventListener("click", closeSheet);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("sheet-open")) closeSheet(); });
+  $$("input[name=mode]").forEach(r => r.addEventListener("change", () => { $("#addr-field").style.display = $("input[name=mode]:checked").value === "Livraison" ? "" : "none"; }));
+
+  $("#cart-send").addEventListener("click", () => {
+    const mode = $("input[name=mode]:checked").value;
+    let total = 0;
+    const lines = [...cart].map(([id, q]) => { const d = DISHES.get(id); total += d.price * q; return `• ${q} × ${d.name} — ${fcfa(d.price * q)}`; });
+    const msg = [
+      "Bonjour Marrouche, je souhaite commander :", "", ...lines, "",
+      `Total plats : ${fcfa(total)}`, `Mode : ${mode}`,
+      mode === "Livraison" && $("#c-addr").value ? `Adresse : ${$("#c-addr").value}` : "",
+      $("#c-name").value ? `Nom : ${$("#c-name").value}` : ""
+    ].filter((l, i, a) => l !== "" || a[i - 1] !== "").join("\n").trim();
+    track("commande_whatsapp_envoyee", { valeur: total, mode, articles: lines.length });
+    window.open(waUrl(msg), "_blank", "noopener");
+  });
+
+  // Formulaires -> WhatsApp
+  const todayISO = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  $("#r-date").min = todayISO; $("#r-date").value = todayISO; $("#g-date").min = todayISO;
+  function bindForm(form, event, build) {
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const f = Object.fromEntries(new FormData(form));
+      track(event, f.pax ? { personnes: f.pax } : {});
+      window.open(waUrl(build(f)), "_blank", "noopener");
+    });
+  }
+  const fmtDate = iso => new Date(iso + "T12:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+  bindForm($("#resa-form"), "reservation_envoyee", f =>
+    `Bonjour Marrouche, je souhaite réserver une table :\n• ${fmtDate(f.date)} à ${f.time}\n• ${f.pax} personne(s)${f.occasion ? `\n• Occasion : ${f.occasion}` : ""}\n• Nom : ${f.name}\n• Tél : ${f.tel}\nMerci de me confirmer.`);
+  bindForm($("#group-form"), "devis_groupe_envoye", f =>
+    `Bonjour Marrouche, demande de devis groupe :\n• ${f.type}\n• ${fmtDate(f.date)}\n• Environ ${f.pax} invités\n• Nom / société : ${f.name}${f.notes ? `\n• Précisions : ${f.notes}` : ""}`);
+
+  // Carte : chargée à la demande (performance sur réseau mobile)
+  $("#map-btn").addEventListener("click", () => {
+    $("#map").innerHTML = `<iframe title="Carte : Marrouche, Zone 4, Marcory" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(CONFIG.mapsQuery)}&output=embed"></iframe>`;
+    track("carte_affichee");
+  });
+
+  renderMenu();
+
+  // Révélations au scroll : une seule fois
+  const io = "IntersectionObserver" in window && new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, { rootMargin: "0px 0px -60px 0px" });
+  $$(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
+
+  // Mesure de consultation du menu
+  const menuIO = "IntersectionObserver" in window && new IntersectionObserver(([en]) => {
+    if (en.isIntersecting) { track("menu_consulte"); menuIO.disconnect(); }
+  }, { threshold: .25 });
+  menuIO && menuIO.observe($("#menu"));
+  </script>
+</body>
+</html>
