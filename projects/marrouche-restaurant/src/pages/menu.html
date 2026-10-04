@@ -1,0 +1,41 @@
+<!--{"title":"La carte — Marrouche, restaurant libanais à Zone 4 (Abidjan)","description":"La carte complète de Marrouche : mezzés, brochettes, chawarma, plats du jour, pizzas, desserts. Prix en FCFA. Ajoutez vos plats et envoyez la commande sur WhatsApp.","path":"menu.html","nav":"menu","theme":"#17120F","preload":""}-->
+<main id="contenu">
+  <section class="page-hero dark grain" aria-labelledby="menu-title">
+    <div class="page-hero__bg" aria-hidden="true">
+      [[img houmous-ardoise land "100vw" "" eager]]
+    </div>
+    <div class="wrap intro">
+      <span class="eyebrow">La carte · 207 plats</span>
+      <h1 class="h1" id="menu-title">Choisissez, <em>on s'occupe du reste.</em></h1>
+      <p class="lead">Ajoutez vos plats puis envoyez la commande sur WhatsApp. Livraison, à emporter ou à table.</p>
+    </div>
+  </section>
+
+  <div class="menu-tools" data-menu-tools>
+    <div class="wrap">
+      <div class="menu-tools__row">
+        <label class="search">
+          <svg class="icon"><use href="#i-search"/></svg>
+          <span class="sr-only">Rechercher un plat</span>
+          <input type="search" placeholder="Chawarma, houmous, crêpe…" autocomplete="off" enterkeyhint="search" data-search>
+          <button class="search__clear" type="button" aria-label="Effacer la recherche" hidden data-search-clear><svg class="icon" style="width:1rem;height:1rem"><use href="#i-x"/></svg></button>
+        </label>
+        <button class="toggle-veg" type="button" aria-pressed="false" aria-label="Plats végétariens uniquement" data-veg><svg class="icon"><use href="#i-leaf"/></svg><span>Végé</span></button>
+      </div>
+      <nav class="cats" aria-label="Rubriques" data-cats>
+        [[catnav]]
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap menu-body">
+    <p class="sr-only" role="status" aria-live="polite" data-results></p>
+    [[menu]]
+    <div class="menu-empty" hidden data-empty>
+      <b>Rien ne correspond.</b>
+      <p>Essayez un autre mot, ou demandez-nous directement.</p>
+      <a class="btn btn--whatsapp js-wa" href="#" data-msg="Bonjour Marrouche, je cherche un plat que je ne trouve pas sur la carte :" data-track="click_whatsapp" data-src="menu_vide"><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>Demander sur WhatsApp</a>
+    </div>
+    <p class="small muted" style="margin-top:var(--space-8)">Carte relevée le 4 octobre 2026 sur la carte Instalacarte du restaurant. Prix en FCFA, disponibilités à confirmer à la commande.</p>
+  </div>
+</main>

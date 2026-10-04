@@ -1,0 +1,10 @@
+{
+  "name": "Marrouche — restaurant libanais, Zone 4",
+  "short_name": "Marrouche",
+  "lang": "fr",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FAF5EC",
+  "theme_color": "#17120F",
+  "icons": [{ "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

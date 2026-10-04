@@ -1,0 +1,37 @@
+<button class="cart-pill" type="button" aria-haspopup="dialog" aria-controls="cart" hidden data-cart-pill>
+  Ma commande <span class="cart-pill__total" data-cart-total-pill></span><span class="cart-pill__count" data-cart-count>0</span>
+</button>
+<div class="scrim" data-scrim></div>
+<div class="sheet" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" data-sheet>
+  <div class="sheet__handle" data-sheet-handle>
+    <div class="sheet__grip" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 id="cart-title">Ma commande</h2>
+      <button class="icon-btn" type="button" aria-label="Fermer la commande" data-sheet-close><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+  </div>
+  <div class="sheet__body">
+    <div data-cart-lines></div>
+    <div class="form" style="margin-top:var(--space-5)">
+      <div class="seg" role="radiogroup" aria-label="Mode de retrait">
+        <label><input type="radio" name="cart-mode" value="Livraison" checked><span>Livraison</span></label>
+        <label><input type="radio" name="cart-mode" value="À emporter"><span>À emporter</span></label>
+      </div>
+      <div class="field" data-addr-field>
+        <label for="cart-addr">Adresse ou repère</label>
+        <input id="cart-addr" autocomplete="street-address" placeholder="Quartier, rue, repère connu" aria-describedby="cart-addr-err">
+        <p class="field__error" id="cart-addr-err" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="cart-name">Votre nom <span class="opt">(facultatif)</span></label>
+        <input id="cart-name" autocomplete="name">
+      </div>
+    </div>
+  </div>
+  <div class="sheet__foot">
+    <div class="total"><span>Total des plats</span><span class="price" data-cart-total></span></div>
+    <p class="small muted">Frais de livraison confirmés sur WhatsApp avant la préparation.</p>
+    <button class="btn btn--whatsapp btn--block" type="button" data-cart-send><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>Envoyer sur WhatsApp</button>
+  </div>
+</div>
+<div class="toast" role="status" aria-live="polite" data-toast><svg class="icon"><use href="#i-check"/></svg><span></span></div>

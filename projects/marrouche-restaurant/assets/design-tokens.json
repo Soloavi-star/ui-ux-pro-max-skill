@@ -1,0 +1,631 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Marrouche — tokens en 3 couches (primitive → sémantique → composant). Source unique : ce fichier. CSS généré par .claude/skills/design-system/scripts/generate-tokens.cjs",
+  "primitive": {
+    "color": {
+      "cedar": {
+        "50": {
+          "$value": "#EAF6EE",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#CFEBD8",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#6CC08A",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#089B4A",
+          "$type": "color",
+          "$description": "Vert du logo (coq Marrouche)"
+        },
+        "600": {
+          "$value": "#077E3D",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#0A6634",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#0A3A21",
+          "$type": "color"
+        }
+      },
+      "pomegranate": {
+        "50": {
+          "$value": "#FDECEC",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#EE4A44",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#E3262B",
+          "$type": "color",
+          "$description": "Rouge de la crête du logo"
+        },
+        "600": {
+          "$value": "#C21F24",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#A11B1F",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#5C1213",
+          "$type": "color"
+        }
+      },
+      "ember": {
+        "300": {
+          "$value": "#F5C978",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#EDB04F",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#E19A2C",
+          "$type": "color"
+        }
+      },
+      "tahini": {
+        "50": {
+          "$value": "#FFFCF7",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#FAF5EC",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#F3EADB",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#E6D8C3",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#CDB89A",
+          "$type": "color"
+        }
+      },
+      "charcoal": {
+        "300": {
+          "$value": "#BFAE9C",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#8A7869",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#5A4C42",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#3D332C",
+          "$type": "color"
+        },
+        "800": {
+          "$value": "#2A221D",
+          "$type": "color"
+        },
+        "850": {
+          "$value": "#1F1915",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#17120F",
+          "$type": "color"
+        },
+        "950": {
+          "$value": "#0F0C0A",
+          "$type": "color"
+        }
+      },
+      "white": {
+        "$value": "#FFFFFF",
+        "$type": "color"
+      },
+      "note": {
+        "bg": {
+          "$value": "#FBEBC8",
+          "$type": "color"
+        },
+        "fg": {
+          "$value": "#6B4A0E",
+          "$type": "color"
+        }
+      },
+      "wa": {
+        "bubble": {
+          "$value": "#DCF8C6",
+          "$type": "color",
+          "$description": "Bulle WhatsApp (maquette explicative)"
+        },
+        "text": {
+          "$value": "#111B21",
+          "$type": "color"
+        },
+        "meta": {
+          "$value": "#4A5A63",
+          "$type": "color"
+        }
+      }
+    },
+    "font": {
+      "display": {
+        "$value": "'Playfair Display', Georgia, 'Times New Roman', serif",
+        "$type": "fontFamily"
+      },
+      "body": {
+        "$value": "'Karla', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+        "$type": "fontFamily"
+      },
+      "arabic": {
+        "$value": "'Aref Ruqaa', 'Noto Naskh Arabic', serif",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "bg": {
+        "$value": "{primitive.color.tahini.100}",
+        "$type": "color"
+      },
+      "surface": {
+        "$value": "{primitive.color.tahini.50}",
+        "$type": "color"
+      },
+      "surface-muted": {
+        "$value": "{primitive.color.tahini.200}",
+        "$type": "color"
+      },
+      "text": {
+        "$value": "{primitive.color.charcoal.900}",
+        "$type": "color"
+      },
+      "text-muted": {
+        "$value": "{primitive.color.charcoal.600}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{primitive.color.tahini.300}",
+        "$type": "color"
+      },
+      "border-strong": {
+        "$value": "{primitive.color.charcoal.500}",
+        "$type": "color"
+      },
+      "primary": {
+        "$value": "{primitive.color.pomegranate.600}",
+        "$type": "color"
+      },
+      "primary-hover": {
+        "$value": "{primitive.color.pomegranate.700}",
+        "$type": "color"
+      },
+      "on-primary": {
+        "$value": "{primitive.color.white}",
+        "$type": "color"
+      },
+      "brand": {
+        "$value": "{primitive.color.cedar.700}",
+        "$type": "color"
+      },
+      "brand-vivid": {
+        "$value": "{primitive.color.cedar.500}",
+        "$type": "color"
+      },
+      "whatsapp": {
+        "$value": "{primitive.color.cedar.600}",
+        "$type": "color"
+      },
+      "whatsapp-hover": {
+        "$value": "{primitive.color.cedar.700}",
+        "$type": "color"
+      },
+      "accent": {
+        "$value": "{primitive.color.ember.500}",
+        "$type": "color"
+      },
+      "highlight": {
+        "$value": "{primitive.color.pomegranate.600}",
+        "$type": "color"
+      },
+      "focus": {
+        "$value": "{primitive.color.ember.500}",
+        "$type": "color"
+      },
+      "note-bg": {
+        "$value": "{primitive.color.note.bg}",
+        "$type": "color"
+      },
+      "note-fg": {
+        "$value": "{primitive.color.note.fg}",
+        "$type": "color"
+      },
+      "scrim": {
+        "$value": "rgb(15 12 10 / 0.55)",
+        "$type": "color"
+      },
+      "night": {
+        "$value": "{primitive.color.charcoal.900}",
+        "$type": "color"
+      },
+      "on-night": {
+        "$value": "{primitive.color.tahini.100}",
+        "$type": "color"
+      }
+    },
+    "font": {
+      "display": {
+        "$value": "{primitive.font.display}",
+        "$type": "fontFamily"
+      },
+      "body": {
+        "$value": "{primitive.font.body}",
+        "$type": "fontFamily"
+      },
+      "arabic": {
+        "$value": "{primitive.font.arabic}",
+        "$type": "fontFamily"
+      }
+    },
+    "text": {
+      "hero": {
+        "$value": "clamp(2.75rem, 6.2vw + 1rem, 6.25rem)",
+        "$type": "dimension"
+      },
+      "h1": {
+        "$value": "clamp(2.375rem, 4vw + 1rem, 4.25rem)",
+        "$type": "dimension"
+      },
+      "h2": {
+        "$value": "clamp(2rem, 3vw + 1rem, 3.5rem)",
+        "$type": "dimension"
+      },
+      "h3": {
+        "$value": "clamp(1.375rem, 1vw + 1rem, 1.75rem)",
+        "$type": "dimension"
+      },
+      "lead": {
+        "$value": "clamp(1.0625rem, 0.4vw + 1rem, 1.25rem)",
+        "$type": "dimension"
+      },
+      "body": {
+        "$value": "1rem",
+        "$type": "dimension"
+      },
+      "small": {
+        "$value": "0.875rem",
+        "$type": "dimension"
+      },
+      "label": {
+        "$value": "0.75rem",
+        "$type": "dimension"
+      }
+    },
+    "leading": {
+      "hero": {
+        "$value": "0.98",
+        "$type": "number"
+      },
+      "heading": {
+        "$value": "1.06",
+        "$type": "number"
+      },
+      "title": {
+        "$value": "1.2",
+        "$type": "number"
+      },
+      "body": {
+        "$value": "1.6",
+        "$type": "number"
+      }
+    },
+    "tracking": {
+      "hero": {
+        "$value": "-0.028em",
+        "$type": "dimension"
+      },
+      "heading": {
+        "$value": "-0.018em",
+        "$type": "dimension"
+      },
+      "body": {
+        "$value": "0em",
+        "$type": "dimension"
+      },
+      "label": {
+        "$value": "0.16em",
+        "$type": "dimension"
+      }
+    },
+    "space": {
+      "1": {
+        "$value": "0.25rem",
+        "$type": "dimension"
+      },
+      "2": {
+        "$value": "0.5rem",
+        "$type": "dimension"
+      },
+      "3": {
+        "$value": "0.75rem",
+        "$type": "dimension"
+      },
+      "4": {
+        "$value": "1rem",
+        "$type": "dimension"
+      },
+      "5": {
+        "$value": "1.5rem",
+        "$type": "dimension"
+      },
+      "6": {
+        "$value": "2rem",
+        "$type": "dimension"
+      },
+      "7": {
+        "$value": "3rem",
+        "$type": "dimension"
+      },
+      "8": {
+        "$value": "4rem",
+        "$type": "dimension"
+      },
+      "9": {
+        "$value": "6rem",
+        "$type": "dimension"
+      },
+      "10": {
+        "$value": "8rem",
+        "$type": "dimension"
+      },
+      "gutter": {
+        "$value": "clamp(1rem, 4vw, 2.5rem)",
+        "$type": "dimension"
+      },
+      "section": {
+        "$value": "clamp(4rem, 9vw, 8rem)",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "sm": {
+        "$value": "0.5rem",
+        "$type": "dimension"
+      },
+      "md": {
+        "$value": "0.875rem",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "1.5rem",
+        "$type": "dimension"
+      },
+      "xl": {
+        "$value": "2rem",
+        "$type": "dimension"
+      },
+      "pill": {
+        "$value": "999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "1": {
+        "$value": "0 1px 2px rgb(23 18 15 / 0.06), 0 4px 12px -4px rgb(23 18 15 / 0.10)",
+        "$type": "shadow"
+      },
+      "2": {
+        "$value": "0 2px 4px rgb(23 18 15 / 0.06), 0 18px 40px -16px rgb(23 18 15 / 0.32)",
+        "$type": "shadow"
+      },
+      "3": {
+        "$value": "0 -16px 48px -16px rgb(0 0 0 / 0.40)",
+        "$type": "shadow"
+      }
+    },
+    "ease": {
+      "out": {
+        "$value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "$type": "cubicBezier"
+      },
+      "in-out": {
+        "$value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "$type": "cubicBezier"
+      },
+      "drawer": {
+        "$value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "$type": "cubicBezier"
+      }
+    },
+    "duration": {
+      "press": {
+        "$value": "160ms",
+        "$type": "duration"
+      },
+      "fast": {
+        "$value": "200ms",
+        "$type": "duration"
+      },
+      "base": {
+        "$value": "260ms",
+        "$type": "duration"
+      },
+      "sheet-in": {
+        "$value": "480ms",
+        "$type": "duration"
+      },
+      "sheet-out": {
+        "$value": "280ms",
+        "$type": "duration"
+      },
+      "reveal": {
+        "$value": "720ms",
+        "$type": "duration"
+      }
+    },
+    "z": {
+      "sticky": {
+        "$value": "20",
+        "$type": "number"
+      },
+      "header": {
+        "$value": "30",
+        "$type": "number"
+      },
+      "actionbar": {
+        "$value": "40",
+        "$type": "number"
+      },
+      "cart": {
+        "$value": "45",
+        "$type": "number"
+      },
+      "scrim": {
+        "$value": "60",
+        "$type": "number"
+      },
+      "sheet": {
+        "$value": "61",
+        "$type": "number"
+      },
+      "toast": {
+        "$value": "70",
+        "$type": "number"
+      },
+      "proto": {
+        "$value": "80",
+        "$type": "number"
+      }
+    }
+  },
+  "component": {
+    "button": {
+      "height": {
+        "$value": "3.25rem",
+        "$type": "dimension"
+      },
+      "height-sm": {
+        "$value": "2.75rem",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.radius.pill}",
+        "$type": "dimension"
+      },
+      "press-scale": {
+        "$value": "0.97",
+        "$type": "number"
+      }
+    },
+    "card": {
+      "radius": {
+        "$value": "{semantic.radius.lg}",
+        "$type": "dimension"
+      }
+    },
+    "input": {
+      "height": {
+        "$value": "3.25rem",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.radius.md}",
+        "$type": "dimension"
+      }
+    },
+    "header": {
+      "height": {
+        "$value": "4rem",
+        "$type": "dimension"
+      }
+    },
+    "actionbar": {
+      "height": {
+        "$value": "4.25rem",
+        "$type": "dimension"
+      }
+    },
+    "sheet": {
+      "radius": {
+        "$value": "1.75rem",
+        "$type": "dimension"
+      }
+    },
+    "thumb": {
+      "size": {
+        "$value": "4.5rem",
+        "$type": "dimension"
+      }
+    },
+    "wa-bubble": {
+      "bg": {
+        "$value": "{primitive.color.wa.bubble}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{primitive.color.wa.text}",
+        "$type": "color"
+      },
+      "meta": {
+        "$value": "{primitive.color.wa.meta}",
+        "$type": "color"
+      }
+    }
+  },
+  "dark": {
+    "semantic": {
+      "color": {
+        "bg": {
+          "$value": "{primitive.color.charcoal.900}",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "{primitive.color.charcoal.850}",
+          "$type": "color"
+        },
+        "surface-muted": {
+          "$value": "{primitive.color.charcoal.800}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{primitive.color.tahini.100}",
+          "$type": "color"
+        },
+        "text-muted": {
+          "$value": "{primitive.color.charcoal.300}",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "{primitive.color.charcoal.700}",
+          "$type": "color"
+        },
+        "border-strong": {
+          "$value": "{primitive.color.charcoal.500}",
+          "$type": "color"
+        },
+        "brand": {
+          "$value": "{primitive.color.cedar.300}",
+          "$type": "color"
+        },
+        "highlight": {
+          "$value": "{primitive.color.ember.400}",
+          "$type": "color"
+        }
+      }
+    }
+  }
+}

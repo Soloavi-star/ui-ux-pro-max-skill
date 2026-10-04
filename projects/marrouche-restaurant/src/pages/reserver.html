@@ -1,0 +1,74 @@
+<!--{"title":"Réserver une table — Marrouche, Zone 4 (Abidjan)","description":"Réservez votre table chez Marrouche à Zone 4 ou demandez un devis pour un anniversaire, un repas d'affaires ou une grande tablée. Réponse par WhatsApp.","path":"reserver.html","nav":"reserver","theme":"#17120F","preload":""}-->
+<main id="contenu">
+  <section class="page-hero dark grain" aria-labelledby="book-title">
+    <div class="page-hero__bg" aria-hidden="true">
+      [[img convivial land "100vw" "" eager]]
+    </div>
+    <div class="wrap intro">
+      <span class="eyebrow">Réservation</span>
+      <h1 class="h1" id="book-title">Votre table <em>vous attend.</em></h1>
+      <p class="lead">Une table pour ce soir ou une tablée de trente&nbsp;: dites-nous tout, nous confirmons par WhatsApp ou par téléphone.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:var(--space-7)">
+    <div class="wrap book">
+      <div class="card">
+        <div class="tabs seg" role="tablist" aria-label="Type de demande">
+          <button role="tab" id="tab-table" aria-controls="panel-table" aria-selected="true" data-tab="table"><span>Une table</span></button>
+          <button role="tab" id="tab-groupe" aria-controls="panel-groupe" aria-selected="false" tabindex="-1" data-tab="groupe"><span>Groupe &amp; événement</span></button>
+        </div>
+
+        <div id="panel-table" role="tabpanel" aria-labelledby="tab-table">
+        <form class="form" novalidate data-form="table">
+          <div class="form-row">
+            <div class="field"><label for="t-date">Date</label><input id="t-date" name="date" type="date" required aria-describedby="t-date-err"><p class="field__error" id="t-date-err" role="alert"></p></div>
+            <div class="field"><label for="t-time">Heure</label><input id="t-time" name="time" type="time" step="900" required aria-describedby="t-time-err"><p class="field__error" id="t-time-err" role="alert"></p></div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="t-pax">Personnes</label>
+              <select id="t-pax" name="pax">
+                <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="t-occ">Occasion <span class="opt">(facultatif)</span></label>
+              <select id="t-occ" name="occasion"><option value="">Aucune</option><option>Anniversaire</option><option>Repas d'affaires</option><option>En famille</option><option>En amoureux</option></select>
+            </div>
+          </div>
+          <div class="field"><label for="t-name">Nom</label><input id="t-name" name="name" autocomplete="name" required aria-describedby="t-name-err"><p class="field__error" id="t-name-err" role="alert"></p></div>
+          <div class="field"><label for="t-tel">Téléphone</label><input id="t-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="07 00 00 00 00" required aria-describedby="t-tel-hint t-tel-err"><p class="field__hint" id="t-tel-hint">Pour vous confirmer la table.</p><p class="field__error" id="t-tel-err" role="alert"></p></div>
+          <div class="field"><label for="t-note">Une précision&nbsp;? <span class="opt">(facultatif)</span></label><textarea id="t-note" name="note" placeholder="Terrasse, chaise haute, gâteau d'anniversaire…"></textarea></div>
+          <button class="btn btn--whatsapp btn--block" type="submit"><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>Envoyer la demande sur WhatsApp</button>
+          <p class="small muted">La demande s'ouvre dans WhatsApp, prête à envoyer. La table est confirmée après notre réponse <span class="tbc">délai à définir</span>.</p>
+        </form>
+        </div>
+
+        <div id="panel-groupe" role="tabpanel" aria-labelledby="tab-groupe" hidden>
+        <form class="form" novalidate data-form="groupe">
+          <div class="form-row">
+            <div class="field"><label for="g-date">Date souhaitée</label><input id="g-date" name="date" type="date" required aria-describedby="g-date-err"><p class="field__error" id="g-date-err" role="alert"></p></div>
+            <div class="field"><label for="g-pax">Invités (environ)</label><input id="g-pax" name="pax" type="number" inputmode="numeric" min="8" max="300" placeholder="25" required aria-describedby="g-pax-err"><p class="field__error" id="g-pax-err" role="alert"></p></div>
+          </div>
+          <div class="field"><label for="g-type">Type d'événement</label><select id="g-type" name="type"><option>Anniversaire</option><option>Repas d'entreprise</option><option>Famille, cérémonie</option><option>Autre</option></select></div>
+          <div class="field"><label for="g-name">Nom ou société</label><input id="g-name" name="name" autocomplete="organization" required aria-describedby="g-name-err"><p class="field__error" id="g-name-err" role="alert"></p></div>
+          <div class="field"><label for="g-tel">Téléphone</label><input id="g-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="07 00 00 00 00" required aria-describedby="g-tel-err"><p class="field__error" id="g-tel-err" role="alert"></p></div>
+          <div class="field"><label for="g-note">Votre idée <span class="opt">(facultatif)</span></label><textarea id="g-note" name="note" placeholder="Budget par personne, mezzés à partager, sur place ou à emporter…"></textarea></div>
+          <button class="btn btn--block" type="submit">Demander un devis</button>
+          <p class="small muted">Nous revenons vers vous avec une proposition de menu.</p>
+        </form>
+        </div>
+      </div>
+
+      <aside class="summary" aria-label="Récapitulatif">
+        <div class="summary__card">
+          <span class="arabic" lang="ar" aria-hidden="true">أهلاً وسهلاً</span>
+          <h2>Votre demande</h2>
+          <dl class="summary__rows" data-summary></dl>
+        </div>
+        <p class="small muted">Plus pressé&nbsp;? <a class="js-call" href="#" data-track="click_appel" data-src="reserver">Appelez-nous</a>.</p>
+      </aside>
+    </div>
+  </section>
+</main>

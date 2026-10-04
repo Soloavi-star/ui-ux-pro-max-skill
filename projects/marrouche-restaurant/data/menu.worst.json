@@ -1,0 +1,15 @@
+{
+ "source": "Jeu de données « pire cas » (skill break-ui) — usage développement uniquement",
+ "categories": [
+  {"id": "mezzes", "label": "Mezzés, entrées froides & chaudes à partager entre amis", "note": "Rubrique au nom très long, comme on en voit après une traduction.", "items": [
+   {"id": "w--long", "name": "Assiette mixte chawarma poulet et viande, houmous, taboulé, frites et sauce toum (2 personnes)", "price": 18000, "desc": "Une assiette généreuse pour deux : chawarma de poulet et de viande, houmous beyrouti, taboulé, frites maison et sauce toum à l'ail, servie avec pain libanais chaud.", "tags": ["végé", "épicé"], "img": ""},
+   {"id": "w--unbreakable", "name": "Mousabbaha/balila/mchawache/fatteh-homos", "price": 5000, "desc": "", "tags": [], "img": "https://instalacarte.com/media/cache/mobile_image/product/9867/000000/introuvable.jpeg"},
+   {"id": "w--arabic", "name": "فتة حمص (Fatteh homos)", "price": 6000, "desc": "Nom saisi en arabe dans le back-office.", "tags": ["végé"], "img": ""},
+   {"id": "w--free", "name": "Sauce piquante", "price": 0, "desc": "Offerte avec les grillades", "tags": ["épicé"], "img": ""},
+   {"id": "w--short", "name": "Œuf", "price": 500, "desc": "", "tags": [], "img": ""}
+  ]},
+  {"id": "traiteur", "label": "Traiteur", "note": "", "items": [
+   {"id": "w--huge", "name": "Plateau traiteur 30 personnes", "price": 1250000, "desc": "Mezzés, grillades et desserts pour un événement.", "tags": [], "img": ""}
+  ]}
+ ]
+}

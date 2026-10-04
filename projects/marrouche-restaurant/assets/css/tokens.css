@@ -1,0 +1,157 @@
+/* Design Tokens - Auto-generated */
+/* Do not edit directly - modify tokens.json instead */
+
+/* === PRIMITIVES === */
+:root {
+  --primitive-color-cedar-50: #EAF6EE;
+  --primitive-color-cedar-100: #CFEBD8;
+  --primitive-color-cedar-300: #6CC08A;
+  --primitive-color-cedar-500: #089B4A;
+  --primitive-color-cedar-600: #077E3D;
+  --primitive-color-cedar-700: #0A6634;
+  --primitive-color-cedar-900: #0A3A21;
+  --primitive-color-pomegranate-50: #FDECEC;
+  --primitive-color-pomegranate-400: #EE4A44;
+  --primitive-color-pomegranate-500: #E3262B;
+  --primitive-color-pomegranate-600: #C21F24;
+  --primitive-color-pomegranate-700: #A11B1F;
+  --primitive-color-pomegranate-900: #5C1213;
+  --primitive-color-ember-300: #F5C978;
+  --primitive-color-ember-400: #EDB04F;
+  --primitive-color-ember-500: #E19A2C;
+  --primitive-color-tahini-50: #FFFCF7;
+  --primitive-color-tahini-100: #FAF5EC;
+  --primitive-color-tahini-200: #F3EADB;
+  --primitive-color-tahini-300: #E6D8C3;
+  --primitive-color-tahini-400: #CDB89A;
+  --primitive-color-charcoal-300: #BFAE9C;
+  --primitive-color-charcoal-500: #8A7869;
+  --primitive-color-charcoal-600: #5A4C42;
+  --primitive-color-charcoal-700: #3D332C;
+  --primitive-color-charcoal-800: #2A221D;
+  --primitive-color-charcoal-850: #1F1915;
+  --primitive-color-charcoal-900: #17120F;
+  --primitive-color-charcoal-950: #0F0C0A;
+  --primitive-color-white: #FFFFFF;
+  --primitive-color-note-bg: #FBEBC8;
+  --primitive-color-note-fg: #6B4A0E;
+  --primitive-color-wa-bubble: #DCF8C6;
+  --primitive-color-wa-text: #111B21;
+  --primitive-color-wa-meta: #4A5A63;
+  --primitive-font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --primitive-font-body: 'Karla', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --primitive-font-arabic: 'Aref Ruqaa', 'Noto Naskh Arabic', serif;
+}
+
+/* === SEMANTIC === */
+:root {
+  --color-bg: #FAF5EC;
+  --color-surface: #FFFCF7;
+  --color-surface-muted: #F3EADB;
+  --color-text: #17120F;
+  --color-text-muted: #5A4C42;
+  --color-border: #E6D8C3;
+  --color-border-strong: #8A7869;
+  --color-primary: #C21F24;
+  --color-primary-hover: #A11B1F;
+  --color-on-primary: #FFFFFF;
+  --color-brand: #0A6634;
+  --color-brand-vivid: #089B4A;
+  --color-whatsapp: #077E3D;
+  --color-whatsapp-hover: #0A6634;
+  --color-accent: #E19A2C;
+  --color-highlight: #C21F24;
+  --color-focus: #E19A2C;
+  --color-note-bg: #FBEBC8;
+  --color-note-fg: #6B4A0E;
+  --color-scrim: rgb(15 12 10 / 0.55);
+  --color-night: #17120F;
+  --color-on-night: #FAF5EC;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Karla', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Aref Ruqaa', 'Noto Naskh Arabic', serif;
+  --text-hero: clamp(2.75rem, 6.2vw + 1rem, 6.25rem);
+  --text-h1: clamp(2.375rem, 4vw + 1rem, 4.25rem);
+  --text-h2: clamp(2rem, 3vw + 1rem, 3.5rem);
+  --text-h3: clamp(1.375rem, 1vw + 1rem, 1.75rem);
+  --text-lead: clamp(1.0625rem, 0.4vw + 1rem, 1.25rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --leading-hero: 0.98;
+  --leading-heading: 1.06;
+  --leading-title: 1.2;
+  --leading-body: 1.6;
+  --tracking-hero: -0.028em;
+  --tracking-heading: -0.018em;
+  --tracking-body: 0em;
+  --tracking-label: 0.16em;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-gutter: clamp(1rem, 4vw, 2.5rem);
+  --space-section: clamp(4rem, 9vw, 8rem);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(23 18 15 / 0.06), 0 4px 12px -4px rgb(23 18 15 / 0.10);
+  --shadow-2: 0 2px 4px rgb(23 18 15 / 0.06), 0 18px 40px -16px rgb(23 18 15 / 0.32);
+  --shadow-3: 0 -16px 48px -16px rgb(0 0 0 / 0.40);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-press: 160ms;
+  --duration-fast: 200ms;
+  --duration-base: 260ms;
+  --duration-sheet-in: 480ms;
+  --duration-sheet-out: 280ms;
+  --duration-reveal: 720ms;
+  --z-sticky: 20;
+  --z-header: 30;
+  --z-actionbar: 40;
+  --z-cart: 45;
+  --z-scrim: 60;
+  --z-sheet: 61;
+  --z-toast: 70;
+  --z-proto: 80;
+}
+
+/* === COMPONENTS === */
+:root {
+  --button-height: 3.25rem;
+  --button-height-sm: 2.75rem;
+  --button-radius: 999px;
+  --button-press-scale: 0.97;
+  --card-radius: 1.5rem;
+  --input-height: 3.25rem;
+  --input-radius: 0.875rem;
+  --header-height: 4rem;
+  --actionbar-height: 4.25rem;
+  --sheet-radius: 1.75rem;
+  --thumb-size: 4.5rem;
+  --wa-bubble-bg: #DCF8C6;
+  --wa-bubble-fg: #111B21;
+  --wa-bubble-meta: #4A5A63;
+}
+
+/* === DARK MODE === */
+.dark {
+  --color-bg: #17120F;
+  --color-surface: #1F1915;
+  --color-surface-muted: #2A221D;
+  --color-text: #FAF5EC;
+  --color-text-muted: #BFAE9C;
+  --color-border: #3D332C;
+  --color-border-strong: #8A7869;
+  --color-brand: #6CC08A;
+  --color-highlight: #EDB04F;
+}

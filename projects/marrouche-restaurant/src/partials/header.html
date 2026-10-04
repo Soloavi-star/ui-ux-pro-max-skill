@@ -1,0 +1,38 @@
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<aside class="proto" aria-label="Avertissement"><strong>Maquette de proposition</strong>&nbsp;· horaires, numéros, livraison et prix à valider avec Marrouche</aside>
+<header class="site-header {{header_class}}" data-header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Marrouche, accueil">
+      <span class="brand__name">Marrouche</span><span class="brand__dot" aria-hidden="true"></span>
+      <span class="brand__place">Zone 4</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html" {{cur_index}}>Accueil</a>
+      <a href="menu.html" {{cur_menu}}>La carte</a>
+      <a href="reserver.html" {{cur_reserver}}>Réserver</a>
+      <a href="infos.html" {{cur_infos}}>Livraison &amp; accès</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--sm" href="menu.html" data-track="cta_commander_header">Commander</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Ouvrir la navigation" data-nav-open>
+        <svg class="icon icon--lg"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mnav dark" id="mnav" role="dialog" aria-modal="true" aria-label="Navigation" hidden>
+  <div class="mnav__top">
+    <span class="brand"><span class="brand__name">Marrouche</span><span class="brand__dot" aria-hidden="true"></span></span>
+    <button class="icon-btn" type="button" aria-label="Fermer la navigation" data-nav-close><svg class="icon"><use href="#i-x"/></svg></button>
+  </div>
+  <ul class="mnav__links">
+    <li><a href="index.html" {{cur_index}}><em>Accueil</em></a></li>
+    <li><a href="menu.html" {{cur_menu}}><em>La carte</em></a></li>
+    <li><a href="reserver.html" {{cur_reserver}}><em>Réserver</em></a></li>
+    <li><a href="infos.html" {{cur_infos}}><em>Livraison &amp; accès</em></a></li>
+  </ul>
+  <div class="mnav__foot">
+    <span class="arabic" lang="ar" aria-hidden="true">أهلاً وسهلاً</span>
+    <a class="btn btn--whatsapp btn--block js-wa" href="#" data-msg="Bonjour Marrouche," data-track="click_whatsapp" data-src="mnav"><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>Écrire sur WhatsApp</a>
+  </div>
+</div>

@@ -1,39 +1,56 @@
-# Marrouche — landing page officielle (phase 1)
+# Marrouche — site officiel (proposition v2)
 
-Maquette fonctionnelle issue de l'audit numérique du 4 octobre 2026 (Zone 4, Marcory).
-Un seul fichier `index.html`, sans dépendance ni build : il peut être hébergé tel quel.
+Restaurant libanais, Zone 4, Marcory (Abidjan). Site statique, mobile-first, sans framework, issu de l'audit numérique
+du 4 octobre 2026.
 
-## Ce que la page couvre (audit → fonctionnalité)
-
-| Douleur de l'audit | Réponse dans la page |
+| Page | Contenu |
 | --- | --- |
-| Parcours éclaté (Maps, réseaux, Instalacarte, téléphone) | Une seule page : menu, commande, réservation, accès |
-| Commande manuelle par téléphone | Panier → message WhatsApp prérempli (plats, quantités, total, mode, adresse) |
-| Réservation peu visible | Formulaire court → WhatsApp, plus un formulaire de devis pour les groupes |
-| Plusieurs numéros | Un seul `phoneTel` et un seul `whatsapp` dans `CONFIG` |
-| Horaires incohérents | Bloc horaires piloté par `CONFIG.hours` (masqué tant que les horaires ne sont pas validés) ; statut « ouvert / fermé » calculé en direct |
-| Aucune mesure | Événements `dataLayer` : `click_appel`, `click_whatsapp`, `click_itineraire`, `reservation_envoyee`, `devis_groupe_envoye`, `ajout_panier`, `commande_whatsapp_envoyee`, `menu_consulte`, `menu_recherche`… |
-| SEO local | Balises title et description, Open Graph, canonical, JSON-LD `Restaurant` |
-| Mobile et réseau lent | Mobile-first, barre d'actions sous le pouce, carte Google chargée seulement au clic, aucun framework |
+| `index.html` | Accueil : signatures, grillades, carte, commande en 3 gestes, avis Google, événements, accès |
+| `menu.html` | Carte complète : 207 plats et prix FCFA, recherche, filtre végé, rubriques qui suivent le défilement, panier → WhatsApp |
+| `reserver.html` | Réservation de table et devis de groupe → WhatsApp, avec récapitulatif en direct |
+| `infos.html` | Livraison, à emporter, horaires, itinéraire, FAQ |
 
-## À valider avec le gérant avant la mise en ligne
+## Mettre à jour
 
-- [ ] Numéro d'appel unique et numéro WhatsApp Business (`CONFIG.phoneTel`, `CONFIG.whatsapp`)
-- [ ] Horaires de salle, de cuisine et de livraison (`CONFIG.hours`), puis synchronisation avec Google Business Profile
-- [ ] Zones de livraison, frais, minimum de commande et délais (section Livraison, badges « à confirmer »)
-- [ ] Prix et disponibilités : le menu `MENU` reprend un extrait de la carte Instalacarte relevée le 4/10/2026
-- [ ] Plats signatures (`SIGNATURES`) : remplacer par les meilleures ventes réelles
-- [ ] Moyens de paiement (FAQ)
-- [ ] Délai de confirmation des réservations
-- [ ] Domaine (exemple : `marroucheabidjan.com`) : mettre à jour `canonical`, `og:url` et le JSON-LD
-- [ ] Photos des plats : remplacer les cartes « Photo à venir » et le visuel du hero
-- [ ] Brancher GA4 ou GTM sur `window.dataLayer`
+- **Coordonnées, horaires, WhatsApp** : `assets/js/config.js` (champs « À VALIDER »).
+- **Plats et prix** : `data/menu.json`, puis `python3 tools/build.py`. Le script régénère les pages, le JSON-LD et `assets/js/menu-data.js`.
+- **Textes des pages** : `src/pages/*.html` et `src/partials/*.html`, puis `python3 tools/build.py`.
+- **Couleurs, tailles, motion** : `assets/design-tokens.json`, puis
+  `node ../../.claude/skills/design-system/scripts/generate-tokens.cjs --config assets/design-tokens.json -o assets/css/tokens.css`.
 
-## Principes de motion appliqués
+Les pages HTML à la racine sont générées : on ne les modifie pas à la main.
 
-- Animations uniquement là où elles servent : entrée du hero (une fois), révélation des sections (une fois), panier en bottom sheet.
-- Aucune animation sur les actions fréquentes (filtres, recherche, ajout au panier : retour visuel immédiat seulement).
-- `scale(0.97)` sur `:active` pour tous les éléments pressables ; survols limités à `(hover: hover) and (pointer: fine)`.
-- Courbes personnalisées (`--ease-out`, `--ease-drawer`) ; sortie du panier plus rapide (260 ms) que l'entrée (460 ms).
-- Uniquement `transform` et `opacity` ; transitions CSS interruptibles plutôt que keyframes pour le panier.
-- `prefers-reduced-motion` : on garde les fondus et on retire tous les déplacements.
+## Méthode (skills utilisés)
+
+| Skill | Apport |
+| --- | --- |
+| `ui-ux-pro-max` | Design system (réglages 7/5/3) gardé dans `design-system/marrouche/MASTER.md` avec les décisions retenues ; recherches style, couleurs, typo, landing, UX, GSAP, icônes et guide HTML ; checklist avant livraison |
+| `brand` | Couleurs relevées sur le logo existant ; charte `docs/brand-guidelines.md` (voix, termes bannis), validée par `inject-brand-context.cjs` |
+| `design-system` | Tokens en 3 couches dans `assets/design-tokens.json`, générés par `generate-tokens.cjs` et contrôlés par `validate-tokens.cjs` (0 couleur en dur) |
+| `design` / `ui-styling` | Direction artistique (arche libanaise, sections « nuit », grain) et CSS sans framework |
+| `emil-design-eng` / `animate` | Filtre d'animation, courbes, durées, sorties plus rapides que les entrées, `scale(0.97)` à l'appui |
+| `apple-design` | Panier à glisser pour fermer (vitesse, effet élastique), matériaux translucides, approche des lettres selon la taille |
+| `mobile-native` | Zones sûres, `svh`, pas de surbrillance au toucher, champs en 16 px, `touch-action` |
+| `find-animation-opportunities` | Liste de ce qui anime et de ce qui est refusé (voir `docs/AUDIT.md`) |
+| `break-ui` | Jeu « pire cas », page `_dev-carte-pire-cas.html`, 5 problèmes corrigés |
+
+## À valider avec la direction avant la mise en ligne
+
+- [ ] Numéro d'appel unique et numéro WhatsApp Business
+- [ ] Horaires de salle, de cuisine et de livraison, puis synchronisation avec Google Business Profile
+- [ ] Zones, frais et délais de livraison ; moyens de paiement ; délai de confirmation des réservations
+- [ ] Prix et disponibilités (relevés sur Instalacarte le 4/10/2026) ; descriptions courtes rédigées pour la maquette
+- [ ] Logo officiel en vectoriel (la maquette utilise un logotype typographique provisoire)
+- [ ] Shooting photo des plats signatures (les visuels d'ambiance sont des photos Unsplash)
+- [ ] Domaine (exemple : `marroucheabidjan.com`) : `canonical`, `og:url`, sitemap et JSON-LD
+- [x] Image de partage `assets/img/og-marrouche.jpg` (1200×630, générée depuis `tools/og.html`)
+- [ ] Brancher GA4 ou GTM sur `window.dataLayer` (événements déjà envoyés)
+- [ ] Supprimer `_dev-carte-pire-cas.html` et `assets/js/menu-data-pire-cas.js` du serveur de production
+
+## Crédits
+
+- Visuels d'ambiance : [Unsplash](https://unsplash.com/license), libres pour un usage commercial. Identifiants : 1748540459503,
+  1730082460730, 1621851709622, 1637949385162, 1783696074463, 1771285119408, 1594266063697, 1699728088614, 1593001872095,
+  1684864115205, 1692444866957, 1603360946369, 1777716003985.
+- Photos des plats de la carte : carte Instalacarte de Marrouche (affichées depuis leur serveur, à remplacer par les fichiers HD du restaurant).
+- Polices : Playfair Display, Karla, Aref Ruqaa (SIL Open Font License).

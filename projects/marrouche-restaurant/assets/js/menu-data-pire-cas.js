@@ -1,0 +1,1 @@
+window.MARROUCHE_MENU = {"w--long": ["Assiette mixte chawarma poulet et viande, houmous, taboulé, frites et sauce toum (2 personnes)", 18000], "w--unbreakable": ["Mousabbaha/balila/mchawache/fatteh-homos", 5000], "w--arabic": ["فتة حمص (Fatteh homos)", 6000], "w--free": ["Sauce piquante", 0], "w--short": ["Œuf", 500], "w--huge": ["Plateau traiteur 30 personnes", 1250000]};
