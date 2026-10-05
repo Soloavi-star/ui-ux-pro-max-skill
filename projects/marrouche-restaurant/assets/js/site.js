@@ -301,9 +301,18 @@
       `Mode : ${mode}`, mode === "Livraison" ? `Adresse : ${addr.value.trim()}` : null, name ? `Nom : ${name}` : null]
       .filter((l) => l !== null).join("\n");
     track("commande_whatsapp_envoyee", { valeur: sum, articles: count, mode });
+    try { localStorage.setItem("marrouche-last-order", JSON.stringify({ items: [...cart], date: Date.now() })); } catch (_) {}
     window.open(waUrl(msg), "_blank", "noopener");
     toast("Votre commande est prête dans WhatsApp : il ne reste qu'à l'envoyer.");
   });
+
+  // API pour les autres scripts (configurateur de table, recommander)
+  window.MarroucheCart = {
+    add(id, q = 1, source = "api") { setQty(id, (cart.get(id) || 0) + q, source); },
+    replace(entries) { cart.clear(); entries.forEach(([id, q]) => { if (MENU[id] && q > 0) cart.set(id, Math.min(99, q)); }); save(); render(); },
+    open: openSheet,
+    lastOrder() { try { const o = JSON.parse(localStorage.getItem("marrouche-last-order") || "null"); return o && o.items.filter(([id]) => MENU[id]).length ? o : null; } catch (_) { return null; } },
+  };
 
   render();
 })();

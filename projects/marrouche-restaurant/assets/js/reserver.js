@@ -7,12 +7,18 @@
 
   const tabs = $$('[role="tab"]'), forms = { table: $('[data-form="table"]'), groupe: $('[data-form="groupe"]') };
   const summary = $("[data-summary]");
-  let active = location.hash === "#groupe" ? "groupe" : "table";
+  let active = location.hash === "#groupe" || +new URLSearchParams(location.search).get("pax") > 10 ? "groupe" : "table";
 
   // Dates : pas de date passée ; la table est proposée pour aujourd'hui
   const todayISO = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
   $$('input[type="date"]').forEach((i) => (i.min = todayISO));
   $("#t-date").value = todayISO;
+  // Arrivée depuis le configurateur de table ou la réservation express : on reprend le nombre de convives
+  const params = new URLSearchParams(location.search), pax = +params.get("pax");
+  if (pax > 0) {
+    if (pax > 10) { location.hash = "#groupe"; $("#g-pax").value = pax; }
+    else $("#t-pax").value = String(pax);
+  }
   const fmtDate = (iso) => iso ? new Date(iso + "T12:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }) : "—";
 
   function select(name, focus) {

@@ -1,183 +1,227 @@
-<!--{"title":"Marrouche — Restaurant libanais à Zone 4, Marcory (Abidjan)","description":"La table libanaise de Zone 4 : mezzés, brochettes grillées, chawarma à la broche. Sur place, à emporter ou livré. Commandez sur WhatsApp ou réservez votre table.","path":"","nav":"index","theme":"#17120F","preload":"hero-mezze"}-->
-<main id="contenu">
-  <!-- ============ HERO ============ -->
-  <section class="hero dark grain" aria-labelledby="hero-title">
-    <div class="wrap">
-      <div class="hero__copy intro">
-        <span class="eyebrow">Restaurant libanais · Marcory</span>
-        <h1 class="display" id="hero-title">La table <em>libanaise</em> de Zone&nbsp;4.</h1>
-        <p class="lead">Mezzés à partager, brochettes grillées, chawarma à la broche. Sur place, à emporter ou livré chez vous.</p>
-        <div class="hero__ctas">
-          <a class="btn" href="menu.html" data-track="cta_carte_hero">Voir la carte &amp; commander</a>
-          <a class="btn btn--ghost" href="reserver.html" data-track="cta_reserver_hero"><svg class="icon"><use href="#i-calendar"/></svg>Réserver une table</a>
-        </div>
-        <div class="hero__facts">
-          <a class="chip js-directions" href="#" data-track="click_itineraire" data-src="hero"><svg class="icon"><use href="#i-pin"/></svg>Zone 4, à côté de SOCIDA</a>
-          <a class="chip" href="infos.html#livraison"><svg class="icon"><use href="#i-scooter"/></svg>Livraison à Marcory</a>
+<!--{"title":"Marrouche — Une soirée libanaise à Zone 4, Marcory (Abidjan)","description":"Mezzés à partager, brochettes sur la braise, chawarma à la broche. Composez votre table, commandez sur WhatsApp ou réservez en 30 secondes chez Marrouche, Zone 4.","path":"","nav":"index","theme":"#0F0C0A","preload":"hero-mezze"}-->
+<!-- Rideau d'ouverture : une fois par session, passable au premier geste -->
+<div class="curtain" aria-hidden="true" hidden data-curtain>
+  <div class="curtain__half curtain__half--top"></div>
+  <div class="curtain__half curtain__half--bottom"></div>
+  <div class="curtain__mark">
+    <span class="curtain__ar arabic" lang="ar">أهلاً وسهلاً</span>
+    <span class="curtain__word" data-split-chars>Marrouche</span>
+  </div>
+</div>
+
+<nav class="chapters" aria-label="Chapitres de l'histoire" data-chapters>
+  <a href="#braise" data-chapter-link="braise"><span>01</span>La braise</a>
+  <a href="#mezze" data-chapter-link="mezze"><span>02</span>Le mezzé</a>
+  <a href="#grill" data-chapter-link="grill"><span>03</span>Le grill</a>
+  <a href="#broche" data-chapter-link="broche"><span>04</span>La broche</a>
+  <a href="#table" data-chapter-link="table"><span>05</span>Votre table</a>
+</nav>
+
+<main id="contenu" class="xp">
+  <!-- ============ 01 · LA BRAISE (épinglé n°1) ============ -->
+  <section class="xp-hero dark" id="braise" data-chapter="braise" aria-labelledby="hero-title">
+    <div class="xp-hero__stage" data-hero-stage>
+      <canvas class="embers" data-embers aria-hidden="true"></canvas>
+      <div class="xp-hero__window" data-hero-window style="--ph:#9C6630">
+        [[img hero-mezze port "100vw" "Table de mezzés libanais vue de dessus : houmous, salades, pains" eager]]
+      </div>
+      <div class="xp-hero__veil" aria-hidden="true"></div>
+      <div class="xp-hero__shade" aria-hidden="true" data-hero-shade></div>
+      <div class="xp-hero__copy" data-hero-copy>
+        <p class="eyebrow">Restaurant libanais · Zone 4, Marcory</p>
+        <h1 class="xp-hero__title" id="hero-title">
+          <span class="line"><span class="word">Ce</span> <span class="word">soir,</span></span>
+          <span class="line"><span class="word">on</span> <span class="word">allume</span></span>
+          <span class="line"><span class="word"><em>la braise.</em></span></span>
+        </h1>
+        <div class="xp-hero__ctas">
+          <a class="btn magnetic" href="#table" data-track="cta_composer_hero">Composer ma table</a>
+          <a class="btn btn--ghost magnetic" href="menu.html" data-track="cta_carte_hero">Voir la carte</a>
         </div>
       </div>
-      <div class="hero__media">
-        <span class="hero__ahlan arabic" lang="ar" aria-hidden="true">أهلاً وسهلاً</span>
-        <div class="arch" style="--ph:#9C6630">
-          [[img hero-mezze port "(min-width: 1024px) 30rem, 92vw" "Table garnie de mezzés libanais vue de dessus : houmous, salades, pains" eager]]
+      <div class="xp-hero__after" data-hero-after>
+        <p class="xp-kicker">Mezzés à partager · brochettes sur la braise · chawarma à la broche</p>
+        <p class="xp-big">Une soirée libanaise,<br><em>à Abidjan.</em></p>
+      </div>
+      <a class="scroll-cue" href="#mezze" data-scroll-cue><span>Défiler</span><i aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <!-- ============ 02 · LE MEZZÉ (épinglé n°2 : défilement horizontal) ============ -->
+  <section class="xp-mezze" id="mezze" data-chapter="mezze" aria-labelledby="mezze-title">
+    <div class="xp-mezze__pin" data-hscroll>
+      <div class="xp-mezze__track" data-htrack>
+        <div class="panel panel--intro">
+          <p class="chapter-num">02 — Le mezzé</p>
+          <h2 class="xp-h2" id="mezze-title">Au Liban, on ne commande pas <em>un</em> plat.<br>On en partage <em>dix.</em></h2>
+          <p class="lead">Faites glisser la table. Touchez «&nbsp;Ajouter&nbsp;» : votre commande se compose en chemin.</p>
         </div>
-        <a class="rating-card glass js-reviews" href="#avis" data-track="click_avis_hero">
-          <b>4,1</b><span class="stars" aria-hidden="true">★★★★</span><span>3&#8239;256 avis Google</span>
+        [[panel mezzes--homos houmous-ardoise #6A5C4A "01" "Le classique, crémeux, filet d'huile d'olive."]]
+        [[panel mezzes--homos-viande houmous-viande #9C6F5B "02" "Le même, couronné de viande sautée."]]
+        [[panel sandwichs--falafel falafel #A38654 "03" "Croustillant dehors, vert dedans."]]
+        <div class="panel panel--cta">
+          <p class="chapter-num">+ 19 autres mezzés</p>
+          <p class="xp-h2">Taboulé, fattouche, moutabbal, <em>kebbé…</em></p>
+          <a class="btn btn--light magnetic" href="menu.html#mezzes" data-track="cta_mezzes">Tous les mezzés</a>
+        </div>
+      </div>
+      <div class="hprogress" aria-hidden="true"><i data-hprogress></i></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · LE GRILL (cartes empilées, sticky natif) ============ -->
+  <section class="xp-grill dark" id="grill" data-chapter="grill" aria-labelledby="grill-title">
+    <header class="xp-grill__head wrap">
+      <p class="chapter-num">03 — Le grill</p>
+      <h2 class="xp-h2" id="grill-title">Sur la braise, <em>à la demande.</em></h2>
+    </header>
+    <div class="stack wrap">
+      [[stack grillades--poulet-au-charbon braise-flammes #3C362E "Le poulet passe au charbon de bois." "Mariné, braisé, servi brûlant."]]
+      [[stack grillades--brochettes-kafta braise-kafta #4D443B "La kafta, herbes et viande hachée." "Façonnée sur la brochette, saisie à la flamme."]]
+      [[stack grillades--brochettes-taouk taouk-braise #9D7956 "Le taouk, poulet mariné." "Doré sur la grille, juteux au cœur."]]
+      [[stack grillades--brochettes-mix brochettes-mix #7F6345 "Indécis ? La brochette mix." "Kafta et taouk sur une même assiette."]]
+    </div>
+  </section>
+
+  <!-- ============ 04 · LA BROCHE (typographie cinétique) ============ -->
+  <section class="xp-broche dark" id="broche" data-chapter="broche" aria-labelledby="broche-title">
+    <div class="kinetic" aria-hidden="true"><span data-kinetic data-text="Chawarma · Chawarma · Chawarma ·"></span></div>
+    <div class="wrap xp-broche__grid">
+      <div class="xp-broche__media" style="--ph:#3A2619">
+        [[img chawarma-broche port "(min-width: 1024px) 34rem, 88vw" "Broche de chawarma, découpe au couteau"]]
+      </div>
+      <div class="xp-broche__copy">
+        <p class="chapter-num">04 — La broche</p>
+        <h2 class="xp-h2" id="broche-title">Elle tourne <em>toute la journée.</em></h2>
+        <p class="lead">Viande ou poulet, tranché à la minute, roulé dans le pain. Le sandwich que tout Zone&nbsp;4 connaît.</p>
+        <div class="price-hero">
+          <span class="price-hero__from">dès</span>
+          <b data-count-to="3000" data-count-format="fcfa">3&#8239;000</b><span class="price-hero__cur">FCFA</span>
+        </div>
+        <div class="xp-broche__adds">
+          <div class="mini-dish"><span>Chawarma viande</span>[[add sandwichs--chawarma-viande]]</div>
+          <div class="mini-dish"><span>Chawarma poulet</span>[[add sandwichs--chawarma-poulet]]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · VOTRE TABLE (configurateur = moteur de conversion) ============ -->
+  <section class="xp-table" id="table" data-chapter="table" aria-labelledby="table-title">
+    <div class="wrap">
+      <div class="xp-table__head">
+        <p class="chapter-num">05 — Votre table</p>
+        <h2 class="xp-h2" id="table-title">Dites-nous qui vient.<br><em>On compose la table.</em></h2>
+      </div>
+      <div class="composer" data-composer>
+        <div class="composer__controls">
+          <div class="composer__field">
+            <span class="label" id="guests-label">Convives</span>
+            <div class="stepper" role="group" aria-labelledby="guests-label">
+              <button type="button" class="stepper__btn" data-guests="-1" aria-label="Un convive de moins"><svg class="icon"><use href="#i-minus"/></svg></button>
+              <output class="stepper__val" data-guests-out aria-live="polite">4</output>
+              <button type="button" class="stepper__btn" data-guests="1" aria-label="Un convive de plus"><svg class="icon"><use href="#i-plus"/></svg></button>
+            </div>
+          </div>
+          <fieldset class="composer__field">
+            <legend class="label">L'envie du jour</legend>
+            <div class="moods">
+              <label><input type="radio" name="mood" value="leger"><span><b>Fraîcheur</b><small>Mezzés &amp; salades</small></span></label>
+              <label><input type="radio" name="mood" value="grill" checked><span><b>Braise</b><small>Mezzés &amp; grillades</small></span></label>
+              <label><input type="radio" name="mood" value="festin"><span><b>Festin</b><small>Tout, et le dessert</small></span></label>
+            </div>
+          </fieldset>
+          <div class="composer__sum">
+            <div><span class="label">Pour la table</span><b class="composer__total" data-composer-total>—</b></div>
+            <div><span class="label">Par personne</span><b data-composer-pp>—</b></div>
+          </div>
+          <div class="composer__ctas">
+            <button class="btn btn--whatsapp magnetic" type="button" data-composer-order><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>Commander cette table</button>
+            <a class="btn btn--ghost" href="reserver.html" data-composer-book>Réserver pour 4</a>
+          </div>
+          <p class="small muted">Proposition modifiable dans le panier. Prix de la carte, à confirmer à la commande.</p>
+        </div>
+        <div class="tabletop" aria-live="polite" aria-label="Plats proposés">
+          <div class="tabletop__wood" aria-hidden="true"></div>
+          <ul class="plates" data-plates></ul>
+        </div>
+      </div>
+    </div>
+    <script type="application/json" data-composer-data>[[composer_data]]</script>
+  </section>
+
+  <!-- ============ PREUVE ============ -->
+  <section class="xp-proof dark" aria-labelledby="proof-title">
+    <div class="wrap">
+      <h2 class="sr-only" id="proof-title">Marrouche en chiffres</h2>
+      <dl class="stats">
+        <div><dt>Note Google</dt><dd><b data-count-to="4.1" data-count-dec="1">4,1</b><span class="stars" aria-hidden="true">★</span></dd></div>
+        <div><dt>Avis clients</dt><dd><b data-count-to="3256">3&#8239;256</b></dd></div>
+        <div><dt>Plats à la carte</dt><dd><b data-count-to="207">207</b></dd></div>
+        <div><dt>Le moins cher</dt><dd><b data-count-to="500">500</b><span class="unit">FCFA</span></dd></div>
+      </dl>
+      <div class="xp-proof__cta">
+        <p class="muted">Relevé le 4 octobre 2026 sur Google et sur la carte du restaurant.</p>
+        <a class="link-arrow js-reviews" href="#" data-track="click_avis_lire" style="color:inherit">Lire les avis <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVENIR (rétention) ============ -->
+  <section class="xp-back" aria-labelledby="back-title">
+    <div class="wrap xp-back__grid">
+      <div>
+        <p class="chapter-num">À la prochaine</p>
+        <h2 class="xp-h2" id="back-title">Gardez Marrouche <em>dans la poche.</em></h2>
+      </div>
+      <div class="back-cards">
+        <div class="back-card back-card--again" hidden data-reorder>
+          <p class="label">Bon retour&nbsp;!</p>
+          <p class="back-card__title">Votre dernière commande</p>
+          <p class="muted small" data-reorder-summary></p>
+          <button class="btn" type="button" data-reorder-btn>Recommander</button>
+        </div>
+        <a class="back-card js-wa" href="#" data-msg="Bonjour Marrouche, je veux recevoir le plat du jour sur WhatsApp." data-track="optin_plat_du_jour">
+          <svg class="icon icon--lg icon--fill"><use href="#i-whatsapp"/></svg>
+          <p class="back-card__title">Le plat du jour, chaque matin</p>
+          <p class="muted small">Un message à envoyer, et le plat du jour arrive sur WhatsApp. <span class="tbc">à activer par le restaurant</span></p>
+        </a>
+        <a class="back-card" href="https://www.instagram.com/marroucheabidjan/" target="_blank" rel="noopener" data-track="click_instagram">
+          <svg class="icon icon--lg"><use href="#i-instagram"/></svg>
+          <p class="back-card__title">@marroucheabidjan</p>
+          <p class="muted small">Les nouveautés et les soirées, en images.</p>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ============ FAÇONS DE VENIR ============ -->
-  <section class="ways" aria-label="Sur place, à emporter, livraison, groupes">
-    <div class="wrap">
-      <ul>
-        <li><svg class="icon"><use href="#i-utensils"/></svg><b>Sur place</b><span>La salle de Zone 4, rue Pierre et Marie Curie.</span></li>
-        <li><svg class="icon"><use href="#i-bag"/></svg><b>À emporter</b><span>Commandez, on prépare, vous passez.</span></li>
-        <li><svg class="icon"><use href="#i-scooter"/></svg><b>Livraison</b><span>Marcory et alentours, délai confirmé sur WhatsApp.</span></li>
-        <li><svg class="icon"><use href="#i-users"/></svg><b>Groupes</b><span>Anniversaires, repas d'affaires, grandes tablées.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ SIGNATURES ============ -->
-  <section class="section" aria-labelledby="sig-title">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Les incontournables</span>
-        <h2 class="h2" id="sig-title">Ce qu'on vient <em>chercher</em> chez Marrouche.</h2>
-      </div>
-      <div class="sig reveal reveal-d1">
-        [[card grillades--brochettes-mix brochettes-mix #7F6345 "Kafta et taouk grillés, servis sur une même assiette." Signature]]
-        [[card mezzes--homos-viande houmous-viande #9C6F5B "Houmous crémeux, garni de viande sautée."]]
-        [[card grillades--brochettes-taouk taouk-braise #9D7956 "Poulet mariné, grillé sur la braise."]]
-        [[card sandwichs--chawarma-viande chawarma-main #77675A "À la broche, roulé dans le pain."]]
-        [[card grillades--brochettes-kafta braise-kafta #4D443B "Viande hachée aux herbes, grillée."]]
-      </div>
-      <p class="reveal" style="margin-top:var(--space-6)"><a class="link-arrow" href="menu.html">Voir les 207 plats de la carte <svg class="icon"><use href="#i-arrow"/></svg></a></p>
-    </div>
-  </section>
-
-  <!-- ============ BRAISE ============ -->
-  <section class="section braise dark grain" aria-labelledby="braise-title">
-    <div class="wrap">
-      <div class="braise__copy reveal">
-        <span class="eyebrow">Grillades &amp; broche</span>
-        <h2 class="h2" id="braise-title" style="margin-block:var(--space-4) var(--space-5)">Au charbon, <em>à la broche.</em></h2>
-        <p class="lead">Le poulet est braisé au charbon de bois, le chawarma tourne à la broche, et les brochettes passent sur la grille&nbsp;: taouk, kafta, filet de bœuf, mérou.</p>
-        <ul class="braise__list">
-          <li><span>Poulet au charbon</span><b class="price">10&#8239;000 FCFA</b></li>
-          <li><span>Brochettes mix extra</span><b class="price">12&#8239;000 FCFA</b></li>
-          <li><span>Chawarma viande, sandwich</span><b class="price">3&#8239;000 FCFA</b></li>
-        </ul>
-        <p style="margin-top:var(--space-6)"><a class="btn btn--light" href="menu.html#grillades" data-track="cta_grillades">Voir les grillades</a></p>
-      </div>
-      <div class="braise__media">
-        <div class="media media--a reveal-clip reveal" style="--ph:#4D443B">
-          [[img braise-kafta land "(min-width: 1024px) 26rem, 52vw" "Brochettes de kafta sur la grille au charbon"]]
-        </div>
-        <div class="arch reveal reveal-d2" style="--ph:#3A2619;--arch-v:33%">
-          [[img chawarma-broche port "(min-width: 1024px) 20rem, 42vw" "Broche de chawarma, découpe au couteau"]]
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LA CARTE ============ -->
-  <section class="section" aria-labelledby="carte-title">
-    <div class="wrap carte">
-      <div class="section-head reveal" style="margin-bottom:0">
-        <span class="eyebrow">La carte</span>
-        <h2 class="h2" id="carte-title">Plus de 200 plats, de <em>500 à 15&#8239;000</em> FCFA.</h2>
-        <p class="lead">Du manaïch du matin aux gambas, des mezzés aux crêpes. Choisissez une rubrique.</p>
-      </div>
-      <nav class="carte__list reveal reveal-d1" aria-label="Rubriques de la carte">
-        [[categories]]
-      </nav>
-    </div>
-  </section>
-
-  <!-- ============ COMMANDER ============ -->
-  <section class="section section--surface" aria-labelledby="order-title">
-    <div class="wrap order">
-      <div class="reveal">
-        <span class="eyebrow">Commander</span>
-        <h2 class="h2" id="order-title" style="margin-top:var(--space-4)">Votre commande, <em>en trois gestes.</em></h2>
-        <ol class="steps">
-          <li><div><b>Choisissez vos plats</b><span>Sur la carte, touchez «&nbsp;Ajouter&nbsp;». Votre panier vous suit de page en page.</span></div></li>
-          <li><div><b>Envoyez sur WhatsApp</b><span>Le message est déjà rédigé&nbsp;: plats, quantités, total, adresse.</span></div></li>
-          <li><div><b>On confirme</b><span>Délai et frais de livraison vous sont confirmés avant la préparation.</span></div></li>
-        </ol>
-        <div class="order__ctas">
-          <a class="btn" href="menu.html" data-track="cta_carte_order">Commencer ma commande</a>
-          <a class="btn btn--ghost js-call" href="#" data-track="click_appel" data-src="order"><svg class="icon"><use href="#i-phone"/></svg>Appeler</a>
-        </div>
-      </div>
-      <div class="order__visual reveal reveal-d1">
-        <div class="media" style="--ph:#8C653B">
-          [[img emporter port "(min-width: 1024px) 34rem, 92vw" "Brochettes, frites et légumes servis à emporter"]]
-        </div>
-        <div class="wa-bubble" aria-label="Exemple de message envoyé sur WhatsApp">
-          <p>Bonjour Marrouche, je souhaite commander&nbsp;:</p>
-          <p>• 2 × Homos viande — 14&#8239;000 FCFA<br>• 1 × Brochettes taouk — 10&#8239;000 FCFA</p>
-          <p><b>Total des plats&nbsp;: 24&#8239;000 FCFA</b><br>Livraison · Biétry, rue du Canal</p>
-          <small>12:42 ✓✓</small>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ AVIS ============ -->
-  <section class="section dark" id="avis" aria-labelledby="avis-title">
-    <div class="wrap rating reveal">
-      <div class="rating__score"><b>4,1</b><div><span class="stars" aria-label="4,1 étoiles sur 5">★★★★☆</span><p class="muted small">sur 5</p></div></div>
+  <!-- ============ FINALE : réservation express ============ -->
+  <section class="xp-finale dark" aria-labelledby="finale-title">
+    <canvas class="embers embers--soft" data-embers aria-hidden="true"></canvas>
+    <div class="wrap xp-finale__grid">
       <div>
-        <h2 class="h3" id="avis-title" style="font-size:var(--text-h3)">3&#8239;256 avis sur Google</h2>
-        <p class="muted" style="margin-top:var(--space-2);max-width:40ch">Note relevée le 4 octobre 2026. Les avis de vos clients, en vrai, sans retouche.</p>
+        <span class="arabic xp-finale__ar" lang="ar" aria-hidden="true">صحتين</span>
+        <h2 class="xp-h2" id="finale-title">Ce soir,<br><em>on vous garde une table.</em></h2>
+        <p class="lead">Rue Pierre et Marie Curie, Zone 4 C, à côté de SOCIDA. <a class="js-directions" href="#" data-track="click_itineraire" data-src="finale">Itinéraire</a></p>
       </div>
-      <div class="rating__ctas">
-        <a class="btn btn--light js-reviews" href="#" data-track="click_avis_lire">Lire les avis</a>
-        <a class="btn btn--ghost js-reviews" href="#" data-track="click_avis_laisser">Laisser un avis</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ÉVÉNEMENTS ============ -->
-  <section class="section" aria-labelledby="events-title">
-    <div class="wrap events">
-      <div class="arch reveal" style="--ph:#81674B;--arch-v:33%">
-        [[img tablee port "(min-width: 1024px) 26rem, 92vw" "Grande table dressée de mezzés et de verres"]]
-      </div>
-      <div class="reveal reveal-d1">
-        <span class="eyebrow">Groupes &amp; événements</span>
-        <h2 class="h2" id="events-title" style="margin-top:var(--space-4)">Anniversaires, repas d'affaires, <em>grandes tablées.</em></h2>
-        <ul class="ticks">
-          <li><svg class="icon"><use href="#i-check"/></svg><span>Dites-nous la date et le nombre d'invités.</span></li>
-          <li><svg class="icon"><use href="#i-check"/></svg><span>Nous revenons vers vous avec une proposition de menu.</span></li>
-          <li><svg class="icon"><use href="#i-check"/></svg><span>Confirmation par téléphone ou WhatsApp.</span></li>
-        </ul>
-        <a class="btn" href="reserver.html#groupe" data-track="cta_devis_home">Demander un devis</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ACCÈS ============ -->
-  <section class="section section--surface" aria-labelledby="acces-title">
-    <div class="wrap access">
-      <div class="reveal">
-        <span class="eyebrow">Venir</span>
-        <h2 class="h2" id="acces-title" style="margin-block:var(--space-4) var(--space-6)">À deux pas de <em>SOCIDA.</em></h2>
-        <dl class="info-list">
-          <div><dt>Adresse</dt><dd>Rue Pierre et Marie Curie, angle rue Mercedes<br>Zone 4 C, Marcory — Abidjan</dd></div>
-          <div><dt>Téléphone</dt><dd><a class="js-call" href="#" data-track="click_appel" data-src="acces" data-phone-text></a></dd></div>
-          <div><dt>Horaires</dt><dd data-hours-summary></dd></div>
-        </dl>
-        <div class="order__ctas" style="margin-top:var(--space-6)">
-          <a class="btn js-directions" href="#" data-track="click_itineraire" data-src="acces"><svg class="icon"><use href="#i-route"/></svg>Itinéraire</a>
-          <a class="btn btn--whatsapp js-wa" href="#" data-msg="Bonjour Marrouche," data-track="click_whatsapp" data-src="acces"><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>WhatsApp</a>
+      <form class="quickbook" data-quickbook novalidate>
+        <fieldset><legend class="label">Quand&nbsp;?</legend><div class="chips" data-qb-days></div></fieldset>
+        <fieldset><legend class="label">À quelle heure&nbsp;?</legend><div class="chips" data-qb-times></div></fieldset>
+        <div class="quickbook__row">
+          <div class="composer__field">
+            <span class="label" id="qb-pax-label">Personnes</span>
+            <div class="stepper stepper--light" role="group" aria-labelledby="qb-pax-label">
+              <button type="button" class="stepper__btn" data-qb-pax="-1" aria-label="Une personne de moins"><svg class="icon"><use href="#i-minus"/></svg></button>
+              <output class="stepper__val" data-qb-pax-out>2</output>
+              <button type="button" class="stepper__btn" data-qb-pax="1" aria-label="Une personne de plus"><svg class="icon"><use href="#i-plus"/></svg></button>
+            </div>
+          </div>
+          <div class="field"><label for="qb-name">Votre nom</label><input id="qb-name" autocomplete="name" required aria-describedby="qb-err"></div>
         </div>
-      </div>
-      [[map]]
+        <p class="field__error" id="qb-err" role="alert"></p>
+        <button class="btn btn--block magnetic" type="submit"><svg class="icon icon--fill"><use href="#i-whatsapp"/></svg>Réserver sur WhatsApp</button>
+        <a class="small" href="reserver.html" style="color:inherit">Groupe, occasion, précisions → formulaire complet</a>
+      </form>
     </div>
   </section>
 </main>

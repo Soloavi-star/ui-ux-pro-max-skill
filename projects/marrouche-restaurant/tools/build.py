@@ -90,6 +90,37 @@ def card(did, image, ph, text, badge=None):
             f'<div class="dish-card__foot"><span class="price">{fcfa(d["price"])}</span>{add_control(d)}</div></div></article>')
 
 
+def panel(did, image, ph, num, text):
+    d = DISHES[did]
+    return (f'<article class="panel panel--dish"><div class="panel__media" style="--ph:{ph}">{img(image, "auto", "(min-width: 1024px) 34rem, 80vw", d["name"])}</div>'
+            f'<div class="panel__body"><span class="panel__num">{esc(num)}</span><h3>{esc(d["name"])}</h3><p>{esc(text)}</p>'
+            f'<div class="panel__foot"><span class="price">{fcfa(d["price"])}</span>{add_control(d)}</div></div></article>')
+
+
+def stack(did, image, ph, title, text):
+    d = DISHES[did]
+    return (f'<article class="stack__card" data-stack-card><div class="stack__media" style="--ph:{ph}">{img(image, "auto", "(min-width: 1024px) 70rem, 100vw", d["name"])}</div>'
+            f'<div class="stack__body"><h3>{esc(title)}</h3><p>{esc(text)}</p>'
+            f'<div class="stack__foot"><span><b>{esc(d["name"])}</b> · <span class="price">{fcfa(d["price"])}</span></span>{add_control(d)}</div></div></article>')
+
+
+COMPOSER = {
+    "mezze": ["mezzes--homos", "mezzes--taboule", "mezzes--fattouche", "mezzes--moutabbal", "mezzes--batata-harra",
+              "mezzes--feuilles-de-vigne-a-l-huile-d-olive", "mezzes--kebbe-grille-6-pieces", "mezzes--homos-viande",
+              "mezzes--rouleaux-au-fromage", "mezzes--baba-ghannouj", "mezzes--fatayer-viande"],
+    "salade": ["salades--salade-libanaise"],
+    "grill": ["grillades--brochettes-mix", "grillades--brochettes-taouk", "grillades--brochettes-kafta",
+              "grillades--poulet-au-charbon", "grillades--arayes-viande"],
+    "dessert": ["desserts--kataief", "desserts--mehalabie", "desserts--crepe-marrouche"],
+}
+
+
+def composer_data():
+    out = {g: [{"id": i, "name": DISHES[i]["name"], "price": DISHES[i]["price"], "img": DISHES[i]["img"]} for i in ids]
+           for g, ids in COMPOSER.items()}
+    return json.dumps(out, ensure_ascii=False).replace("</", "<\\/")
+
+
 def categories():
     return "\n".join(
         f'<a href="menu.html#{c["id"]}"><b>{esc(c["label"])}</b><i aria-hidden="true"></i><span>{len(c["items"])} plats</span></a>'
@@ -188,6 +219,10 @@ MACROS = [
      lambda m: img(m[1], m[2], m[3], m[4], bool(m[5]))),
     (re.compile(r'\[\[card (\S+) (\S+) (#[0-9A-Fa-f]{6}) "([^"]*)"(?: (\S+))?\]\]'),
      lambda m: card(m[1], m[2], m[3], m[4], m[5])),
+    (re.compile(r'\[\[panel (\S+) (\S+) (#[0-9A-Fa-f]{6}) "([^"]*)" "([^"]*)"\]\]'), lambda m: panel(*m.groups())),
+    (re.compile(r'\[\[stack (\S+) (\S+) (#[0-9A-Fa-f]{6}) "([^"]*)" "([^"]*)"\]\]'), lambda m: stack(*m.groups())),
+    (re.compile(r"\[\[add (\S+)\]\]"), lambda m: add_control(DISHES[m[1]])),
+    (re.compile(r"\[\[composer_data\]\]"), lambda m: composer_data()),
     (re.compile(r"\[\[categories\]\]"), lambda m: categories()),
     (re.compile(r"\[\[catnav\]\]"), lambda m: catnav()),
     (re.compile(r"\[\[menu\]\]"), lambda m: menu()),
@@ -217,7 +252,10 @@ def build_page(src):
     for n in ("index", "menu", "reserver", "infos"):
         header = header.replace("{{cur_" + n + "}}", 'aria-current="page"' if meta["nav"] == n else "")
     page_js = {"menu": '<script src="assets/js/menu.js" defer></script>',
-               "reserver": '<script src="assets/js/reserver.js" defer></script>'}.get(meta["nav"], "")
+               "reserver": '<script src="assets/js/reserver.js" defer></script>',
+               "index": '<script src="assets/vendor/gsap.min.js" defer></script>\n<script src="assets/vendor/ScrollTrigger.min.js" defer></script>\n<script src="assets/js/experience.js" defer></script>'}.get(meta["nav"], "")
+    if meta["nav"] == "index":
+        head = head.replace('<link rel="stylesheet" href="assets/css/site.css">', '<link rel="stylesheet" href="assets/css/site.css">\n<link rel="stylesheet" href="assets/css/experience.css">')
     return f"""<!doctype html>
 <html lang="fr">
 <head>

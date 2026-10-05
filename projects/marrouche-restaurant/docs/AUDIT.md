@@ -78,3 +78,32 @@ Le HTML, le CSS et le JS se compressent d'environ 75 % une fois servis en gzip o
 - Pas de surbrillance au toucher, `touch-action: manipulation`, `user-select: none` uniquement sur les contrôles.
 - `overscroll-behavior: contain` dans le panier ; carrousel natif avec `scroll-snap` ; champs en 16 px.
 - **Reste à tester sur un vrai téléphone** : survol collant, clavier logiciel, encoche, sensation du glisser pour fermer. L'émulation ne les reproduit pas.
+
+## 6. Accueil « expérience » (v3) — storytelling interactif
+
+**Fil narratif :** une soirée chez Marrouche, de la braise à la table. Chaque chapitre se termine par une action.
+
+| Chapitre | Interaction et motion | Action proposée |
+| --- | --- | --- |
+| Ouverture | Rideau ; « Ahlan wa sahlan » s'écrit de droite à gauche (`clip-path`), puis le rideau s'ouvre. Une fois par session, passable au premier geste, absent en mouvement réduit | — |
+| 01 La braise | Braises en canvas poussées par la souris ; titre révélé mot par mot ; **épinglé n°1** : l'arche s'ouvre en plein écran | Composer ma table, Voir la carte |
+| 02 Le mezzé | **Épinglé n°2** : galerie horizontale pilotée par le scroll, parallaxe des photos, barre de progression | Ajouter (panier) |
+| 03 Le grill | Cartes empilées en `position: sticky` natif ; la précédente recule et s'assombrit (scrub) | Ajouter |
+| 04 La broche | Typographie cinétique : le mot « Chawarma » défile avec le scroll ; le prix « dès 3 000 FCFA » se compte | Ajouter chawarma viande ou poulet |
+| 05 Votre table | Configurateur selon les convives (1–12) et l'envie (Fraîcheur, Braise, Festin) ; les assiettes entrent et sortent en 140–320 ms | **Commander cette table** (remplit le panier), **Réserver pour N** |
+| Preuve | Chiffres qui se comptent une seule fois : 4,1 / 3 256 / 207 / 500 | Lire les avis |
+| Rétention | « Recommander » (dernière commande gardée en local), plat du jour par WhatsApp, Instagram | Revenir |
+| Finale | Réservation express : jour, heure et personnes en chips, nom | Réserver sur WhatsApp |
+
+**Garde-fous :**
+- 2 sections épinglées au maximum, comme le recommande le preset GSAP de `ui-ux-pro-max`. Le grill utilise le `sticky` natif.
+- Les gestes fonctionnels (ajouter, stepper, panier) restent instantanés ; le « délice » est réservé aux moments rares.
+- Boutons magnétiques uniquement avec un pointeur fin, sur la propriété `translate` : l'appui `scale(0.97)` est préservé.
+- Les braises s'arrêtent hors écran et quand l'onglet est caché.
+- Mouvement réduit : pas de rideau, pas d'épinglage, pas de braises ; la galerie devient un carrousel natif.
+- axe-core : 0 violation (390 px, 1440 px et mouvement réduit).
+
+**Mesure :**
+- `chapitre_vu` (profondeur de lecture du récit) ;
+- `composer_convives`, `composer_envie`, `composer_commande` (valeur), `composer_reserver` ;
+- `recommande_clic`, `optin_plat_du_jour`, `reservation_express`.

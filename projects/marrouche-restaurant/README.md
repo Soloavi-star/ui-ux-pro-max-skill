@@ -5,7 +5,7 @@ du 4 octobre 2026.
 
 | Page | Contenu |
 | --- | --- |
-| `index.html` | Accueil : signatures, grillades, carte, commande en 3 gestes, avis Google, événements, accès |
+| `index.html` | **Expérience** : récit au défilement en 5 chapitres (braise, mezzé, grill, broche, votre table), configurateur de table, recommande, réservation express — GSAP + ScrollTrigger auto-hébergés (`assets/vendor/`) |
 | `menu.html` | Carte complète : 207 plats et prix FCFA, recherche, filtre végé, rubriques qui suivent le défilement, panier → WhatsApp |
 | `reserver.html` | Réservation de table et devis de groupe → WhatsApp, avec récapitulatif en direct |
 | `infos.html` | Livraison, à emporter, horaires, itinéraire, FAQ |
